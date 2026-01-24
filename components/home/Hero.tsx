@@ -1,12 +1,14 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+// 1. Import 'Variants' type here
+import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
-const fadeInUp = {
+// 2. Add the ': Variants' annotation to your animation objects
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -15,7 +17,7 @@ const fadeInUp = {
   },
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -26,7 +28,7 @@ const staggerContainer = {
   },
 };
 
-const scaleIn = {
+const scaleIn: Variants = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: {
     opacity: 1,

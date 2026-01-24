@@ -1,5 +1,5 @@
-import { supabase } from "@/lib/supabase";
 import { ProductCard } from "@/components/products/ProductCard";
+import { supabase } from "@/lib/supabase";
 
 // This makes the page update dynamically if you add products
 export const revalidate = 0;

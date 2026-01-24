@@ -2,7 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+// 1. Import 'Variants' type here
+import { motion, Variants } from "framer-motion";
 import { MessageCircle, CheckCircle, Package } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
@@ -56,7 +57,8 @@ const getCategoryStyle = (category: string) => {
   }
 };
 
-const cardVariants = {
+// 2. Add ': Variants' type annotation here
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -65,7 +67,8 @@ const cardVariants = {
   },
 };
 
-const hoverVariants = {
+// 3. Add ': Variants' type annotation here
+const hoverVariants: Variants = {
   rest: { y: 0 },
   hover: {
     y: -4,
@@ -84,7 +87,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   // WhatsApp message construction
   const waMessage = `Hello GSTradeLink! I'm interested in the ${product.name}. Please provide pricing and availability details.`;
-  const waLink = `https://wa.me/9779800000000?text=${encodeURIComponent(waMessage)}`;
+  const waLink = `https://wa.me/9779800000000?text=${encodeURIComponent(
+    waMessage,
+  )}`;
 
   return (
     <motion.div

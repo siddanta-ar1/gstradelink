@@ -52,10 +52,15 @@ export const Navbar = () => {
   }, []);
 
   // Close mobile menu when route changes
+  // FIXED: Added conditional checks to prevent unnecessary re-renders
   useEffect(() => {
-    setIsOpen(false);
-    setActiveDropdown(null);
-  }, [pathname]);
+    if (isOpen) {
+      setIsOpen(false);
+    }
+    if (activeDropdown !== null) {
+      setActiveDropdown(null);
+    }
+  }, [pathname, isOpen, activeDropdown]);
 
   // Handle outside click to close dropdown
   useEffect(() => {
