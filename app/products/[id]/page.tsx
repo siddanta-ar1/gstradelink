@@ -45,7 +45,7 @@ export default async function ProductDetailPage(props: {
   return (
     <div className="min-h-screen bg-background-secondary pb-28 md:pb-12">
       <section className="bg-linear-to-br from-primary-700 via-primary-800 to-primary-900 text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+        <div className="w-full xl:px-12 mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
           <div className="flex items-center justify-between gap-3 motion-safe:animate-fade-up">
             <Link
               href="/products"
@@ -61,7 +61,7 @@ export default async function ProductDetailPage(props: {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-5 sm:-mt-6 relative z-10">
+      <section className="w-full xl:px-12 mx-auto px-4 sm:px-6 lg:px-8 -mt-5 sm:-mt-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
           <article className="bg-white border border-border-primary rounded-3xl p-4 sm:p-5 lg:p-6 shadow-sm motion-safe:animate-fade-up">
             <div className="relative bg-primary-50 rounded-2xl overflow-hidden" style={{ aspectRatio: "1 / 1" }}>

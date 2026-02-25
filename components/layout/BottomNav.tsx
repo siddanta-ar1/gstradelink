@@ -15,14 +15,14 @@ export const BottomNav = () => {
     ];
 
     return (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-80 bg-[#1a2f22] rounded-4xl px-6 py-3 flex items-center justify-between z-50 shadow-[0_20px_40px_-15px_rgba(26,47,34,0.6)]">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-80 bg-[#1A2433] rounded-4xl px-6 py-3 flex items-center justify-between z-50 shadow-[0_20px_40px_-15px_rgba(26,36,51,0.6)]">
             {navItems.map((item, index) => {
                 const Icon = item.icon;
                 const isActive = item.external
                     ? false
                     : item.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(item.href) && item.href !== "/";
+                        ? pathname === "/"
+                        : pathname.startsWith(item.href) && item.href !== "/";
 
                 const itemClassName = cn(
                     "relative flex flex-col items-center justify-center gap-1 px-2 py-1 transition-all duration-300",
@@ -37,9 +37,9 @@ export const BottomNav = () => {
                         <Icon
                             size={22}
                             strokeWidth={isActive ? 2.5 : 1.8}
-                            className={cn(isActive && "text-[#1a2f22]")}
+                            className={cn(isActive && "text-[#1A2433]")}
                         />
-                        <span className={cn("text-[9px] font-medium leading-none", isActive && "text-[#1a2f22]")}>
+                        <span className={cn("text-[9px] font-medium leading-none", isActive && "text-[#1A2433]")}>
                             {item.label}
                         </span>
                     </>

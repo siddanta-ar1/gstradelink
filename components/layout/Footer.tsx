@@ -1,71 +1,80 @@
 import Link from "next/link";
-import { MapPin, Phone, Mail } from "lucide-react";
-import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { MapPin, Phone, Mail, MessageCircle, Clock, ArrowRight } from "lucide-react";
 
 export const Footer = ({ className }: { className?: string }) => {
   return (
     <footer
-      className={cn(
-        "bg-linear-to-br from-primary-700 via-primary-800 to-primary-900 text-primary-100 border-t border-white/10 mt-auto",
-        className,
-      )}
+      className={className}
+      style={{ background: "linear-gradient(160deg, #14231A 0%, #1E3527 50%, #0C1810 100%)", color: "#c8d9c2", marginTop: "auto" }}
     >
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-8 sm:pt-10">
-        <div className="mb-8 sm:mb-10 rounded-2xl bg-white/10 border border-white/15 p-4 sm:p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div>
-            <h3 className="text-white text-lg sm:text-xl font-bold">Need the right weighing setup?</h3>
-            <p className="text-primary-200 text-xs sm:text-sm mt-1">Get product recommendation, pricing, and support in minutes.</p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-            <a
-              href="https://wa.me/9779765662427"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center h-10 px-4 rounded-full bg-[#25D366] text-white text-sm font-semibold hover:brightness-110 transition"
-            >
-              WhatsApp Us
-            </a>
-            <a
-              href="tel:+9779765662427"
-              className="inline-flex items-center justify-center h-10 px-4 rounded-full border border-white/30 text-white text-sm font-semibold hover:bg-white/10 transition"
-            >
-              Call Now
-            </a>
-          </div>
-        </div>
-      </div>
+      {/* ── CTA Banner removed per user request ──────────────── */}
 
-      <div className="px-5 sm:px-8 pb-10 sm:pb-12 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-        {/* Brand */}
-        <div>
-          <div className="flex items-center gap-2.5 mb-3 sm:mb-4">
-            <div className="w-7 h-7 bg-white/15 rounded-lg flex items-center justify-center shrink-0">
-              <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75C6.583 21.58 5 22.328 5 23.25v.75c0 .414.336.75.75.75h12.5c.414 0 .75-.336.75-.75v-.75c0-.922-1.583-1.67-2.815-2.25C15.882 20.515 14.472 20.25 13 20.25H12zM12 3L8.25 8.25h7.5L12 3z" />
-              </svg>
+      {/* ── Main Footer Grid ─────────────────────────── */}
+      <div
+        style={{ maxWidth: "72rem", margin: "0 auto", padding: "56px 20px 48px" }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10"
+      >
+        {/* Brand column */}
+        <div className="sm:col-span-2 lg:col-span-1">
+          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-1.5 shrink-0 shadow-sm">
+              <Image src="/logo.png" alt="GSTradeLink Logo" width={60} height={60} className="w-full h-full object-contain" />
             </div>
-            <h3 className="text-white font-bold text-base">GSTradeLink</h3>
+            <div>
+              <div style={{ fontWeight: 800, color: "#ffffff", fontSize: "1.1rem", lineHeight: 1 }}>GSTradeLink</div>
+              <div style={{ color: "#8798AD", fontSize: "0.72rem", marginTop: "2px", textTransform: "uppercase", letterSpacing: "0.08em" }}>Bharatpur · Chitwan</div>
+            </div>
           </div>
-          <p className="text-primary-200 text-xs sm:text-sm leading-relaxed max-w-xs">
+          <p style={{ color: "#8798AD", fontSize: "0.875rem", lineHeight: 1.7, maxWidth: "22rem" }}>
             Your trusted partner for precision weighing solutions in Chitwan.
-            Authorized sales, calibration, and repair services.
+            Authorized sales, calibration, and expert repair services since 2015.
           </p>
+          {/* Business hours badge */}
+          <div
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "8px",
+              marginTop: "20px", padding: "6px 14px", borderRadius: "9999px",
+              background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)",
+              fontSize: "0.75rem", color: "#8798AD",
+            }}
+          >
+            <Clock size={12} style={{ color: "#DCA963" }} />
+            Open all days except Monday: 10:00 AM – 6:00 PM
+          </div>
         </div>
 
         {/* Quick Links */}
         <div>
-          <h4 className="text-white font-semibold text-xs uppercase tracking-wider mb-3 sm:mb-4">Quick Links</h4>
-          <ul className="space-y-2">
+          <h4
+            style={{
+              color: "#ffffff", fontWeight: 700, fontSize: "0.7rem",
+              textTransform: "uppercase", letterSpacing: "0.12em",
+              marginBottom: "20px", paddingBottom: "10px",
+              borderBottom: "1px solid rgba(255,255,255,0.08)",
+            }}
+          >
+            Quick Links
+          </h4>
+          <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "12px" }}>
             {[
               { label: "Browse Catalogue", href: "/products" },
               { label: "Retail Scales", href: "/products?category=Retail%20Scale" },
               { label: "Industrial Scales", href: "/products?category=Industrial%20Scale" },
+              { label: "Spare Parts", href: "/products?category=Spare%20Part" },
               { label: "Contact Us", href: "/contact" },
             ].map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-primary-200 hover:text-white transition-colors text-xs sm:text-sm flex items-center gap-1.5 group">
-                  <span className="w-1 h-1 rounded-full bg-accent-400 group-hover:scale-150 transition-transform shrink-0" />
+                <Link
+                  href={link.href}
+                  className="group"
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: "8px",
+                    color: "#8798AD", fontSize: "0.875rem", textDecoration: "none",
+                    transition: "color 0.15s",
+                  }}
+                >
+                  <ArrowRight size={12} style={{ color: "rgba(220,169,99,0.5)", flexShrink: 0 }} />
                   {link.label}
                 </Link>
               </li>
@@ -73,45 +82,94 @@ export const Footer = ({ className }: { className?: string }) => {
           </ul>
         </div>
 
+        {/* Categories */}
         <div>
-          <h4 className="text-white font-semibold text-xs uppercase tracking-wider mb-3 sm:mb-4">Categories</h4>
-          <ul className="space-y-2 text-primary-200 text-xs sm:text-sm">
-            <li>Retail Scales</li>
-            <li>Industrial Scales</li>
-            <li>Spare Parts</li>
-            <li>Calibration & Repair Service</li>
+          <h4
+            style={{
+              color: "#ffffff", fontWeight: 700, fontSize: "0.7rem",
+              textTransform: "uppercase", letterSpacing: "0.12em",
+              marginBottom: "20px", paddingBottom: "10px",
+              borderBottom: "1px solid rgba(255,255,255,0.08)",
+            }}
+          >
+            Categories
+          </h4>
+          <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "12px" }}>
+            {[
+              { label: "Retail Scales", href: "/products?category=Retail%20Scale" },
+              { label: "Industrial Scales", href: "/products?category=Industrial%20Scale" },
+              { label: "Spare Parts", href: "/products?category=Spare%20Part" },
+              { label: "Calibration & Repair", href: "/products?category=Service" },
+            ].map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: "8px",
+                    color: "#8798AD", fontSize: "0.875rem", textDecoration: "none",
+                  }}
+                >
+                  <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "rgba(220,169,99,0.5)", flexShrink: 0 }} />
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
         {/* Contact */}
         <div>
-          <h4 className="text-white font-semibold text-xs uppercase tracking-wider mb-3 sm:mb-4">Contact Us</h4>
-          <ul className="space-y-2.5">
-            <li className="flex items-start gap-2.5">
-              <MapPin size={14} className="text-accent-400 shrink-0 mt-0.5" />
-              <span className="text-primary-200 text-xs sm:text-sm leading-relaxed">
-                Bharatpur-10, Chitwan, Nepal
-              </span>
-            </li>
-            <li className="flex items-center gap-2.5">
-              <Phone size={14} className="text-accent-400 shrink-0" />
-              <a href="tel:+9779765662427" className="text-primary-200 hover:text-white transition-colors text-xs sm:text-sm">
-                +977 9765662427
-              </a>
-            </li>
-            <li className="flex items-center gap-2.5">
-              <Mail size={14} className="text-accent-400 shrink-0" />
-              <span className="text-primary-200 text-xs sm:text-sm">info@gstradelink.com.np</span>
-            </li>
+          <h4
+            style={{
+              color: "#ffffff", fontWeight: 700, fontSize: "0.7rem",
+              textTransform: "uppercase", letterSpacing: "0.12em",
+              marginBottom: "20px", paddingBottom: "10px",
+              borderBottom: "1px solid rgba(255,255,255,0.08)",
+            }}
+          >
+            Get in Touch
+          </h4>
+          <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "16px" }}>
+            {[
+              { icon: MapPin, text: "Bharatpur-10, Chitwan, Nepal", href: undefined },
+              { icon: Phone, text: "+977 9765662427", href: "tel:+9779765662427" },
+              { icon: Mail, text: "info@gstradelink.com.np", href: undefined },
+            ].map(({ icon: Icon, text, href }) => (
+              <li key={text} style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+                <div
+                  style={{
+                    width: "30px", height: "30px", borderRadius: "8px",
+                    background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    flexShrink: 0, marginTop: "1px",
+                  }}
+                >
+                  <Icon size={13} style={{ color: "#DCA963" }} />
+                </div>
+                {href ? (
+                  <a href={href} style={{ color: "#8798AD", fontSize: "0.875rem", lineHeight: 1.6, textDecoration: "none" }}>
+                    {text}
+                  </a>
+                ) : (
+                  <span style={{ color: "#8798AD", fontSize: "0.875rem", lineHeight: 1.6, wordBreak: "break-word" }}>{text}</span>
+                )}
+              </li>
+            ))}
           </ul>
         </div>
       </div>
 
-      {/* Copyright */}
-      <div className="border-t border-white/10 py-4 sm:py-5 px-5">
-        <p className="text-center text-xs text-primary-300">
-          &copy; {new Date().getFullYear()} GSTradeLink. All rights reserved.
-        </p>
+      {/* ── Copyright bar ────────────────────────────── */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "20px" }}>
+        <div
+          style={{ maxWidth: "72rem", margin: "0 auto" }}
+          className="flex flex-col sm:flex-row items-center justify-between gap-2"
+        >
+          <p style={{ fontSize: "0.75rem", color: "#5C6B7B" }}>
+            © {new Date().getFullYear()} GSTradeLink. All rights reserved.
+          </p>
+          <p style={{ fontSize: "0.75rem", color: "#475569" }}>Bharatpur, Chitwan, Nepal</p>
+        </div>
       </div>
     </footer>
   );

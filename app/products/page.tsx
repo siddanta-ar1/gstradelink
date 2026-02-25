@@ -73,43 +73,69 @@ export default async function ProductsPage(props: {
 
   return (
     <div className="min-h-screen bg-background-secondary pb-28 md:pb-12">
-      <section className="sticky top-0 z-30 bg-background-secondary/95 backdrop-blur-sm border-b border-border-primary/60">
-        <div className="px-4 sm:px-6 lg:px-8 pt-4 pb-4 md:pt-8 md:pb-5 max-w-6xl mx-auto">
-          <div className="flex items-start justify-between gap-3 mb-4 md:mb-5 motion-safe:animate-fade-up">
+      <section
+        className="sticky top-0 z-30 backdrop-blur-md shadow-sm border-b"
+        style={{ background: "rgba(245,239,230,0.92)", borderColor: "rgba(203,220,235,0.6)" }}
+      >
+        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 pt-5 pb-5 md:pt-8 md:pb-6 mx-auto">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-5 md:mb-6 motion-safe:animate-fade-up">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-foreground-primary tracking-tight leading-none">
+              <p style={{ fontSize: "0.75rem", fontWeight: 700, color: "#557BAA", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "6px" }}>
+                Our Inventory
+              </p>
+              <h1
+                className="font-bold tracking-tight leading-none"
+                style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: "#1A2433", letterSpacing: "-0.02em" }}
+              >
                 Product Catalogue
               </h1>
-              <p className="text-foreground-tertiary text-xs sm:text-sm mt-1">
-                Compare scales, spare parts, and service solutions in one place.
+              <p style={{ color: "#5C6B7B", fontSize: "0.9rem", marginTop: "8px", maxWidth: "28rem", lineHeight: 1.6 }}>
+                Explore precision scales, genuine spare parts, and professional service solutions across Nepal.
               </p>
             </div>
-            <div className="hidden sm:flex items-center gap-1.5 text-[11px] font-semibold text-primary-700 bg-primary-50 border border-primary-100 px-3 py-1.5 rounded-full shrink-0">
-              <Sparkles size={13} />
+            <div
+              className="hidden sm:flex items-center gap-1.5 shrink-0"
+              style={{
+                fontSize: "0.72rem", fontWeight: 700, color: "#3E5E85",
+                background: "#E6F0FA", padding: "6px 14px", borderRadius: "9999px",
+                border: "1px solid rgba(147,178,214,0.3)"
+              }}
+            >
+              <Sparkles size={13} style={{ color: "#DCA963" }} />
               Verified products
             </div>
           </div>
 
-          <form action="/products" method="get" className="relative max-w-6xl mx-auto motion-safe:animate-fade-up">
+          <form action="/products" method="get" className="relative w-full mx-auto motion-safe:animate-fade-up">
             {selectedCategory !== "All" && (
               <input type="hidden" name="category" value={selectedCategory} />
             )}
 
             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-              <Search size={17} className="text-foreground-muted" />
+              <Search size={18} style={{ color: "#93B2D6" }} />
             </div>
 
             <input
               type="text"
               name="q"
               defaultValue={searchQuery}
-              placeholder="Search by model, category, or use case"
-              className="w-full h-11 sm:h-12 pl-11 pr-28 bg-white rounded-full border border-border-primary shadow-xs text-foreground-primary placeholder-foreground-muted focus:outline-none focus:ring-2 focus:ring-primary-600/25 focus:border-primary-400 text-sm transition"
+              placeholder="Search by model, category, or use case..."
+              className="w-full h-12 sm:h-14 pl-12 pr-28 bg-white rounded-full border text-sm transition-all focus:outline-none"
+              style={{
+                borderColor: "#E0D5B8",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.03)",
+                color: "#1A2433",
+              }}
             />
 
             <button
               type="submit"
-              className="absolute inset-y-1.5 right-1.5 inline-flex items-center gap-1.5 px-3 sm:px-4 rounded-full bg-primary-600 text-white text-xs font-semibold hover:bg-primary-700 transition-colors"
+              className="absolute inset-y-1.5 right-1.5 inline-flex items-center gap-1.5 px-4 sm:px-5 rounded-full text-xs font-bold transition-transform hover:-translate-y-0.5"
+              style={{
+                background: "#6D94C5",
+                color: "#ffffff",
+                boxShadow: "0 2px 8px rgba(109,148,197,0.35)",
+              }}
             >
               <SlidersHorizontal size={14} />
               Filter
@@ -118,7 +144,7 @@ export default async function ProductsPage(props: {
         </div>
       </section>
 
-      <section className="px-4 sm:px-6 lg:px-8 mt-4 md:mt-6 max-w-6xl mx-auto">
+      <section className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 mt-4 md:mt-6 mx-auto">
         <div className="flex overflow-x-auto hide-scrollbar gap-2 pb-1 motion-safe:animate-fade-up">
           {categories.map((category) => {
             const isActive = selectedCategory === category;
@@ -126,11 +152,18 @@ export default async function ProductsPage(props: {
               <Link
                 key={category}
                 href={createCategoryHref(category)}
-                className={
-                  isActive
-                    ? "shrink-0 px-4 py-2 bg-foreground-primary text-white font-semibold rounded-full text-xs shadow-sm"
-                    : "shrink-0 px-4 py-2 bg-white text-foreground-secondary font-medium rounded-full text-xs hover:bg-primary-50 hover:text-primary-600 border border-border-primary transition shadow-xs"
-                }
+                style={{
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  padding: "8px 20px", borderRadius: "9999px",
+                  fontSize: "0.75rem", fontWeight: isActive ? 700 : 600,
+                  background: isActive ? "#3E5E85" : "#FFFFFF",
+                  color: isActive ? "#ffffff" : "#5C6B7B",
+                  border: isActive ? "1px solid #3E5E85" : "1px solid #E0D5B8",
+                  boxShadow: isActive ? "0 4px 12px rgba(62,94,133,0.3)" : "0 2px 6px rgba(0,0,0,0.03)",
+                  transition: "all 0.2s",
+                  textDecoration: "none",
+                }}
+                className={!isActive ? "hover:-translate-y-0.5 hover:border-[#93B2D6] hover:text-[#3E5E85]" : ""}
               >
                 {category}
               </Link>
@@ -138,44 +171,70 @@ export default async function ProductsPage(props: {
           })}
         </div>
 
-        <div className="mt-3 flex items-center justify-between gap-2 text-xs sm:text-sm text-foreground-secondary motion-safe:animate-fade-up">
-          <p>
-            Showing <span className="font-semibold text-foreground-primary">{productList.length}</span>{" "}
+        <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 motion-safe:animate-fade-up">
+          <p style={{ fontSize: "0.85rem", color: "#5C6B7B" }}>
+            Showing <span style={{ fontWeight: 700, color: "#1A2433" }}>{productList.length}</span>{" "}
             {productList.length === 1 ? "product" : "products"}
             {selectedCategory !== "All" && (
               <>
-                {" "}in <span className="font-semibold text-primary-700">{selectedCategory}</span>
+                {" "}in <span style={{ fontWeight: 700, color: "#557BAA", padding: "2px 8px", background: "#E6F0FA", borderRadius: "6px" }}>{selectedCategory}</span>
               </>
             )}
           </p>
 
           {hasActiveFilters && (
-            <Link href="/products" className="text-primary-700 font-semibold hover:text-primary-800">
+            <Link
+              href="/products"
+              style={{ fontSize: "0.75rem", fontWeight: 700, color: "#DCA963", textDecoration: "underline" }}
+              className="hover:text-[#C28D44]"
+            >
               Clear filters
             </Link>
           )}
         </div>
       </section>
 
-      <section className="px-4 sm:px-6 lg:px-8 mt-5 sm:mt-7 max-w-6xl mx-auto motion-safe:animate-fade-up">
+      <section className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 mt-5 sm:mt-7 mx-auto motion-safe:animate-fade-up">
         {productList.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 sm:gap-5">
             {productList.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 sm:py-24 bg-white rounded-3xl border border-dashed border-border-secondary mx-auto max-w-lg">
-            <div className="w-14 h-14 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Search size={24} className="text-primary-400" />
+          <div
+            className="text-center py-20 px-6 sm:px-12 mx-auto max-w-xl"
+            style={{
+              background: "#FFFFFF",
+              borderRadius: "24px",
+              border: "1.5px dashed #D4C6A0",
+              boxShadow: "0 8px 30px rgba(0,0,0,0.03)",
+            }}
+          >
+            <div
+              className="mx-auto mb-5"
+              style={{
+                width: "60px", height: "60px", borderRadius: "50%",
+                background: "#E6F0FA", display: "flex", alignItems: "center", justifyContent: "center"
+              }}
+            >
+              <Search size={26} style={{ color: "#6D94C5" }} />
             </div>
-            <p className="text-foreground-primary font-semibold">No matching products found</p>
-            <p className="text-foreground-tertiary text-sm mt-1 px-4">
-              Try another category or use shorter search keywords.
+            <p style={{ fontSize: "1.1rem", fontWeight: 700, color: "#1A2433", marginBottom: "6px" }}>
+              No matching products found
+            </p>
+            <p style={{ fontSize: "0.9rem", color: "#5C6B7B", lineHeight: 1.6 }}>
+              We couldn't find anything matching your current filters. Try adjusting your search or category.
             </p>
             <Link
               href="/products"
-              className="inline-flex mt-5 px-4 py-2 rounded-full bg-primary-600 text-white text-xs font-semibold hover:bg-primary-700 transition-colors"
+              className="inline-flex mt-6 transition-transform hover:-translate-y-0.5"
+              style={{
+                padding: "12px 28px", borderRadius: "9999px",
+                background: "#3E5E85", color: "#ffffff",
+                fontSize: "0.85rem", fontWeight: 700, textDecoration: "none",
+                boxShadow: "0 4px 16px rgba(62,94,133,0.3)"
+              }}
             >
               View all products
             </Link>
