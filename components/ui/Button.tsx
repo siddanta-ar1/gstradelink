@@ -7,7 +7,7 @@ import { Loader2 } from "lucide-react";
 
 const buttonVariants = cva(
   // Base styles - clean and professional
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-60 active:scale-[0.98]",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-60 active:scale-[0.98]",
   {
     variants: {
       variant: {
@@ -16,7 +16,7 @@ const buttonVariants = cva(
         secondary:
           "bg-background-primary text-foreground-primary border border-border-primary shadow-sm hover:bg-background-secondary hover:shadow-md hover:-translate-y-0.5",
         outline:
-          "border border-primary-600 text-primary-600 hover:bg-primary-50 hover:text-primary-700",
+          "border border-primary-600 text-primary-700 hover:bg-primary-50",
         ghost:
           "text-foreground-secondary hover:bg-background-secondary hover:text-foreground-primary",
         danger:
@@ -28,11 +28,11 @@ const buttonVariants = cva(
         link: "text-primary-600 underline-offset-4 hover:underline focus-visible:ring-primary-500",
       },
       size: {
-        xs: "h-7 px-2 text-xs",
-        sm: "h-8 px-3 text-xs",
-        md: "h-9 px-4 text-sm",
-        lg: "h-10 px-6 text-sm",
-        xl: "h-11 px-8 text-base",
+        xs: "h-8 px-3 text-xs rounded-lg",
+        sm: "h-9 px-3.5 text-xs",
+        md: "h-10 px-4 text-sm",
+        lg: "h-11 px-6 text-sm",
+        xl: "h-12 px-8 text-base rounded-2xl",
         icon: "h-9 w-9",
       },
       fullWidth: {
@@ -66,7 +66,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       variant,
       size,
       fullWidth,
-      asChild = false,
+      asChild: _asChild = false,
       isLoading = false,
       loadingText,
       leftIcon,
@@ -77,6 +77,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
+    void _asChild;
     const isDisabled = disabled || isLoading;
 
     return (
@@ -90,7 +91,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
         )}
         {!isLoading && leftIcon && (
-          <span className="flex-shrink-0" aria-hidden="true">
+          <span className="shrink-0" aria-hidden="true">
             {leftIcon}
           </span>
         )}
@@ -98,7 +99,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {isLoading && loadingText ? loadingText : children}
         </span>
         {!isLoading && rightIcon && (
-          <span className="flex-shrink-0" aria-hidden="true">
+          <span className="shrink-0" aria-hidden="true">
             {rightIcon}
           </span>
         )}

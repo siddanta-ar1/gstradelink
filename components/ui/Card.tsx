@@ -5,15 +5,15 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const cardVariants = cva(
-  "rounded-xl border bg-bg-card text-text-primary transition-all duration-200",
+  "rounded-xl border bg-white text-foreground-primary transition-all duration-200",
   {
     variants: {
       variant: {
-        default: "border-brand-light shadow-card",
-        elevated: "border-brand-light shadow-industrial",
-        outlined: "border-2 border-brand-muted shadow-none",
+        default: "border-border-primary shadow-card",
+        elevated: "border-border-primary shadow-lg",
+        outlined: "border-2 border-border-secondary shadow-none",
         ghost: "border-transparent shadow-none bg-transparent",
-        gradient: "border-brand-light shadow-card bg-gradient-to-br from-bg-card to-bg-alt",
+        gradient: "border-border-primary shadow-card bg-gradient-to-br from-white to-background-secondary",
       },
       size: {
         sm: "p-3",
@@ -23,13 +23,13 @@ const cardVariants = cva(
       },
       hover: {
         none: "",
-        lift: "hover:shadow-card-hover hover:-translate-y-1",
-        glow: "hover:shadow-lg hover:shadow-brand-accent/10",
+        lift: "hover:shadow-md hover:-translate-y-1",
+        glow: "hover:shadow-lg hover:shadow-primary-600/10",
         scale: "hover:scale-[1.02]",
-        subtle: "hover:bg-bg-alt/50",
+        subtle: "hover:bg-background-secondary/50",
       },
       interactive: {
-        true: "cursor-pointer focus-within:ring-2 focus-within:ring-brand-accent focus-within:ring-offset-2",
+        true: "cursor-pointer focus-within:ring-2 focus-within:ring-primary-600 focus-within:ring-offset-2",
         false: "",
       },
     },
@@ -103,7 +103,7 @@ const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
       <Comp
         ref={ref}
         className={cn(
-          "leading-none tracking-tight text-text-primary",
+          "leading-none tracking-tight text-foreground-primary",
           sizeClasses[size],
           className
         )}
@@ -123,9 +123,9 @@ export interface CardDescriptionProps extends React.HTMLAttributes<HTMLParagraph
 const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
   ({ className, variant = "default", size = "sm", ...props }, ref) => {
     const variantClasses = {
-      default: "text-text-secondary",
-      muted: "text-text-muted",
-      accent: "text-brand-accent",
+      default: "text-foreground-secondary",
+      muted: "text-foreground-muted",
+      accent: "text-accent-500",
     };
 
     const sizeClasses = {
@@ -201,7 +201,7 @@ const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
         className={cn(
           variantClasses[variant],
           spacingClasses[spacing],
-          "pt-3 border-t border-brand-light/50",
+          "pt-3 border-t border-border-primary/50",
           className
         )}
         {...props}
@@ -257,7 +257,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
         {...props}
       >
         {/* Image Section */}
-        <div className="relative aspect-video bg-bg-alt rounded-lg mb-4 overflow-hidden">
+        <div className="relative aspect-video bg-background-secondary rounded-lg mb-4 overflow-hidden">
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -266,8 +266,8 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
               loading="lazy"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-bg-alt to-bg-main">
-              <div className="text-text-muted text-sm">No Image</div>
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-background-secondary to-background-primary">
+              <div className="text-foreground-muted text-sm">No Image</div>
             </div>
           )}
 
@@ -276,7 +276,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
             <div
               className={cn(
                 "w-3 h-3 rounded-full",
-                isActive ? "bg-status-success" : "bg-status-error"
+                isActive ? "bg-success-500" : "bg-danger-500"
               )}
               title={isActive ? "Active" : "Inactive"}
             />
@@ -291,7 +291,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
             </CardTitle>
 
             {category && (
-              <div className="text-xs text-brand-accent font-medium bg-brand-accent/10 px-2 py-1 rounded-full inline-block">
+              <div className="text-xs text-accent-500 font-medium bg-accent-500/10 px-2 py-1 rounded-full inline-block">
                 {category}
               </div>
             )}
@@ -310,7 +310,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
             {onEdit && (
               <button
                 onClick={onEdit}
-                className="text-xs bg-brand-primary text-white px-3 py-1 rounded-md hover:bg-brand-primary/90 transition-colors"
+                className="text-xs bg-primary-600 text-white px-3 py-1 rounded-md hover:bg-primary-700 transition-colors"
                 disabled={loading}
               >
                 Edit
@@ -319,7 +319,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
             {onDelete && (
               <button
                 onClick={onDelete}
-                className="text-xs bg-status-error text-white px-3 py-1 rounded-md hover:bg-status-error/90 transition-colors"
+                className="text-xs bg-danger-500 text-white px-3 py-1 rounded-md hover:bg-danger-600 transition-colors"
                 disabled={loading}
               >
                 Delete
@@ -328,7 +328,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(
           </div>
 
           {price && (
-            <div className="text-sm font-semibold text-brand-accent">
+            <div className="text-sm font-semibold text-accent-500">
               {price}
             </div>
           )}
@@ -377,9 +377,9 @@ const StatsCard = forwardRef<HTMLDivElement, StatsCardProps>(
               <CardDescription size="sm" className="uppercase tracking-wide">
                 {title}
               </CardDescription>
-              <div className="text-2xl font-bold text-text-primary">
+              <div className="text-2xl font-bold text-foreground-primary">
                 {loading ? (
-                  <div className="h-8 w-20 bg-bg-alt rounded animate-pulse" />
+                  <div className="h-8 w-20 bg-background-secondary rounded animate-pulse" />
                 ) : (
                   value
                 )}
@@ -392,7 +392,7 @@ const StatsCard = forwardRef<HTMLDivElement, StatsCardProps>(
             </div>
 
             {icon && (
-              <div className="text-brand-accent opacity-80">
+              <div className="text-accent-500 opacity-80">
                 {icon}
               </div>
             )}
@@ -403,12 +403,12 @@ const StatsCard = forwardRef<HTMLDivElement, StatsCardProps>(
               <span
                 className={cn(
                   "text-xs font-medium",
-                  trend.isPositive ? "text-status-success" : "text-status-error"
+                  trend.isPositive ? "text-success-600" : "text-danger-600"
                 )}
               >
                 {trend.isPositive ? "+" : "-"}{Math.abs(trend.value)}%
               </span>
-              <span className="text-xs text-text-muted">vs last period</span>
+              <span className="text-xs text-foreground-muted">vs last period</span>
             </div>
           )}
         </CardContent>
@@ -439,7 +439,7 @@ const FeatureCard = forwardRef<HTMLDivElement, FeatureCardProps>(
         <CardContent spacing="md">
           {icon && (
             <div className="flex justify-center mb-4">
-              <div className="w-12 h-12 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent">
+              <div className="w-12 h-12 rounded-lg bg-accent-500/10 flex items-center justify-center text-accent-500">
                 {icon}
               </div>
             </div>
@@ -454,10 +454,10 @@ const FeatureCard = forwardRef<HTMLDivElement, FeatureCardProps>(
           </CardDescription>
 
           {features && features.length > 0 && (
-            <ul className="text-sm text-text-secondary space-y-1">
+            <ul className="text-sm text-foreground-secondary space-y-1">
               {features.map((feature, index) => (
                 <li key={index} className="flex items-center justify-center gap-2">
-                  <div className="w-1.5 h-1.5 bg-brand-accent rounded-full flex-shrink-0" />
+                  <div className="w-1.5 h-1.5 bg-accent-400 rounded-full flex-shrink-0" />
                   {feature}
                 </li>
               ))}

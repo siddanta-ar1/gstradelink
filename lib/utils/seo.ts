@@ -1,4 +1,3 @@
-import React from "react";
 import type { Metadata } from "next";
 import type { Product, StructuredData, SEOProps, BusinessInfo } from "@/types";
 
@@ -15,9 +14,9 @@ export const BUSINESS_INFO: BusinessInfo = {
     country: "Nepal",
   },
   contact: {
-    phone: "+977-56-XXXXXX",
+    phone: "+977-56-878965",
     email: "info@gstradelink.com.np",
-    whatsapp: "+977-98XXXXXXXX",
+    whatsapp: "+977-9765662427",
   },
   socialMedia: {
     facebook: "https://facebook.com/gstradelinkchitwan",
@@ -426,7 +425,7 @@ export function generateProductPageSEO(product: Product): SEOProps {
       "Chitwan",
     ],
     canonical: `${DEFAULT_SEO.siteUrl}/products/${product.id}`,
-    ogImage: product.image_url,
+    ogImage: product.image_url ?? undefined,
     ogType: "product",
   };
 }

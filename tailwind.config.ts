@@ -8,7 +8,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Professional Primary Palette
+        // ── Core Green Palette ──────────────────────────────────────────────
+        primary: {
+          50: "#EFF4EE", // Soft sage tint – very light card bg
+          100: "#D4E3D2", // Light sage
+          200: "#B8CEB5", // Medium sage
+          300: "#9BB898", // Soft sage
+          400: "#89A083", // Sage / Olive Green (hero lighter bg)
+          500: "#6B8B66", // Mid forest
+          600: "#2A4835", // Deep Forest Green (main brand)
+          700: "#1E3527", // Darker forest
+          800: "#14231A", // Very dark forest
+          900: "#0C1810", // Near-black forest
+          950: "#070E09",
+        },
+
+        // ── Neutrals ────────────────────────────────────────────────────────
         slate: {
           50: "#f8fafc",
           100: "#f1f5f9",
@@ -23,37 +38,58 @@ const config: Config = {
           950: "#020617",
         },
 
-        // Brand Colors - Refined & Professional
-        primary: {
-          50: "#f0f9ff",
-          100: "#e0f2fe",
-          200: "#bae6fd",
-          300: "#7dd3fc",
-          400: "#38bdf8",
-          500: "#0ea5e9", // Main brand blue
-          600: "#0284c7",
-          700: "#0369a1",
-          800: "#075985",
-          900: "#0c4a6e",
-          950: "#082f49",
+        // ── Brand Semantic Tokens ───────────────────────────────────────────
+        brand: {
+          primary: "#2A4835",       // Deep Forest Green
+          secondary: "#1E3527",     // Darker Forest
+          sage: "#89A083",         // Soft Sage / Olive
+          light: "#EFF4EE",         // Sage tint bg
+          accent: "#F2C047",        // Mustard Gold
+          warm: "#D97A35",        // Burnt Orange / Terracotta
+          surface: "#F0F2EE",       // Warm Off-White / Alabaster
+          canvas: "#E8EBE3",       // Main catalogue bg
         },
 
-        // Accent Colors - Minimal & Purposeful
+        // ── Accent ──────────────────────────────────────────────────────────
         accent: {
-          50: "#fefce8",
-          100: "#fef3c7",
-          200: "#fde68a",
-          300: "#fcd34d",
-          400: "#fbbf24",
-          500: "#f59e0b", // Warm amber for CTAs
-          600: "#d97706",
-          700: "#b45309",
-          800: "#92400e",
-          900: "#78350f",
-          950: "#451a03",
+          50: "#FEFBEA",
+          100: "#FDF3C3",
+          200: "#FCE68A",
+          300: "#F9D455",
+          400: "#F2C047", // Mustard Gold
+          500: "#E8A822",
+          600: "#D97A35", // Terracotta / Buy button accent
+          700: "#B85C1A",
+          800: "#8F420D",
+          900: "#6B2F08",
         },
 
-        // Semantic Colors
+        // ── Background Hierarchy ────────────────────────────────────────────
+        background: {
+          primary: "#F0F2EE",   // Warm off-white / Alabaster
+          secondary: "#E8EBE3", // Canvas – main page bg
+          tertiary: "#D4E3D2", // Sage tint
+          inverse: "#1E3527",  // Dark forest
+          card: "#FFFFFF",      // Pure white – card surfaces
+        },
+
+        // ── Text Hierarchy ──────────────────────────────────────────────────
+        foreground: {
+          primary: "#111111", // Jet Black / Deep Charcoal
+          secondary: "#888888", // Medium Grey
+          tertiary: "#AAAAAA", // Light grey
+          inverse: "#FFFFFF",
+          muted: "#C0C0C0",
+        },
+
+        // ── Border System ────────────────────────────────────────────────────
+        border: {
+          primary: "#D4E3D2", // Sage light border
+          secondary: "#B8CEB5",
+          tertiary: "#89A083",
+        },
+
+        // ── Semantic Status ──────────────────────────────────────────────────
         success: {
           50: "#f0fdf4",
           100: "#dcfce7",
@@ -95,33 +131,9 @@ const config: Config = {
           900: "#78350f",
           950: "#451a03",
         },
-
-        // Background Hierarchy
-        background: {
-          primary: "#ffffff",
-          secondary: "#f8fafc",
-          tertiary: "#f1f5f9",
-          inverse: "#0f172a",
-        },
-
-        // Text Hierarchy
-        foreground: {
-          primary: "#0f172a",
-          secondary: "#475569",
-          tertiary: "#64748b",
-          inverse: "#ffffff",
-          muted: "#94a3b8",
-        },
-
-        // Border System
-        border: {
-          primary: "#e2e8f0",
-          secondary: "#cbd5e1",
-          tertiary: "#94a3b8",
-        },
       },
 
-      // Typography Scale - Professional & Consistent
+      // Typography Scale
       fontSize: {
         xs: ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.025em" }],
         sm: ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0.01em" }],
@@ -129,92 +141,82 @@ const config: Config = {
         lg: ["1.125rem", { lineHeight: "1.75rem", letterSpacing: "-0.01em" }],
         xl: ["1.25rem", { lineHeight: "1.75rem", letterSpacing: "-0.015em" }],
         "2xl": ["1.5rem", { lineHeight: "2rem", letterSpacing: "-0.02em" }],
-        "3xl": [
-          "1.875rem",
-          { lineHeight: "2.25rem", letterSpacing: "-0.025em" },
-        ],
+        "3xl": ["1.875rem", { lineHeight: "2.25rem", letterSpacing: "-0.025em" }],
         "4xl": ["2.25rem", { lineHeight: "2.5rem", letterSpacing: "-0.03em" }],
         "5xl": ["3rem", { lineHeight: "3.25rem", letterSpacing: "-0.035em" }],
         "6xl": ["3.75rem", { lineHeight: "4rem", letterSpacing: "-0.04em" }],
         "7xl": ["4.5rem", { lineHeight: "4.75rem", letterSpacing: "-0.045em" }],
-        "8xl": ["6rem", { lineHeight: "6rem", letterSpacing: "-0.05em" }],
-        "9xl": ["8rem", { lineHeight: "8rem", letterSpacing: "-0.055em" }],
       },
 
-      // Spacing System - 4px base unit
+      // Spacing System
       spacing: {
-        "0.5": "0.125rem", // 2px
-        "1": "0.25rem", // 4px
-        "1.5": "0.375rem", // 6px
-        "2": "0.5rem", // 8px
-        "2.5": "0.625rem", // 10px
-        "3": "0.75rem", // 12px
-        "3.5": "0.875rem", // 14px
-        "4": "1rem", // 16px
-        "5": "1.25rem", // 20px
-        "6": "1.5rem", // 24px
-        "7": "1.75rem", // 28px
-        "8": "2rem", // 32px
-        "9": "2.25rem", // 36px
-        "10": "2.5rem", // 40px
-        "11": "2.75rem", // 44px
-        "12": "3rem", // 48px
-        "14": "3.5rem", // 56px
-        "16": "4rem", // 64px
-        "18": "4.5rem", // 72px
-        "20": "5rem", // 80px
-        "24": "6rem", // 96px
-        "28": "7rem", // 112px
-        "32": "8rem", // 128px
-        "36": "9rem", // 144px
-        "40": "10rem", // 160px
-        "44": "11rem", // 176px
-        "48": "12rem", // 192px
-        "52": "13rem", // 208px
-        "56": "14rem", // 224px
-        "60": "15rem", // 240px
-        "64": "16rem", // 256px
-        "72": "18rem", // 288px
-        "80": "20rem", // 320px
-        "96": "24rem", // 384px
+        "0.5": "0.125rem",
+        "1": "0.25rem",
+        "1.5": "0.375rem",
+        "2": "0.5rem",
+        "2.5": "0.625rem",
+        "3": "0.75rem",
+        "3.5": "0.875rem",
+        "4": "1rem",
+        "5": "1.25rem",
+        "6": "1.5rem",
+        "7": "1.75rem",
+        "8": "2rem",
+        "9": "2.25rem",
+        "10": "2.5rem",
+        "11": "2.75rem",
+        "12": "3rem",
+        "14": "3.5rem",
+        "16": "4rem",
+        "18": "4.5rem",
+        "20": "5rem",
+        "24": "6rem",
+        "28": "7rem",
+        "32": "8rem",
+        "36": "9rem",
+        "40": "10rem",
+        "44": "11rem",
+        "48": "12rem",
+        "52": "13rem",
+        "56": "14rem",
+        "60": "15rem",
+        "64": "16rem",
+        "72": "18rem",
+        "80": "20rem",
+        "96": "24rem",
       },
 
-      // Professional Shadow System
       boxShadow: {
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
         sm: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
-        DEFAULT:
-          "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        DEFAULT: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
         md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
         lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
         xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
         "2xl": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
         inner: "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)",
         none: "0 0 #0000",
-
-        // Custom professional shadows
         soft: "0 2px 8px 0 rgb(0 0 0 / 0.06)",
         card: "0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px 0 rgb(0 0 0 / 0.06)",
-        "card-hover":
-          "0 4px 12px 0 rgb(0 0 0 / 0.12), 0 2px 6px 0 rgb(0 0 0 / 0.08)",
+        "card-hover": "0 4px 12px 0 rgb(0 0 0 / 0.12), 0 2px 6px 0 rgb(0 0 0 / 0.08)",
         button: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
         "button-hover": "0 2px 4px 0 rgb(0 0 0 / 0.1)",
+        green: "0 8px 24px -4px rgb(42 72 53 / 0.35)",
       },
 
-      // Border Radius System
       borderRadius: {
         none: "0",
-        sm: "0.125rem", // 2px
-        DEFAULT: "0.25rem", // 4px
-        md: "0.375rem", // 6px
-        lg: "0.5rem", // 8px
-        xl: "0.75rem", // 12px
-        "2xl": "1rem", // 16px
-        "3xl": "1.5rem", // 24px
+        sm: "0.125rem",
+        DEFAULT: "0.25rem",
+        md: "0.375rem",
+        lg: "0.5rem",
+        xl: "0.75rem",
+        "2xl": "1rem",
+        "3xl": "1.5rem",
+        "4xl": "2rem",
         full: "9999px",
       },
 
-      // Animation System - Subtle & Professional
       animation: {
         "fade-in": "fadeIn 0.4s ease-out",
         "fade-up": "fadeUp 0.5s ease-out",
@@ -222,58 +224,31 @@ const config: Config = {
         "slide-up": "slideUp 0.3s ease-out",
         "slide-down": "slideDown 0.3s ease-out",
         "scale-up": "scaleUp 0.2s ease-out",
-        "scale-down": "scaleDown 0.2s ease-out",
         shimmer: "shimmer 2s linear infinite",
         "pulse-subtle": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "bounce-subtle": "bounceSubtle 2s infinite",
+        float: "float 6s ease-in-out infinite",
       },
 
       keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        fadeUp: {
-          "0%": { opacity: "0", transform: "translateY(10px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        fadeDown: {
-          "0%": { opacity: "0", transform: "translateY(-10px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        slideUp: {
-          "0%": { transform: "translateY(10px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
-        slideDown: {
-          "0%": { transform: "translateY(-10px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
-        scaleUp: {
-          "0%": { transform: "scale(0.95)", opacity: "0" },
-          "100%": { transform: "scale(1)", opacity: "1" },
-        },
-        scaleDown: {
-          "0%": { transform: "scale(1.05)", opacity: "0" },
-          "100%": { transform: "scale(1)", opacity: "1" },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-200px 0" },
-          "100%": { backgroundPosition: "calc(200px + 100%) 0" },
-        },
+        fadeIn: { "0%": { opacity: "0" }, "100%": { opacity: "1" } },
+        fadeUp: { "0%": { opacity: "0", transform: "translateY(10px)" }, "100%": { opacity: "1", transform: "translateY(0)" } },
+        fadeDown: { "0%": { opacity: "0", transform: "translateY(-10px)" }, "100%": { opacity: "1", transform: "translateY(0)" } },
+        slideUp: { "0%": { transform: "translateY(10px)", opacity: "0" }, "100%": { transform: "translateY(0)", opacity: "1" } },
+        slideDown: { "0%": { transform: "translateY(-10px)", opacity: "0" }, "100%": { transform: "translateY(0)", opacity: "1" } },
+        scaleUp: { "0%": { transform: "scale(0.95)", opacity: "0" }, "100%": { transform: "scale(1)", opacity: "1" } },
+        shimmer: { "0%": { backgroundPosition: "-200px 0" }, "100%": { backgroundPosition: "calc(200px + 100%) 0" } },
         bounceSubtle: {
-          "0%, 100%": {
-            transform: "translateY(0)",
-            animationTimingFunction: "cubic-bezier(0.8, 0, 1, 1)",
-          },
-          "50%": {
-            transform: "translateY(-5px)",
-            animationTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
-          },
+          "0%, 100%": { transform: "translateY(0)", animationTimingFunction: "cubic-bezier(0.8, 0, 1, 1)" },
+          "50%": { transform: "translateY(-5px)", animationTimingFunction: "cubic-bezier(0, 0, 0.2, 1)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
+          "33%": { transform: "translateY(-8px) rotate(1deg)" },
+          "66%": { transform: "translateY(-4px) rotate(-1deg)" },
         },
       },
 
-      // Container System
       container: {
         center: true,
         padding: {
@@ -292,7 +267,6 @@ const config: Config = {
         },
       },
 
-      // Grid System
       gridTemplateColumns: {
         "auto-fit-xs": "repeat(auto-fit, minmax(200px, 1fr))",
         "auto-fit-sm": "repeat(auto-fit, minmax(250px, 1fr))",
@@ -300,10 +274,8 @@ const config: Config = {
         "auto-fit-lg": "repeat(auto-fit, minmax(350px, 1fr))",
         sidebar: "280px 1fr",
         dashboard: "64px 1fr",
-        "dashboard-expanded": "280px 1fr",
       },
 
-      // Z-Index System
       zIndex: {
         "1": "1",
         "10": "10",
@@ -319,7 +291,6 @@ const config: Config = {
         max: "999",
       },
 
-      // Backdrop Blur
       backdropBlur: {
         xs: "2px",
         sm: "4px",
@@ -330,16 +301,10 @@ const config: Config = {
         "3xl": "40px",
       },
 
-      // Professional Transitions
       transitionDuration: {
-        "50": "50ms",
-        "100": "100ms",
-        "150": "150ms",
-        "200": "200ms",
-        "250": "250ms",
-        "300": "300ms",
-        "400": "400ms",
-        "500": "500ms",
+        "50": "50ms", "100": "100ms", "150": "150ms",
+        "200": "200ms", "250": "250ms", "300": "300ms",
+        "400": "400ms", "500": "500ms",
       },
 
       transitionTimingFunction: {

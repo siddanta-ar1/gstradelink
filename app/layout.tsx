@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/Navbar"; // Import here
-import { Footer } from "@/components/layout/Footer";
+import { Navbar } from "@/components/layout/Navbar";
+import { FooterWrapper } from "@/components/layout/FooterWrapper";
 import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
+import { BottomNav } from "@/components/layout/BottomNav";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: {
@@ -38,13 +39,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiased bg-bg-main text-text-primary flex flex-col min-h-screen`}
+        className={`${inter.variable} antialiased bg-background-secondary text-foreground-primary flex flex-col min-h-screen`}
       >
         <Navbar />
-        <main className="flex-grow">{children}</main>{" "}
-        {/* Make main grow to push footer down */}
-        <Footer />
+        <main className="grow pb-24 md:pb-0 relative">{children}</main>
+        <FooterWrapper />
         <FloatingWhatsApp />
+        <div className="md:hidden">
+          <BottomNav />
+        </div>
       </body>
     </html>
   );

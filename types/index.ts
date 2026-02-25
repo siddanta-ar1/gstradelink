@@ -3,9 +3,9 @@ export interface Product {
   id: string;
   created_at: string;
   name: string;
-  short_description?: string;
+  short_description: string | null;
   category: ProductCategory;
-  image_url?: string;
+  image_url: string | null;
   is_active: boolean;
 }
 

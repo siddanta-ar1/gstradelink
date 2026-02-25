@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/Button";
 
 interface NavItem {
   label: string;
@@ -20,7 +19,6 @@ export const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
 
-  // Navigation items
   const navItems: NavItem[] = [
     { label: "Home", href: "/" },
     {
@@ -29,89 +27,87 @@ export const Navbar = () => {
       children: [
         { label: "All Products", href: "/products" },
         { label: "Retail Scales", href: "/products?category=Retail Scale" },
-        {
-          label: "Industrial Scales",
-          href: "/products?category=Industrial Scale",
-        },
+        { label: "Industrial Scales", href: "/products?category=Industrial Scale" },
         { label: "Spare Parts", href: "/products?category=Spare Part" },
         { label: "Services", href: "/products?category=Service" },
       ],
     },
-    { label: "About", href: "/about" },
+    { label: "Services", href: "/products?category=Service" },
     { label: "Contact", href: "/contact" },
   ];
 
-  // Handle scroll effect
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
-  // FIXED: Added conditional checks to prevent unnecessary re-renders
+  // BUG FIX: Only pathname in dep array to avoid infinite loop.
+  // Previously isOpen & activeDropdown were listed, causing setIsOpen → re-render → effect → setIsOpen loop.
   useEffect(() => {
-    if (isOpen) {
-      setIsOpen(false);
-    }
-    if (activeDropdown !== null) {
-      setActiveDropdown(null);
-    }
-  }, [pathname, isOpen, activeDropdown]);
+    setIsOpen(false);
+    setActiveDropdown(null);
+  }, [pathname]);
 
-  // Handle outside click to close dropdown
   useEffect(() => {
-    const handleClickOutside = () => {
-      setActiveDropdown(null);
-    };
-
+    const handleClickOutside = () => setActiveDropdown(null);
     if (activeDropdown) {
       document.addEventListener("click", handleClickOutside);
       return () => document.removeEventListener("click", handleClickOutside);
     }
   }, [activeDropdown]);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  useEffect(() => {
+    if (!isOpen) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    document.body.style.overflow = "hidden";
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen]);
+
+  const toggleMenu = () => setIsOpen((v) => !v);
 
   const toggleDropdown = (label: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    setActiveDropdown(activeDropdown === label ? null : label);
+    setActiveDropdown((prev) => (prev === label ? null : label));
   };
 
-  // Check if current path matches nav item
   const isActivePath = (href: string) => {
     if (href === "/") return pathname === "/";
-    return pathname.startsWith(href);
+    // Strip query string — pathname never contains query params
+    const hrefPath = href.split("?")[0];
+    return pathname.startsWith(hrefPath);
   };
 
   return (
-    <>
-      {/* Top contact bar - hidden on mobile */}
-      <div className="hidden lg:block bg-background-secondary py-2 border-b border-border-primary">
+    <div>
+      {/* Top contact bar */}
+      <div className="hidden xl:block bg-primary-700 py-2 border-b border-white/10">
         <div className="container-fluid">
-          <div className="flex items-center justify-between text-sm text-foreground-tertiary">
+          <div className="flex items-center justify-between text-sm text-primary-100">
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
                 <Phone size={14} />
-                <span>+977-56-XXXXXX</span>
+                <span>+977-56-878965</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
-                </svg>
-                <span>info@gstradelink.com.np</span>
-              </div>
+              <span className="text-white/30">•</span>
+              <span>Mon–Sat: 10:00 AM – 6:00 PM</span>
             </div>
-            <div className="text-xs">
-              Mon-Fri: 10:00-18:00 | Sat: 10:00-17:00
-            </div>
+            <a href="https://wa.me/9779765662427" target="_blank" rel="noopener noreferrer" className="text-xs text-primary-200 hover:text-white transition-colors">
+              Fast response on WhatsApp
+            </a>
           </div>
         </div>
       </div>
@@ -131,24 +127,10 @@ export const Navbar = () => {
         <div className="container-fluid">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link
-              href="/"
-              className="flex items-center space-x-3 group"
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center group-hover:bg-primary-700 transition-colors">
-                <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75C6.583 21.58 5 22.328 5 23.25v.75c0 .414.336.75.75.75h12.5c.414 0 .75-.336.75-.75v-.75c0-.922-1.583-1.67-2.815-2.25C15.882 20.515 14.472 20.25 13 20.25H12zM12 3L8.25 8.25h7.5L12 3z"
-                  />
+            <Link href="/" className="flex items-center space-x-3 group" onClick={() => setIsOpen(false)}>
+              <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center group-hover:bg-primary-700 transition-colors shadow-sm">
+                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75C6.583 21.58 5 22.328 5 23.25v.75c0 .414.336.75.75.75h12.5c.414 0 .75-.336.75-.75v-.75c0-.922-1.583-1.67-2.815-2.25C15.882 20.515 14.472 20.25 13 20.25H12zM12 3L8.25 8.25h7.5L12 3z" />
                 </svg>
               </div>
               <div className="hidden sm:block">
@@ -179,10 +161,7 @@ export const Navbar = () => {
                         <span>{item.label}</span>
                         <ChevronDown
                           size={16}
-                          className={cn(
-                            "transition-transform duration-200",
-                            activeDropdown === item.label && "rotate-180",
-                          )}
+                          className={cn("transition-transform duration-200", activeDropdown === item.label && "rotate-180")}
                         />
                       </button>
 
@@ -229,11 +208,15 @@ export const Navbar = () => {
                 </div>
               ))}
 
-              {/* CTA Button */}
-              <div className="ml-6 pl-6 border-l border-border-primary">
-                <Button variant="outline" size="sm" asChild>
-                  <Link href="/admin">Admin Access</Link>
-                </Button>
+              <div className="ml-4 pl-4 border-l border-border-primary flex items-center">
+                <a
+                  href="https://wa.me/9779765662427"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold bg-primary-600 text-white hover:bg-primary-700 transition-colors"
+                >
+                  Get Quote
+                </a>
               </div>
             </div>
 
@@ -244,10 +227,7 @@ export const Navbar = () => {
               aria-label="Toggle menu"
               aria-expanded={isOpen}
             >
-              <motion.div
-                animate={{ rotate: isOpen ? 90 : 0 }}
-                transition={{ duration: 0.2 }}
-              >
+              <motion.div animate={{ rotate: isOpen ? 90 : 0 }} transition={{ duration: 0.2 }}>
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </motion.div>
             </button>
@@ -258,16 +238,14 @@ export const Navbar = () => {
         <AnimatePresence>
           {isOpen && (
             <>
-              {/* Backdrop */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 lg:hidden"
+                className="fixed inset-0 bg-primary-900/50 backdrop-blur-sm z-40 lg:hidden"
                 onClick={() => setIsOpen(false)}
               />
 
-              {/* Mobile Menu */}
               <motion.div
                 initial={{ opacity: 0, x: "100%" }}
                 animate={{ opacity: 1, x: 0 }}
@@ -277,35 +255,21 @@ export const Navbar = () => {
               >
                 <div className="flex flex-col h-full">
                   {/* Mobile Header */}
-                  <div className="flex items-center justify-between p-6 border-b border-border-primary">
+                  <div className="flex items-center justify-between p-6 bg-primary-600">
                     <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
-                        <svg
-                          className="w-5 h-5 text-white"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75C6.583 21.58 5 22.328 5 23.25v.75c0 .414.336.75.75.75h12.5c.414 0 .75-.336.75-.75v-.75c0-.922-1.583-1.67-2.815-2.25C15.882 20.515 14.472 20.25 13 20.25H12zM12 3L8.25 8.25h7.5L12 3z"
-                          />
+                      <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75C6.583 21.58 5 22.328 5 23.25v.75c0 .414.336.75.75.75h12.5c.414 0 .75-.336.75-.75v-.75c0-.922-1.583-1.67-2.815-2.25C15.882 20.515 14.472 20.25 13 20.25H12zM12 3L8.25 8.25h7.5L12 3z" />
                         </svg>
                       </div>
                       <div>
-                        <div className="font-bold text-foreground-primary">
-                          GSTradeLink
-                        </div>
-                        <div className="text-xs text-foreground-tertiary uppercase tracking-wide">
-                          Bharatpur
-                        </div>
+                        <div className="font-bold text-white">GSTradeLink</div>
+                        <div className="text-xs text-primary-200 uppercase tracking-wide">Bharatpur</div>
                       </div>
                     </div>
                     <button
                       onClick={() => setIsOpen(false)}
-                      className="p-2 rounded-lg text-foreground-secondary hover:text-foreground-primary hover:bg-background-secondary transition-colors"
+                      className="p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors"
                     >
                       <X size={20} />
                     </button>
@@ -315,15 +279,11 @@ export const Navbar = () => {
                   <div className="px-6 py-4 bg-background-secondary border-b border-border-primary">
                     <div className="space-y-2 text-sm">
                       <div className="flex items-center gap-2 text-foreground-tertiary">
-                        <Phone size={14} />
-                        <span>+977-56-XXXXXX</span>
+                        <Phone size={14} className="text-primary-600" />
+                        <span>+977-56-878965</span>
                       </div>
                       <div className="flex items-center gap-2 text-foreground-tertiary">
-                        <svg
-                          className="w-3.5 h-3.5"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
+                        <svg className="w-3.5 h-3.5 text-primary-600" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
                         </svg>
                         <span>info@gstradelink.com.np</span>
@@ -339,7 +299,7 @@ export const Navbar = () => {
                           key={item.label}
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
+                          transition={{ delay: index * 0.08 }}
                         >
                           {item.children ? (
                             <div className="space-y-2">
@@ -352,16 +312,10 @@ export const Navbar = () => {
                                     : "text-foreground-primary hover:bg-background-secondary",
                                 )}
                               >
-                                <span className="font-medium">
-                                  {item.label}
-                                </span>
+                                <span className="font-medium">{item.label}</span>
                                 <ChevronDown
                                   size={16}
-                                  className={cn(
-                                    "transition-transform duration-200",
-                                    activeDropdown === item.label &&
-                                      "rotate-180",
-                                  )}
+                                  className={cn("transition-transform duration-200", activeDropdown === item.label && "rotate-180")}
                                 />
                               </button>
 
@@ -413,12 +367,24 @@ export const Navbar = () => {
                   </div>
 
                   {/* Mobile CTA */}
-                  <div className="p-6 border-t border-border-primary">
-                    <Button variant="outline" fullWidth asChild>
-                      <Link href="/admin" onClick={() => setIsOpen(false)}>
-                        Admin Access
-                      </Link>
-                    </Button>
+                  <div className="p-6 border-t border-border-primary space-y-2">
+                    <a
+                      href="https://wa.me/9779765662427"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setIsOpen(false)}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold bg-[#25D366] text-white hover:brightness-110 transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.998-1.309A9.942 9.942 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
+                      Chat on WhatsApp
+                    </a>
+                    <a
+                      href="tel:+9779765662427"
+                      onClick={() => setIsOpen(false)}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold border border-border-primary text-foreground-primary hover:bg-background-secondary transition-colors"
+                    >
+                      Call Us
+                    </a>
                   </div>
                 </div>
               </motion.div>
@@ -426,6 +392,6 @@ export const Navbar = () => {
           )}
         </AnimatePresence>
       </motion.nav>
-    </>
+    </div>
   );
 };
