@@ -33,7 +33,7 @@ export default function ContactPage() {
             style={{
               padding: "6px 16px", borderRadius: "9999px",
               background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)",
-              fontSize: "0.75rem", fontWeight: 700, color: "#ffffff", uppercase: "uppercase", letterSpacing: "0.05em"
+              fontSize: "0.75rem", fontWeight: 700, color: "#ffffff", textTransform: "uppercase", letterSpacing: "0.05em"
             }}
           >
             Contact GSTradeLink
