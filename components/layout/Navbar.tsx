@@ -49,7 +49,7 @@ export const Navbar = () => {
         },
       ],
     },
-    { label: "Services", href: "/products?category=Service" },
+    { label: "Services", href: "/contact" },
     { label: "Contact", href: "/contact" },
   ];
 

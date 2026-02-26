@@ -89,7 +89,7 @@ export default async function ProductDetailPage(props: {
           {/* Left — Image + trust chips */}
           <div className="flex flex-col gap-5 motion-safe:animate-fade-up">
             <article
-              className="overflow-hidden relative"
+              className="overflow-hidden relative min-h-[320px] sm:min-h-[420px]"
               style={{
                 background: "#FFFFFF",
                 border: "1px solid #CBDCEB",
@@ -97,7 +97,7 @@ export default async function ProductDetailPage(props: {
                 boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
               }}
             >
-              <div className="relative aspect-square">
+              <div className="relative aspect-[4/3] sm:aspect-square">
                 {product.image_url ? (
                   <Image
                     src={product.image_url}
@@ -142,7 +142,7 @@ export default async function ProductDetailPage(props: {
           </div>
 
           {/* Right — Info & CTA */}
-          <article className="motion-safe:animate-fade-up flex flex-col py-2 sm:py-6">
+          <article className="motion-safe:animate-fade-up flex flex-col py-4 sm:py-6 lg:py-8">
             {/* Category badge */}
             <span
               className="self-start mb-5 font-semibold text-xs uppercase tracking-wider"

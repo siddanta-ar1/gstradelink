@@ -16,6 +16,7 @@ import {
   Award,
   Zap,
 } from "lucide-react";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const revalidate = 60;
 
@@ -261,9 +262,7 @@ export default async function Home() {
         }}
       >
         <div style={{ maxWidth: "960px", margin: "0 auto", padding: "0 16px" }}>
-          <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}
-          >
+          <div className="grid grid-cols-3">
             {[
               {
                 value: "500+",
@@ -291,7 +290,7 @@ export default async function Home() {
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
-                  padding: "36px 16px",
+                  padding: "clamp(20px, 4vw, 36px) clamp(8px, 2vw, 16px)",
                   textAlign: "center",
                   borderRight:
                     i < 2 ? "1px solid rgba(255,255,255,0.08)" : "none",
@@ -300,8 +299,8 @@ export default async function Home() {
               >
                 <div
                   style={{
-                    width: "44px",
-                    height: "44px",
+                    width: "clamp(32px, 5vw, 44px)",
+                    height: "clamp(32px, 5vw, 44px)",
                     borderRadius: "50%",
                     background: "rgba(255,255,255,0.05)",
                     border: "1px solid rgba(255,255,255,0.1)",
@@ -309,13 +308,14 @@ export default async function Home() {
                     alignItems: "center",
                     justifyContent: "center",
                     marginBottom: "4px",
+                    flexShrink: 0,
                   }}
                 >
-                  <Icon size={18} style={{ color: "#CBDCEB" }} />
+                  <Icon size={16} style={{ color: "#CBDCEB" }} />
                 </div>
                 <div
                   style={{
-                    fontSize: "clamp(1.6rem, 4vw, 2.5rem)",
+                    fontSize: "clamp(1.4rem, 4vw, 2.5rem)",
                     fontWeight: 800,
                     color: "#ffffff",
                     lineHeight: 1,
@@ -325,22 +325,21 @@ export default async function Home() {
                 </div>
                 <div
                   style={{
-                    fontSize: "clamp(0.7rem, 1.5vw, 0.85rem)",
+                    fontSize: "clamp(0.62rem, 1.5vw, 0.85rem)",
                     fontWeight: 600,
                     color: "#93B2D6",
+                    lineHeight: 1.3,
                   }}
                 >
                   {label}
                 </div>
                 <div
-                  style={
-                    {
-                      fontSize: "0.7rem",
-                      color: "#5C6B7B",
-                      display: "none",
-                    } as React.CSSProperties
-                  }
-                  className="sm:!block"
+                  className="hidden sm:block"
+                  style={{
+                    fontSize: "0.68rem",
+                    color: "#5C6B7B",
+                    lineHeight: 1.3,
+                  }}
                 >
                   {sub}
                 </div>
@@ -353,42 +352,44 @@ export default async function Home() {
       {/* ── CATEGORIES ───────────────────────────────────────────── */}
       <section className="py-16 lg:py-24" style={{ background: "#F0F2EE" }}>
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 mx-auto">
-          <div className="text-center mb-10 sm:mb-12">
-            <p
-              style={{
-                fontSize: "0.72rem",
-                fontWeight: 700,
-                color: "#557BAA",
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                marginBottom: "8px",
-              }}
-            >
-              What We Offer
-            </p>
-            <h2
-              className="font-bold mb-3"
-              style={{
-                fontSize: "clamp(1.5rem, 4vw, 2.4rem)",
-                color: "#111111",
-                letterSpacing: "-0.025em",
-              }}
-            >
-              Browse by Category
-            </h2>
-            <p
-              style={{
-                color: "#5C6B7B",
-                fontSize: "0.9rem",
-                maxWidth: "28rem",
-                margin: "0 auto",
-                lineHeight: 1.6,
-              }}
-            >
-              From retail counters to heavy-duty industrial platforms — we have
-              it all.
-            </p>
-          </div>
+          <ScrollReveal direction="up" delay={0} distance={24}>
+            <div className="text-center mb-10 sm:mb-12">
+              <p
+                style={{
+                  fontSize: "0.72rem",
+                  fontWeight: 700,
+                  color: "#557BAA",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  marginBottom: "8px",
+                }}
+              >
+                What We Offer
+              </p>
+              <h2
+                className="font-bold mb-3"
+                style={{
+                  fontSize: "clamp(1.5rem, 4vw, 2.4rem)",
+                  color: "#111111",
+                  letterSpacing: "-0.025em",
+                }}
+              >
+                Browse by Category
+              </h2>
+              <p
+                style={{
+                  color: "#5C6B7B",
+                  fontSize: "0.9rem",
+                  maxWidth: "28rem",
+                  margin: "0 auto",
+                  lineHeight: 1.6,
+                }}
+              >
+                From retail counters to heavy-duty industrial platforms — we
+                have it all.
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="relative overflow-hidden w-full group py-4">
             <style>{`
@@ -503,220 +504,229 @@ export default async function Home() {
         <section className="py-16 lg:py-24" style={{ background: "#E8EBE3" }}>
           <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 mx-auto">
             {/* Section header */}
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-10 sm:mb-12">
-              <div>
-                <p
-                  style={{
-                    fontSize: "0.72rem",
-                    fontWeight: 700,
-                    color: "#557BAA",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    marginBottom: "8px",
-                  }}
-                >
-                  Top Picks
-                </p>
-                <h2
-                  className="font-bold"
-                  style={{
-                    fontSize: "clamp(1.5rem, 4vw, 2.4rem)",
-                    color: "#111111",
-                    letterSpacing: "-0.025em",
-                  }}
-                >
-                  Featured Products
-                </h2>
-                <p
-                  style={{
-                    color: "#5C6B7B",
-                    fontSize: "0.875rem",
-                    marginTop: "6px",
-                  }}
-                >
-                  Our most popular weighing equipment
-                </p>
-              </div>
-              <Link
-                href="/products"
-                className="inline-flex items-center gap-1.5 group shrink-0"
-                style={{
-                  fontSize: "0.875rem",
-                  fontWeight: 700,
-                  color: "#557BAA",
-                  textDecoration: "none",
-                }}
-              >
-                Browse all products{" "}
-                <ArrowRight
-                  size={14}
-                  className="group-hover:translate-x-0.5 transition-transform"
-                />
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
-              {featuredProducts.map((product) => {
-                const waMsg = `Hello GSTradeLink! I'm interested in the ${product.name}. Could you please share availability and pricing?`;
-                const waLink = `https://wa.me/9779765662427?text=${encodeURIComponent(waMsg)}`;
-                return (
-                  <div
-                    key={product.id}
-                    className="group flex flex-col transition-all duration-300 hover:-translate-y-1"
+            <ScrollReveal direction="up" delay={0} distance={24}>
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-10 sm:mb-12">
+                <div>
+                  <p
                     style={{
-                      background: "#FFFFFF",
-                      borderRadius: "4px",
-                      overflow: "hidden",
-                      boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-                      border: "1px solid #CBDCEB",
+                      fontSize: "0.72rem",
+                      fontWeight: 700,
+                      color: "#557BAA",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.1em",
+                      marginBottom: "8px",
                     }}
                   >
-                    {/* Product image */}
-                    <Link
-                      href={`/products/${product.id}`}
-                      className="block relative"
+                    Top Picks
+                  </p>
+                  <h2
+                    className="font-bold"
+                    style={{
+                      fontSize: "clamp(1.5rem, 4vw, 2.4rem)",
+                      color: "#111111",
+                      letterSpacing: "-0.025em",
+                    }}
+                  >
+                    Featured Products
+                  </h2>
+                  <p
+                    style={{
+                      color: "#5C6B7B",
+                      fontSize: "0.875rem",
+                      marginTop: "6px",
+                    }}
+                  >
+                    Our most popular weighing equipment
+                  </p>
+                </div>
+                <Link
+                  href="/products"
+                  className="inline-flex items-center gap-1.5 group shrink-0"
+                  style={{
+                    fontSize: "0.875rem",
+                    fontWeight: 700,
+                    color: "#557BAA",
+                    textDecoration: "none",
+                  }}
+                >
+                  Browse all products{" "}
+                  <ArrowRight
+                    size={14}
+                    className="group-hover:translate-x-0.5 transition-transform"
+                  />
+                </Link>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={60} distance={20}>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
+                {featuredProducts.map((product) => {
+                  const waMsg = `Hello GSTradeLink! I'm interested in the ${product.name}. Could you please share availability and pricing?`;
+                  const waLink = `https://wa.me/9779765662427?text=${encodeURIComponent(waMsg)}`;
+                  return (
+                    <div
+                      key={product.id}
+                      className="group flex flex-col transition-all duration-300 hover:-translate-y-1"
                       style={{
-                        aspectRatio: "4/3",
-                        background: "#EEF4FB",
+                        background: "#FFFFFF",
+                        borderRadius: "4px",
                         overflow: "hidden",
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+                        border: "1px solid #CBDCEB",
                       }}
                     >
-                      {product.image_url ? (
-                        <Image
-                          src={product.image_url}
-                          alt={product.name}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          sizes="(max-width: 640px) 50vw, 33vw"
-                        />
-                      ) : (
-                        <div
-                          className="w-full h-full flex items-center justify-center"
-                          style={{ fontSize: "2.5rem", background: "#EEF4FB" }}
-                        >
-                          ⚖️
-                        </div>
-                      )}
-                      {/* Category badge */}
-                      <div
-                        className="absolute top-2.5 left-2.5"
-                        style={{
-                          fontSize: "9px",
-                          fontWeight: 700,
-                          padding: "3px 8px",
-                          borderRadius: "9999px",
-                          background: "rgba(62,94,133,0.85)",
-                          color: "#ffffff",
-                          backdropFilter: "blur(4px)",
-                          letterSpacing: "0.04em",
-                        }}
-                      >
-                        {product.category}
-                      </div>
-                    </Link>
-
-                    {/* Product info */}
-                    <div
-                      className="flex flex-col flex-1"
-                      style={{ padding: "14px 14px 14px" }}
-                    >
+                      {/* Product image */}
                       <Link
                         href={`/products/${product.id}`}
-                        style={{ textDecoration: "none" }}
+                        className="block relative"
+                        style={{
+                          aspectRatio: "4/3",
+                          background: "#EEF4FB",
+                          overflow: "hidden",
+                        }}
                       >
-                        <h3
-                          className="font-semibold line-clamp-2 hover:text-primary-600 transition-colors"
+                        {product.image_url ? (
+                          <Image
+                            src={product.image_url}
+                            alt={product.name}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes="(max-width: 640px) 50vw, 33vw"
+                          />
+                        ) : (
+                          <div
+                            className="w-full h-full flex items-center justify-center"
+                            style={{
+                              fontSize: "2.5rem",
+                              background: "#EEF4FB",
+                            }}
+                          >
+                            ⚖️
+                          </div>
+                        )}
+                        {/* Category badge */}
+                        <div
+                          className="absolute top-2.5 left-2.5"
                           style={{
-                            fontSize: "clamp(0.78rem, 1.5vw, 0.9rem)",
-                            color: "#111111",
-                            lineHeight: 1.4,
-                            marginBottom: "4px",
+                            fontSize: "9px",
+                            fontWeight: 700,
+                            padding: "3px 8px",
+                            borderRadius: "9999px",
+                            background: "rgba(62,94,133,0.85)",
+                            color: "#ffffff",
+                            backdropFilter: "blur(4px)",
+                            letterSpacing: "0.04em",
                           }}
                         >
-                          {product.name}
-                        </h3>
+                          {product.category}
+                        </div>
                       </Link>
-                      {product.short_description && (
-                        <p
-                          className="line-clamp-1"
-                          style={{
-                            color: "#AAAAAA",
-                            fontSize: "0.72rem",
-                            marginBottom: "10px",
-                          }}
-                        >
-                          {product.short_description}
-                        </p>
-                      )}
-                      <div className="mt-auto flex gap-2">
+
+                      {/* Product info */}
+                      <div
+                        className="flex flex-col flex-1"
+                        style={{ padding: "14px 14px 14px" }}
+                      >
                         <Link
                           href={`/products/${product.id}`}
-                          style={{
-                            flex: 1,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            padding: "8px 0",
-                            borderRadius: "4px",
-                            border: "1.5px solid #CBDCEB",
-                            color: "#3E5E85",
-                            fontSize: "0.72rem",
-                            fontWeight: 600,
-                            textDecoration: "none",
-                            background: "transparent",
-                            transition: "all 0.15s",
-                          }}
+                          style={{ textDecoration: "none" }}
                         >
-                          Details
+                          <h3
+                            className="font-semibold line-clamp-2 hover:text-primary-600 transition-colors"
+                            style={{
+                              fontSize: "clamp(0.78rem, 1.5vw, 0.9rem)",
+                              color: "#111111",
+                              lineHeight: 1.4,
+                              marginBottom: "4px",
+                            }}
+                          >
+                            {product.name}
+                          </h3>
                         </Link>
-                        <a
-                          href={waLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            flex: 1,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "5px",
-                            padding: "8px 0",
-                            borderRadius: "4px",
-                            background: "#3E5E85",
-                            color: "#ffffff",
-                            fontSize: "0.72rem",
-                            fontWeight: 700,
-                            textDecoration: "none",
-                            transition: "all 0.15s",
-                          }}
-                        >
-                          <MessageCircle size={12} fill="white" /> Enquire
-                        </a>
+                        {product.short_description && (
+                          <p
+                            className="line-clamp-1"
+                            style={{
+                              color: "#AAAAAA",
+                              fontSize: "0.72rem",
+                              marginBottom: "10px",
+                            }}
+                          >
+                            {product.short_description}
+                          </p>
+                        )}
+                        <div className="mt-auto flex gap-2">
+                          <Link
+                            href={`/products/${product.id}`}
+                            style={{
+                              flex: 1,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              padding: "8px 0",
+                              borderRadius: "4px",
+                              border: "1.5px solid #CBDCEB",
+                              color: "#3E5E85",
+                              fontSize: "0.72rem",
+                              fontWeight: 600,
+                              textDecoration: "none",
+                              background: "transparent",
+                              transition: "all 0.15s",
+                            }}
+                          >
+                            Details
+                          </Link>
+                          <a
+                            href={waLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              flex: 1,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              gap: "5px",
+                              padding: "8px 0",
+                              borderRadius: "4px",
+                              background: "#3E5E85",
+                              color: "#ffffff",
+                              fontSize: "0.72rem",
+                              fontWeight: 700,
+                              textDecoration: "none",
+                              transition: "all 0.15s",
+                            }}
+                          >
+                            <MessageCircle size={12} fill="white" /> Enquire
+                          </a>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            </ScrollReveal>
 
             {/* View all CTA */}
-            <div className="mt-10 text-center">
-              <Link
-                href="/products"
-                className="inline-flex items-center gap-2 transition-all hover:-translate-y-0.5"
-                style={{
-                  padding: "13px 32px",
-                  borderRadius: "4px",
-                  background: "#3E5E85",
-                  color: "#ffffff",
-                  fontWeight: 700,
-                  fontSize: "0.9rem",
-                  textDecoration: "none",
-                  boxShadow: "0 4px 16px rgba(62,94,133,0.25)",
-                }}
-              >
-                View All Products <ArrowRight size={15} />
-              </Link>
-            </div>
+            <ScrollReveal direction="up" delay={0} distance={16}>
+              <div className="mt-10 text-center">
+                <Link
+                  href="/products"
+                  className="inline-flex items-center gap-2 transition-all hover:-translate-y-0.5"
+                  style={{
+                    padding: "13px 32px",
+                    borderRadius: "4px",
+                    background: "#3E5E85",
+                    color: "#ffffff",
+                    fontWeight: 700,
+                    fontSize: "0.9rem",
+                    textDecoration: "none",
+                    boxShadow: "0 4px 16px rgba(62,94,133,0.25)",
+                  }}
+                >
+                  View All Products <ArrowRight size={15} />
+                </Link>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
       )}
@@ -724,138 +734,142 @@ export default async function Home() {
       {/* ── WHY CHOOSE US ────────────────────────────────────────── */}
       <section className="py-16 lg:py-24" style={{ background: "#F0F2EE" }}>
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 mx-auto">
-          <div className="text-center mb-10 sm:mb-14">
-            <p
-              style={{
-                fontSize: "0.72rem",
-                fontWeight: 700,
-                color: "#557BAA",
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                marginBottom: "8px",
-              }}
-            >
-              Our Strengths
-            </p>
-            <h2
-              className="font-bold mb-3"
-              style={{
-                fontSize: "clamp(1.5rem, 4vw, 2.4rem)",
-                color: "#111111",
-                letterSpacing: "-0.025em",
-              }}
-            >
-              Why Choose GSTradeLink?
-            </h2>
-            <p
-              style={{
-                color: "#5C6B7B",
-                fontSize: "0.9rem",
-                maxWidth: "28rem",
-                margin: "0 auto",
-                lineHeight: 1.6,
-              }}
-            >
-              8+ years of weighing expertise in Bharatpur — built on trust,
-              quality, and service.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {[
-              {
-                icon: Wrench,
-                title: "Expert Repair",
-                desc: "All major brands serviced by certified technicians with years of hands-on experience.",
-                iconBg: "#3E5E85",
-                cardBorder: "#CBDCEB",
-              },
-              {
-                icon: Shield,
-                title: "Genuine Parts",
-                desc: "Authorized distributor stocking only original, manufacturer-approved spare parts.",
-                iconBg: "#DCA963",
-                cardBorder: "#E8DFCA",
-              },
-              {
-                icon: CheckCircle,
-                title: "OIML Calibration",
-                desc: "Govt-recognized calibration certificates accepted by legal & commercial authorities.",
-                iconBg: "#1A2433",
-                cardBorder: "#CBDCEB",
-              },
-              {
-                icon: Clock,
-                title: "24h Response",
-                desc: "Fast on-site service across all of Chitwan — we come to you when you need us most.",
-                iconBg: "#557BAA",
-                cardBorder: "#CBDCEB",
-              },
-              {
-                icon: Star,
-                title: "500+ Customers",
-                desc: "Serving retail shops, factories, and institutions across Chitwan since 2015.",
-                iconBg: "#C28D44",
-                cardBorder: "#E8DFCA",
-              },
-              {
-                icon: MapPin,
-                title: "Walk-in Store",
-                desc: "Visit us at Bharatpur-10, Chitwan — showroom open Mon to Sat, 10 AM – 6 PM.",
-                iconBg: "#3E5E85",
-                cardBorder: "#CBDCEB",
-              },
-            ].map(({ icon: Icon, title, desc, iconBg, cardBorder }) => (
-              <div
-                key={title}
-                className="group flex flex-col transition-all duration-300 hover:-translate-y-1"
+          <ScrollReveal direction="up" delay={0} distance={24}>
+            <div className="text-center mb-10 sm:mb-14">
+              <p
                 style={{
-                  padding: "24px 28px",
-                  background: "#FFFFFF",
-                  borderRadius: "4px",
-                  border: `1px solid ${cardBorder}`,
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+                  fontSize: "0.72rem",
+                  fontWeight: 700,
+                  color: "#557BAA",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  marginBottom: "8px",
                 }}
               >
-                {/* Icon */}
+                Our Strengths
+              </p>
+              <h2
+                className="font-bold mb-3"
+                style={{
+                  fontSize: "clamp(1.5rem, 4vw, 2.4rem)",
+                  color: "#111111",
+                  letterSpacing: "-0.025em",
+                }}
+              >
+                Why Choose GSTradeLink?
+              </h2>
+              <p
+                style={{
+                  color: "#5C6B7B",
+                  fontSize: "0.9rem",
+                  maxWidth: "28rem",
+                  margin: "0 auto",
+                  lineHeight: 1.6,
+                }}
+              >
+                8+ years of weighing expertise in Bharatpur — built on trust,
+                quality, and service.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={80} distance={20}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+              {[
+                {
+                  icon: Wrench,
+                  title: "Expert Repair",
+                  desc: "All major brands serviced by certified technicians with years of hands-on experience.",
+                  iconBg: "#3E5E85",
+                  cardBorder: "#CBDCEB",
+                },
+                {
+                  icon: Shield,
+                  title: "Genuine Parts",
+                  desc: "Authorized distributor stocking only original, manufacturer-approved spare parts.",
+                  iconBg: "#DCA963",
+                  cardBorder: "#E8DFCA",
+                },
+                {
+                  icon: CheckCircle,
+                  title: "OIML Calibration",
+                  desc: "Govt-recognized calibration certificates accepted by legal & commercial authorities.",
+                  iconBg: "#1A2433",
+                  cardBorder: "#CBDCEB",
+                },
+                {
+                  icon: Clock,
+                  title: "24h Response",
+                  desc: "Fast on-site service across all of Chitwan — we come to you when you need us most.",
+                  iconBg: "#557BAA",
+                  cardBorder: "#CBDCEB",
+                },
+                {
+                  icon: Star,
+                  title: "500+ Customers",
+                  desc: "Serving retail shops, factories, and institutions across Chitwan since 2015.",
+                  iconBg: "#C28D44",
+                  cardBorder: "#E8DFCA",
+                },
+                {
+                  icon: MapPin,
+                  title: "Walk-in Store",
+                  desc: "Visit us at Bharatpur-10, Chitwan — showroom open Mon to Sat, 10 AM – 6 PM.",
+                  iconBg: "#3E5E85",
+                  cardBorder: "#CBDCEB",
+                },
+              ].map(({ icon: Icon, title, desc, iconBg, cardBorder }) => (
                 <div
-                  className="group-hover:scale-105 transition-transform"
+                  key={title}
+                  className="group flex flex-col transition-all duration-300 hover:-translate-y-1"
                   style={{
-                    width: "48px",
-                    height: "48px",
-                    background: iconBg,
+                    padding: "24px 28px",
+                    background: "#FFFFFF",
                     borderRadius: "4px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: "14px",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
+                    border: `1px solid ${cardBorder}`,
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
                   }}
                 >
-                  <Icon size={22} color="white" />
+                  {/* Icon */}
+                  <div
+                    className="group-hover:scale-105 transition-transform"
+                    style={{
+                      width: "48px",
+                      height: "48px",
+                      background: iconBg,
+                      borderRadius: "4px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginBottom: "14px",
+                      boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
+                    }}
+                  >
+                    <Icon size={22} color="white" />
+                  </div>
+                  <h3
+                    style={{
+                      fontWeight: 700,
+                      color: "#111111",
+                      fontSize: "1rem",
+                      marginBottom: "6px",
+                    }}
+                  >
+                    {title}
+                  </h3>
+                  <p
+                    style={{
+                      color: "#5C6B7B",
+                      fontSize: "0.875rem",
+                      lineHeight: 1.65,
+                    }}
+                  >
+                    {desc}
+                  </p>
                 </div>
-                <h3
-                  style={{
-                    fontWeight: 700,
-                    color: "#111111",
-                    fontSize: "1rem",
-                    marginBottom: "6px",
-                  }}
-                >
-                  {title}
-                </h3>
-                <p
-                  style={{
-                    color: "#5C6B7B",
-                    fontSize: "0.875rem",
-                    lineHeight: 1.65,
-                  }}
-                >
-                  {desc}
-                </p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -890,97 +904,99 @@ export default async function Home() {
           }}
         />
 
-        <div
-          className="relative z-10 text-center"
-          style={{ maxWidth: "36rem", margin: "0 auto", padding: "0 20px" }}
-        >
+        <ScrollReveal direction="up" delay={0} distance={28}>
           <div
-            className="inline-flex items-center gap-2 mb-5"
-            style={{
-              padding: "6px 16px",
-              borderRadius: "4px",
-              background: "rgba(255,255,255,0.08)",
-              border: "1px solid rgba(255,255,255,0.15)",
-              fontSize: "0.72rem",
-              color: "#ffffff",
-              fontWeight: 600,
-              letterSpacing: "0.05em",
-              textTransform: "uppercase",
-            }}
+            className="relative z-10 text-center"
+            style={{ maxWidth: "36rem", margin: "0 auto", padding: "0 20px" }}
           >
-            <MessageCircle size={12} fill="white" /> Quick Response Guaranteed
-          </div>
-          <h2
-            className="font-bold text-white mb-3"
-            style={{
-              fontSize: "clamp(1.5rem, 4vw, 2.4rem)",
-              letterSpacing: "-0.025em",
-            }}
-          >
-            Ready to get a quote?
-          </h2>
-          <p
-            style={{
-              color: "#AECAE9",
-              fontSize: "0.9rem",
-              marginBottom: "36px",
-              lineHeight: 1.7,
-            }}
-          >
-            Message us on WhatsApp — we respond within 24 hours and deliver
-            across all of Chitwan.
-          </p>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "14px",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <a
-              href="https://wa.me/9779765662427"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:-translate-y-0.5 transition-all"
+            <div
+              className="inline-flex items-center gap-2 mb-5"
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                padding: "13px 28px",
+                padding: "6px 16px",
                 borderRadius: "4px",
-                background: "#25D366",
+                background: "rgba(255,255,255,0.08)",
+                border: "1px solid rgba(255,255,255,0.15)",
+                fontSize: "0.72rem",
                 color: "#ffffff",
-                fontWeight: 700,
-                fontSize: "0.9rem",
-                textDecoration: "none",
-                boxShadow: "0 4px 16px rgba(37,211,102,0.3)",
+                fontWeight: 600,
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
               }}
             >
-              <MessageCircle size={17} fill="white" /> Chat on WhatsApp
-            </a>
-            <a
-              href="tel:+9779765662427"
-              className="hover:-translate-y-0.5 transition-all"
+              <MessageCircle size={12} fill="white" /> Quick Response Guaranteed
+            </div>
+            <h2
+              className="font-bold text-white mb-3"
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                padding: "13px 28px",
-                borderRadius: "4px",
-                background: "rgba(255,255,255,0.10)",
-                border: "1px solid rgba(255,255,255,0.22)",
-                color: "#ffffff",
-                fontWeight: 700,
-                fontSize: "0.9rem",
-                textDecoration: "none",
+                fontSize: "clamp(1.5rem, 4vw, 2.4rem)",
+                letterSpacing: "-0.025em",
               }}
             >
-              <Phone size={15} /> Call Now
-            </a>
+              Ready to get a quote?
+            </h2>
+            <p
+              style={{
+                color: "#AECAE9",
+                fontSize: "0.9rem",
+                marginBottom: "36px",
+                lineHeight: 1.7,
+              }}
+            >
+              Message us on WhatsApp — we respond within 24 hours and deliver
+              across all of Chitwan.
+            </p>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "14px",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <a
+                href="https://wa.me/9779765662427"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:-translate-y-0.5 transition-all"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  padding: "13px 28px",
+                  borderRadius: "4px",
+                  background: "#25D366",
+                  color: "#ffffff",
+                  fontWeight: 700,
+                  fontSize: "0.9rem",
+                  textDecoration: "none",
+                  boxShadow: "0 4px 16px rgba(37,211,102,0.3)",
+                }}
+              >
+                <MessageCircle size={17} fill="white" /> Chat on WhatsApp
+              </a>
+              <a
+                href="tel:+9779765662427"
+                className="hover:-translate-y-0.5 transition-all"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  padding: "13px 28px",
+                  borderRadius: "4px",
+                  background: "rgba(255,255,255,0.10)",
+                  border: "1px solid rgba(255,255,255,0.22)",
+                  color: "#ffffff",
+                  fontWeight: 700,
+                  fontSize: "0.9rem",
+                  textDecoration: "none",
+                }}
+              >
+                <Phone size={15} /> Call Now
+              </a>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
     </div>
   );
