@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { supabase } from "@/lib/supabase";
-import { ArrowLeft, MessageCircle, ShieldCheck, Truck, Wrench } from "lucide-react";
+import {
+  ArrowLeft,
+  MessageCircle,
+  ShieldCheck,
+  Truck,
+  Wrench,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -42,97 +48,228 @@ export default async function ProductDetailPage(props: {
 
   const waMsg = `Hello GSTradeLink! I'm interested in the ${product.name}. Could you please share availability and pricing?`;
   const waLink = `https://wa.me/9779765662427?text=${encodeURIComponent(waMsg)}`;
+
   return (
     <div className="min-h-screen bg-background-secondary pb-28 md:pb-12">
-      <section className="bg-linear-to-br from-primary-700 via-primary-800 to-primary-900 text-white">
-        <div className="w-full xl:px-12 mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
-          <div className="flex items-center justify-between gap-3 motion-safe:animate-fade-up">
+      {/* ── Breadcrumb bar ──────────────────────────────────────── */}
+      <section style={{ background: "#1A2433" }} className="text-white">
+        <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
+          <div className="flex items-center justify-between gap-3 motion-safe:animate-fade-up text-sm">
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 backdrop-blur-sm text-xs sm:text-sm font-semibold hover:bg-white/25 transition-colors"
+              className="inline-flex items-center gap-2 transition-colors"
+              style={{ color: "#AECAE9" }}
             >
-              <ArrowLeft size={16} /> Back to catalogue
+              <ArrowLeft size={15} />
+              <span className="hover:text-white transition-colors">
+                Back to catalogue
+              </span>
             </Link>
 
-            <span className="text-white/80 text-xs sm:text-sm font-medium rounded-full border border-white/20 px-3 py-1">
+            <span
+              className="font-medium hidden sm:inline-block"
+              style={{
+                color: "#8798AD",
+                fontSize: "0.75rem",
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                padding: "3px 12px",
+                borderRadius: "9999px",
+              }}
+            >
               {product.category}
             </span>
           </div>
         </div>
       </section>
 
-      <section className="w-full xl:px-12 mx-auto px-4 sm:px-6 lg:px-8 -mt-5 sm:-mt-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
-          <article className="bg-white border border-border-primary rounded-3xl p-4 sm:p-5 lg:p-6 shadow-sm motion-safe:animate-fade-up">
-            <div className="relative bg-primary-50 rounded-2xl overflow-hidden" style={{ aspectRatio: "1 / 1" }}>
-              {product.image_url ? (
-                <Image
-                  src={product.image_url}
-                  alt={product.name}
-                  fill
-                  className="object-contain p-4 sm:p-6"
-                  sizes="(max-width: 1024px) 90vw, 45vw"
-                  priority
-                />
-              ) : (
-                <div className="h-full w-full flex items-center justify-center text-6xl text-primary-200">⚖️</div>
+      {/* ── Product content ─────────────────────────────────────── */}
+      <section className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+          {/* Left — Image + trust chips */}
+          <div className="flex flex-col gap-5 motion-safe:animate-fade-up">
+            <article
+              className="overflow-hidden relative"
+              style={{
+                background: "#FFFFFF",
+                border: "1px solid #CBDCEB",
+                borderRadius: "4px",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
+              }}
+            >
+              <div className="relative aspect-square">
+                {product.image_url ? (
+                  <Image
+                    src={product.image_url}
+                    alt={product.name}
+                    fill
+                    className="object-contain p-6 sm:p-10"
+                    sizes="(max-width: 1024px) 90vw, 45vw"
+                    priority
+                  />
+                ) : (
+                  <div
+                    className="h-full w-full flex items-center justify-center text-6xl"
+                    style={{ background: "#EEF4FB", color: "#AECAE9" }}
+                  >
+                    ⚖️
+                  </div>
+                )}
+              </div>
+            </article>
+
+            {/* Trust chips */}
+            <div className="flex flex-wrap gap-2.5">
+              {["Calibratable", "Warranty support", "On-site service"].map(
+                (chip) => (
+                  <div
+                    key={chip}
+                    style={{
+                      background: "#EEF4FB",
+                      color: "#3E5E85",
+                      border: "1px solid #CBDCEB",
+                      padding: "6px 14px",
+                      borderRadius: "9999px",
+                      fontSize: "0.72rem",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {chip}
+                  </div>
+                ),
               )}
             </div>
+          </div>
 
-            <div className="grid grid-cols-3 gap-2 sm:gap-3 mt-3 sm:mt-4 text-[11px] sm:text-xs">
-              <div className="bg-primary-50 border border-primary-100 rounded-xl p-2.5 sm:p-3 text-center text-primary-700 font-semibold">
-                Calibratable
-              </div>
-              <div className="bg-primary-50 border border-primary-100 rounded-xl p-2.5 sm:p-3 text-center text-primary-700 font-semibold">
-                Warranty support
-              </div>
-              <div className="bg-primary-50 border border-primary-100 rounded-xl p-2.5 sm:p-3 text-center text-primary-700 font-semibold">
-                On-site service
-              </div>
-            </div>
-          </article>
-
-          <article className="bg-white border border-border-primary rounded-3xl p-5 sm:p-6 lg:p-7 shadow-sm motion-safe:animate-fade-up">
-            <span className="inline-flex text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-primary-50 text-primary-700 border border-primary-100 mb-3">
+          {/* Right — Info & CTA */}
+          <article className="motion-safe:animate-fade-up flex flex-col py-2 sm:py-6">
+            {/* Category badge */}
+            <span
+              className="self-start mb-5 font-semibold text-xs uppercase tracking-wider"
+              style={{
+                padding: "5px 14px",
+                borderRadius: "9999px",
+                background: "#EEF4FB",
+                color: "#3E5E85",
+                border: "1px solid #CBDCEB",
+              }}
+            >
               {product.category}
             </span>
 
-            <h1 className="text-2xl sm:text-3xl font-bold text-foreground-primary leading-tight">
+            <h1
+              className="font-bold leading-tight tracking-tight"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+                color: "#111111",
+                letterSpacing: "-0.025em",
+                lineHeight: 1.12,
+              }}
+            >
               {product.name}
             </h1>
 
-            <p className="mt-3 text-sm sm:text-base text-foreground-secondary leading-relaxed">
+            <p
+              className="mt-4 sm:mt-5 leading-relaxed max-w-2xl"
+              style={{
+                fontSize: "clamp(0.9rem, 1.5vw, 1.05rem)",
+                color: "#5C6B7B",
+                lineHeight: 1.7,
+              }}
+            >
               {product.short_description ||
                 "High-precision weighing instrument designed for retail, industrial, and professional workflows."}
             </p>
 
-            <div className="mt-5 p-4 sm:p-5 bg-primary-50 border border-primary-100 rounded-2xl space-y-3">
-              <div className="flex items-start gap-2.5 text-sm text-primary-800">
-                <ShieldCheck size={18} className="text-primary-600 shrink-0 mt-0.5" />
-                <span>Genuine products with trusted after-sales support.</span>
-              </div>
-              <div className="flex items-start gap-2.5 text-sm text-primary-800">
-                <Wrench size={18} className="text-primary-600 shrink-0 mt-0.5" />
-                <span>Setup, maintenance, and repair services available.</span>
-              </div>
-              <div className="flex items-start gap-2.5 text-sm text-primary-800">
-                <Truck size={18} className="text-primary-600 shrink-0 mt-0.5" />
-                <span>Fast delivery and support in Bharatpur and nearby areas.</span>
-              </div>
+            {/* Feature list */}
+            <div className="mt-8 space-y-3">
+              {[
+                {
+                  icon: ShieldCheck,
+                  text: "Genuine products with trusted after-sales support.",
+                  iconColor: "#3E5E85",
+                  bg: "#EEF4FB",
+                  border: "#CBDCEB",
+                },
+                {
+                  icon: Wrench,
+                  text: "Setup, maintenance, and repair services available.",
+                  iconColor: "#DCA963",
+                  bg: "#FFFBF0",
+                  border: "#F0E0B0",
+                },
+                {
+                  icon: Truck,
+                  text: "Fast delivery and support in Bharatpur and nearby areas.",
+                  iconColor: "#3E5E85",
+                  bg: "#EEF4FB",
+                  border: "#CBDCEB",
+                },
+              ].map(({ icon: Icon, text, iconColor, bg, border }) => (
+                <div
+                  key={text}
+                  className="flex items-start gap-3"
+                  style={{
+                    background: bg,
+                    border: `1px solid ${border}`,
+                    borderRadius: "4px",
+                    padding: "14px 16px",
+                  }}
+                >
+                  <Icon
+                    size={20}
+                    style={{
+                      color: iconColor,
+                      flexShrink: 0,
+                      marginTop: "1px",
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontSize: "0.9rem",
+                      color: "#1A2433",
+                      fontWeight: 500,
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    {text}
+                  </span>
+                </div>
+              ))}
             </div>
 
-            <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            {/* CTA buttons */}
+            <div className="mt-10 flex flex-col sm:flex-row gap-3">
               <a
                 href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex flex-1 items-center justify-center gap-2 h-12 rounded-full bg-[#25D366] text-white text-sm font-bold hover:brightness-110 transition"
+                className="inline-flex flex-1 items-center justify-center gap-2 font-bold transition-all hover:-translate-y-0.5"
+                style={{
+                  height: "48px",
+                  borderRadius: "4px",
+                  background: "#25D366",
+                  color: "#ffffff",
+                  fontSize: "0.9rem",
+                  textDecoration: "none",
+                  boxShadow: "0 4px 16px rgba(37,211,102,0.3)",
+                }}
               >
                 <MessageCircle size={18} fill="white" /> Chat on WhatsApp
               </a>
               <a
                 href="tel:+9779765662427"
-                className="inline-flex flex-1 items-center justify-center gap-2 h-12 rounded-full border border-primary-600 text-primary-700 text-sm font-bold hover:bg-primary-50 transition"
+                className="inline-flex flex-1 items-center justify-center gap-2 font-bold transition-all hover:-translate-y-0.5"
+                style={{
+                  height: "48px",
+                  borderRadius: "4px",
+                  border: "1.5px solid #CBDCEB",
+                  background: "#FFFFFF",
+                  color: "#1A2433",
+                  fontSize: "0.9rem",
+                  textDecoration: "none",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+                }}
               >
                 Call for pricing
               </a>
@@ -141,13 +278,28 @@ export default async function ProductDetailPage(props: {
         </div>
       </section>
 
-      <div className="fixed bottom-0 left-0 w-full px-4 sm:px-6 pb-6 pt-4 bg-linear-to-t from-background-secondary via-background-secondary/95 to-transparent md:hidden z-40">
+      {/* ── Mobile sticky CTA ───────────────────────────────────── */}
+      <div
+        className="fixed bottom-0 left-0 w-full px-4 sm:px-6 pb-6 pt-4 md:hidden z-40"
+        style={{
+          background: "linear-gradient(to top, #E8EBE3 60%, transparent)",
+        }}
+      >
         <div className="max-w-lg mx-auto">
           <a
             href={waLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 h-12 bg-primary-600 text-white rounded-full text-sm font-bold shadow-green hover:bg-primary-700 active:scale-[0.98] transition-all"
+            className="w-full flex items-center justify-center gap-2 font-bold active:scale-[0.98] transition-all"
+            style={{
+              height: "48px",
+              borderRadius: "4px",
+              background: "#25D366",
+              color: "#ffffff",
+              fontSize: "0.9rem",
+              textDecoration: "none",
+              boxShadow: "0 4px 16px rgba(37,211,102,0.4)",
+            }}
           >
             <MessageCircle size={18} fill="white" />
             Enquire on WhatsApp

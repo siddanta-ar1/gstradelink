@@ -5,7 +5,7 @@ import { MessageCircle } from "lucide-react";
 
 export const FloatingWhatsApp = () => {
   return (
-    <div className="hidden md:flex fixed bottom-6 right-6 z-50 flex-col items-end gap-3">
+    <div className="hidden md:flex fixed bottom-10 right-6 z-50 flex-col items-end gap-3">
       {/* WhatsApp button */}
       <motion.a
         href="https://wa.me/9779765662427"

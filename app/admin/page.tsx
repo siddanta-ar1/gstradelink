@@ -13,14 +13,16 @@ export default function AdminDashboard() {
 
   // Form State
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("Industrial Scale");
+  const [category, setCategory] = useState("Precision & Pocket Mini Scales");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
   // 1. Check if user is logged in
   useEffect(() => {
     const checkUser = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
       if (!session) router.push("/admin/login");
     };
     checkUser();
@@ -37,7 +39,10 @@ export default function AdminDashboard() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!file) {
-      setToast({ type: "error", message: "Please select an image before publishing." });
+      setToast({
+        type: "error",
+        message: "Please select an image before publishing.",
+      });
       return;
     }
 
@@ -54,9 +59,9 @@ export default function AdminDashboard() {
       if (uploadError) throw uploadError;
 
       // B. Get Public URL
-      const { data: { publicUrl } } = supabase.storage
-        .from("product-images")
-        .getPublicUrl(fileName);
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from("product-images").getPublicUrl(fileName);
 
       // C. Save Data to Database
       const { error: dbError } = await supabase.from("products").insert([
@@ -71,12 +76,16 @@ export default function AdminDashboard() {
 
       if (dbError) throw dbError;
 
-      setToast({ type: "success", message: `"${name}" published successfully!` });
+      setToast({
+        type: "success",
+        message: `"${name}" published successfully!`,
+      });
       setName("");
       setDesc("");
       setFile(null);
     } catch (err) {
-      const message = err instanceof Error ? err.message : "An unexpected error occurred.";
+      const message =
+        err instanceof Error ? err.message : "An unexpected error occurred.";
       setToast({ type: "error", message });
     } finally {
       setUploading(false);
@@ -93,7 +102,9 @@ export default function AdminDashboard() {
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-primary-600">Admin Dashboard</h1>
+          <h1 className="text-3xl font-bold text-primary-600">
+            Admin Dashboard
+          </h1>
           <button
             onClick={handleLogout}
             className="flex items-center gap-2 text-danger-600 hover:text-danger-700 text-sm font-medium"
@@ -112,7 +123,10 @@ export default function AdminDashboard() {
             }`}
           >
             {toast.type === "success" ? (
-              <CheckCircle2 size={18} className="text-success-600 shrink-0 mt-0.5" />
+              <CheckCircle2
+                size={18}
+                className="text-success-600 shrink-0 mt-0.5"
+              />
             ) : (
               <XCircle size={18} className="text-danger-600 shrink-0 mt-0.5" />
             )}
@@ -158,10 +172,25 @@ export default function AdminDashboard() {
                 onChange={(e) => setCategory(e.target.value)}
                 className="w-full p-2 border border-border-primary rounded-lg focus:border-primary-600 outline-none bg-white"
               >
-                <option value="Retail Scale">Retail Scale (Shop)</option>
-                <option value="Industrial Scale">Industrial Scale (Factory)</option>
-                <option value="Spare Part">Spare Part</option>
-                <option value="Service">Repair Service</option>
+                <option value="Precision & Pocket Mini Scales">
+                  Precision & Pocket Mini Scales
+                </option>
+                <option value="Kitchen & Compact Tabletop Scales">
+                  Kitchen & Compact Tabletop Scales
+                </option>
+                <option value="Portable & Luggage Scales">
+                  Portable & Luggage Scales
+                </option>
+                <option value="Heavy-Duty Hanging & Crane Scales">
+                  Heavy-Duty Hanging & Crane Scales
+                </option>
+                <option value="Personal Health & Bathroom Scales">
+                  Personal Health & Bathroom Scales
+                </option>
+                <option value="Packaging & Miscellaneous Equipment">
+                  Packaging & Miscellaneous Equipment
+                </option>
+                <option value="Service">Repair & Service</option>
               </select>
             </div>
 

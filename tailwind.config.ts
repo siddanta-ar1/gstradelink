@@ -8,19 +8,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ── Core Green Palette ──────────────────────────────────────────────
+        // ── Primary / Brand — Steel Blue ────────────────────────────────────
         primary: {
-          50: "#EFF4EE", // Soft sage tint – very light card bg
-          100: "#D4E3D2", // Light sage
-          200: "#B8CEB5", // Medium sage
-          300: "#9BB898", // Soft sage
-          400: "#89A083", // Sage / Olive Green (hero lighter bg)
-          500: "#6B8B66", // Mid forest
-          600: "#2A4835", // Deep Forest Green (main brand)
-          700: "#1E3527", // Darker forest
-          800: "#14231A", // Very dark forest
-          900: "#0C1810", // Near-black forest
-          950: "#070E09",
+          50: "#EEF4FB", // Very light blue tint
+          100: "#D5E4F4", // Light blue
+          200: "#AECAE9", // Soft blue
+          300: "#7AADE0", // Medium-light blue
+          400: "#6D94C5", // Steel blue light
+          500: "#557BAA", // Medium steel blue
+          600: "#3E5E85", // Main brand steel blue ← replaces green #2A4835
+          700: "#2B4D72", // Darker steel blue
+          800: "#1A2433", // Deep navy (used for dark sections/stats bar)
+          900: "#0F1825", // Very dark navy
+          950: "#080F14", // Near-black navy
         },
 
         // ── Neutrals ────────────────────────────────────────────────────────
@@ -40,25 +40,25 @@ const config: Config = {
 
         // ── Brand Semantic Tokens ───────────────────────────────────────────
         brand: {
-          primary: "#2A4835",       // Deep Forest Green
-          secondary: "#1E3527",     // Darker Forest
-          sage: "#89A083",         // Soft Sage / Olive
-          light: "#EFF4EE",         // Sage tint bg
-          accent: "#F2C047",        // Mustard Gold
-          warm: "#D97A35",        // Burnt Orange / Terracotta
-          surface: "#F0F2EE",       // Warm Off-White / Alabaster
-          canvas: "#E8EBE3",       // Main catalogue bg
+          primary: "#3E5E85", // Steel blue — main CTA colour
+          secondary: "#1A2433", // Deep navy — dark section bg
+          light: "#EEF4FB", // Very light blue tint
+          muted: "#CBDCEB", // Light blue border / muted
+          accent: "#DCA963", // Mustard Gold
+          warm: "#C28D44", // Deeper gold
+          surface: "#F0F2EE", // Warm off-white
+          canvas: "#E8EBE3", // Main catalogue / page bg
         },
 
-        // ── Accent ──────────────────────────────────────────────────────────
+        // ── Accent — Gold ────────────────────────────────────────────────────
         accent: {
           50: "#FEFBEA",
           100: "#FDF3C3",
           200: "#FCE68A",
           300: "#F9D455",
-          400: "#F2C047", // Mustard Gold
-          500: "#E8A822",
-          600: "#D97A35", // Terracotta / Buy button accent
+          400: "#F2C047", // Mustard Gold highlight
+          500: "#DCA963", // Main accent gold
+          600: "#C28D44", // Terracotta / deeper gold
           700: "#B85C1A",
           800: "#8F420D",
           900: "#6B2F08",
@@ -66,27 +66,27 @@ const config: Config = {
 
         // ── Background Hierarchy ────────────────────────────────────────────
         background: {
-          primary: "#F0F2EE",   // Warm off-white / Alabaster
-          secondary: "#E8EBE3", // Canvas – main page bg
-          tertiary: "#D4E3D2", // Sage tint
-          inverse: "#1E3527",  // Dark forest
-          card: "#FFFFFF",      // Pure white – card surfaces
+          primary: "#FFFFFF", // Pure white — card / form surfaces
+          secondary: "#E8EBE3", // Warm canvas — main page bg
+          tertiary: "#F0F2EE", // Slightly lighter warm off-white
+          inverse: "#1A2433", // Deep navy — dark sections
+          card: "#FFFFFF", // Card white
         },
 
         // ── Text Hierarchy ──────────────────────────────────────────────────
         foreground: {
-          primary: "#111111", // Jet Black / Deep Charcoal
-          secondary: "#888888", // Medium Grey
-          tertiary: "#AAAAAA", // Light grey
-          inverse: "#FFFFFF",
-          muted: "#C0C0C0",
+          primary: "#111111", // Near-black — primary text
+          secondary: "#5C6B7B", // Muted slate — secondary text
+          tertiary: "#8798AD", // Light slate — tertiary text
+          inverse: "#FFFFFF", // White — text on dark bg
+          muted: "#AAAAAA", // Muted grey
         },
 
         // ── Border System ────────────────────────────────────────────────────
         border: {
-          primary: "#D4E3D2", // Sage light border
-          secondary: "#B8CEB5",
-          tertiary: "#89A083",
+          primary: "#CBDCEB", // Light blue border
+          secondary: "#93B2D6", // Medium blue border
+          tertiary: "#3E5E85", // Brand blue strong border
         },
 
         // ── Semantic Status ──────────────────────────────────────────────────
@@ -141,7 +141,10 @@ const config: Config = {
         lg: ["1.125rem", { lineHeight: "1.75rem", letterSpacing: "-0.01em" }],
         xl: ["1.25rem", { lineHeight: "1.75rem", letterSpacing: "-0.015em" }],
         "2xl": ["1.5rem", { lineHeight: "2rem", letterSpacing: "-0.02em" }],
-        "3xl": ["1.875rem", { lineHeight: "2.25rem", letterSpacing: "-0.025em" }],
+        "3xl": [
+          "1.875rem",
+          { lineHeight: "2.25rem", letterSpacing: "-0.025em" },
+        ],
         "4xl": ["2.25rem", { lineHeight: "2.5rem", letterSpacing: "-0.03em" }],
         "5xl": ["3rem", { lineHeight: "3.25rem", letterSpacing: "-0.035em" }],
         "6xl": ["3.75rem", { lineHeight: "4rem", letterSpacing: "-0.04em" }],
@@ -187,33 +190,36 @@ const config: Config = {
       },
 
       boxShadow: {
-        xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        sm: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
-        DEFAULT: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
-        md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
-        lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
-        xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
-        "2xl": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
-        inner: "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)",
+        xs: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+        sm: "0 4px 16px 0 rgba(0, 0, 0, 0.08)",
+        DEFAULT: "0 8px 30px 0 rgba(0, 0, 0, 0.08)",
+        md: "0 8px 30px 0 rgba(0, 0, 0, 0.08)",
+        lg: "0 12px 40px 0 rgba(0, 0, 0, 0.08)",
+        xl: "0 20px 50px 0 rgba(0, 0, 0, 0.08)",
+        "2xl": "0 25px 60px 0 rgba(0, 0, 0, 0.1)",
+        inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.05)",
         none: "0 0 #0000",
-        soft: "0 2px 8px 0 rgb(0 0 0 / 0.06)",
-        card: "0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px 0 rgb(0 0 0 / 0.06)",
-        "card-hover": "0 4px 12px 0 rgb(0 0 0 / 0.12), 0 2px 6px 0 rgb(0 0 0 / 0.08)",
-        button: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        "button-hover": "0 2px 4px 0 rgb(0 0 0 / 0.1)",
-        green: "0 8px 24px -4px rgb(42 72 53 / 0.35)",
+        soft: "0 4px 16px 0 rgba(0, 0, 0, 0.08)",
+        card: "0 8px 30px 0 rgba(0, 0, 0, 0.08)",
+        "card-hover": "0 12px 40px 0 rgba(0, 0, 0, 0.12)",
+        button: "0 4px 14px 0 rgba(0, 0, 0, 0.08)",
+        "button-hover": "0 6px 20px 0 rgba(0, 0, 0, 0.12)",
+        // Brand-coloured glow — now steel-blue instead of green
+        brand: "0 8px 24px -4px rgba(62, 94, 133, 0.40)",
+        // Keep alias for backward compat (used in a few components)
+        green: "0 8px 24px -4px rgba(62, 94, 133, 0.40)",
       },
 
       borderRadius: {
         none: "0",
-        sm: "0.125rem",
-        DEFAULT: "0.25rem",
-        md: "0.375rem",
-        lg: "0.5rem",
-        xl: "0.75rem",
-        "2xl": "1rem",
-        "3xl": "1.5rem",
-        "4xl": "2rem",
+        sm: "2px",
+        DEFAULT: "2px",
+        md: "4px",
+        lg: "6px",
+        xl: "8px",
+        "2xl": "12px",
+        "3xl": "16px",
+        "4xl": "24px",
         full: "9999px",
       },
 
@@ -232,15 +238,39 @@ const config: Config = {
 
       keyframes: {
         fadeIn: { "0%": { opacity: "0" }, "100%": { opacity: "1" } },
-        fadeUp: { "0%": { opacity: "0", transform: "translateY(10px)" }, "100%": { opacity: "1", transform: "translateY(0)" } },
-        fadeDown: { "0%": { opacity: "0", transform: "translateY(-10px)" }, "100%": { opacity: "1", transform: "translateY(0)" } },
-        slideUp: { "0%": { transform: "translateY(10px)", opacity: "0" }, "100%": { transform: "translateY(0)", opacity: "1" } },
-        slideDown: { "0%": { transform: "translateY(-10px)", opacity: "0" }, "100%": { transform: "translateY(0)", opacity: "1" } },
-        scaleUp: { "0%": { transform: "scale(0.95)", opacity: "0" }, "100%": { transform: "scale(1)", opacity: "1" } },
-        shimmer: { "0%": { backgroundPosition: "-200px 0" }, "100%": { backgroundPosition: "calc(200px + 100%) 0" } },
+        fadeUp: {
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        fadeDown: {
+          "0%": { opacity: "0", transform: "translateY(-10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        slideUp: {
+          "0%": { transform: "translateY(10px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        slideDown: {
+          "0%": { transform: "translateY(-10px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        scaleUp: {
+          "0%": { transform: "scale(0.95)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200px 0" },
+          "100%": { backgroundPosition: "calc(200px + 100%) 0" },
+        },
         bounceSubtle: {
-          "0%, 100%": { transform: "translateY(0)", animationTimingFunction: "cubic-bezier(0.8, 0, 1, 1)" },
-          "50%": { transform: "translateY(-5px)", animationTimingFunction: "cubic-bezier(0, 0, 0.2, 1)" },
+          "0%, 100%": {
+            transform: "translateY(0)",
+            animationTimingFunction: "cubic-bezier(0.8, 0, 1, 1)",
+          },
+          "50%": {
+            transform: "translateY(-5px)",
+            animationTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
+          },
         },
         float: {
           "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
@@ -302,9 +332,14 @@ const config: Config = {
       },
 
       transitionDuration: {
-        "50": "50ms", "100": "100ms", "150": "150ms",
-        "200": "200ms", "250": "250ms", "300": "300ms",
-        "400": "400ms", "500": "500ms",
+        "50": "50ms",
+        "100": "100ms",
+        "150": "150ms",
+        "200": "200ms",
+        "250": "250ms",
+        "300": "300ms",
+        "400": "400ms",
+        "500": "500ms",
       },
 
       transitionTimingFunction: {

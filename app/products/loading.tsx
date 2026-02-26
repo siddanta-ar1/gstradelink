@@ -1,30 +1,103 @@
 export default function Loading() {
   return (
-    <div className="min-h-screen bg-background-secondary py-8 sm:py-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Skeleton */}
-        <div className="mb-12 animate-pulse">
-          <div className="h-8 bg-primary-100 rounded-full w-48 mb-3"></div>
-          <div className="h-4 bg-primary-100 rounded-full w-72 max-w-full"></div>
-        </div>
+    <div className="min-h-screen bg-background-secondary pb-28 md:pb-12">
+      {/* Sticky header skeleton */}
+      <section
+        className="sticky top-0 z-30 backdrop-blur-md shadow-sm border-b"
+        style={{
+          background: "rgba(232, 235, 227, 0.94)",
+          borderColor: "rgba(203, 220, 235, 0.5)",
+        }}
+      >
+        <div className="max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 xl:px-12 pt-5 pb-5 md:pt-8 md:pb-6 mx-auto">
+          {/* Header skeleton */}
+          <div className="mb-6 md:mb-8 animate-pulse">
+            <div
+              className="h-3 rounded-full w-20 mb-3"
+              style={{ background: "rgba(62,94,133,0.12)" }}
+            />
+            <div
+              className="h-9 sm:h-11 rounded w-56 mb-3 max-w-full"
+              style={{ background: "rgba(62,94,133,0.10)" }}
+            />
+            <div
+              className="h-3.5 rounded-full w-80 max-w-full"
+              style={{ background: "rgba(62,94,133,0.08)" }}
+            />
+          </div>
 
-        {/* Grid Skeleton */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
+          {/* Search bar skeleton */}
+          <div
+            className="w-full h-12 sm:h-14 rounded-full border animate-pulse"
+            style={{
+              background: "rgba(255,255,255,0.7)",
+              borderColor: "#CBDCEB",
+            }}
+          />
+        </div>
+      </section>
+
+      {/* Category filter skeleton */}
+      <section className="max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 xl:px-12 mt-6 md:mt-8 mx-auto">
+        <div className="flex gap-2.5 pb-1 animate-pulse overflow-hidden">
+          {[80, 60, 72, 68, 90, 64, 76].map((w, i) => (
             <div
               key={i}
-              className="bg-white border border-border-primary rounded-2xl sm:rounded-3xl overflow-hidden"
+              className="h-8 shrink-0 rounded-full"
+              style={{
+                width: `${w}px`,
+                background: "rgba(62,94,133,0.10)",
+              }}
+            />
+          ))}
+        </div>
+        <div
+          className="mt-5 h-3.5 w-40 rounded-full animate-pulse"
+          style={{ background: "rgba(62,94,133,0.08)" }}
+        />
+      </section>
+
+      {/* Product grid skeleton */}
+      <section className="max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 xl:px-12 mt-5 sm:mt-6 mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 sm:gap-5">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div
+              key={i}
+              className="overflow-hidden"
+              style={{
+                background: "#FFFFFF",
+                border: "1px solid #CBDCEB",
+                borderRadius: "4px",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+              }}
             >
-              <div className="aspect-square bg-primary-100 animate-pulse"></div>
-              <div className="p-3 sm:p-4 space-y-3">
-                <div className="h-4 bg-primary-100 rounded-full w-3/4 animate-pulse"></div>
-                <div className="h-3 bg-primary-100 rounded-full w-full animate-pulse"></div>
-                <div className="h-9 bg-primary-100 rounded-xl w-full mt-2 animate-pulse"></div>
+              {/* Image placeholder */}
+              <div
+                className="animate-pulse"
+                style={{
+                  aspectRatio: "1/1",
+                  background: "rgba(62,94,133,0.07)",
+                }}
+              />
+              {/* Text placeholders */}
+              <div style={{ padding: "14px" }}>
+                <div
+                  className="h-3.5 rounded-full w-3/4 mb-2 animate-pulse"
+                  style={{ background: "rgba(62,94,133,0.10)" }}
+                />
+                <div
+                  className="h-3 rounded-full w-full mb-1 animate-pulse"
+                  style={{ background: "rgba(62,94,133,0.07)" }}
+                />
+                <div
+                  className="h-3 rounded-full w-2/3 animate-pulse"
+                  style={{ background: "rgba(62,94,133,0.06)" }}
+                />
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

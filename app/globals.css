@@ -1,22 +1,24 @@
 @import "tailwindcss";
+@config "../tailwind.config.ts";
 
 /* ===== CSS CUSTOM PROPERTIES (DESIGN TOKENS) ===== */
 :root {
-    /* ── Blue/Beige Brand Palette ── */
-    --color-primary-50: #F8FAFC;
-    --color-primary-100: #E6F0FA;
-    --color-primary-200: #CBDCEB;
-    /* Light Blue Accent */
-    --color-primary-400: #93B2D6;
-    --color-primary-500: #6D94C5;
-    /* Primary Steel Blue */
-    --color-primary-600: #557BAA;
-    --color-primary-700: #3E5E85;
+    /* ── Steel-Blue Brand Palette ── */
+    --color-primary-50: #eef4fb;
+    --color-primary-100: #d5e4f4;
+    --color-primary-200: #aecae9;
+    /* Light blue accent */
+    --color-primary-400: #6d94c5;
+    --color-primary-500: #557baa;
+    /* Primary steel blue */
+    --color-primary-600: #3e5e85;
+    --color-primary-700: #2b4d72;
+    --color-primary-800: #1a2433;
 
-    /* ── Accent / Complementary ── */
-    --color-accent-400: #DCA963;
+    /* ── Accent / Gold ── */
+    --color-accent-400: #dca963;
     /* Soft Gold */
-    --color-accent-500: #C28D44;
+    --color-accent-500: #c28d44;
     /* Deeper Gold */
 
     /* ── Neutrals ── */
@@ -36,28 +38,33 @@
     --color-warning-500: #f59e0b;
 
     /* ── Semantic Tokens ── */
-    --background-primary: #F5EFE6;
-    /* Light Beige / Off-White */
-    --background-secondary: #E8DFCA;
-    /* Warmer Beige / Canvas bg */
-    --background-card: #FFFFFF;
-    --background-inverse: #3E5E85;
+    --background-primary: #ffffff;
+    /* Pure white — card / form surfaces */
+    --background-secondary: #e8ebe3;
+    /* Warm canvas — main page bg */
+    --background-tertiary: #f0f2ee;
+    /* Slightly lighter warm off-white */
+    --background-card: #ffffff;
+    --background-inverse: #1a2433;
+    /* Deep navy — dark sections */
 
-    --foreground-primary: #1A2433;
-    /* Deep Navy-Slate for high contrast */
-    --foreground-secondary: #5C6B7B;
-    /* Muted Slate Grey */
-    --foreground-tertiary: #8798AD;
-    --foreground-muted: #A6B6C8;
+    --foreground-primary: #111111;
+    /* Near-black — primary text */
+    --foreground-secondary: #5c6b7b;
+    /* Muted slate — secondary text */
+    --foreground-tertiary: #8798ad;
+    /* Light slate — tertiary text */
+    --foreground-muted: #aaaaaa;
     --foreground-inverse: #ffffff;
 
-    --border-primary: #E0D5B8;
-    /* Slightly darker than secondary beige */
-    --border-secondary: #D4C6A0;
+    --border-primary: #cbdceb;
+    /* Light blue border */
+    --border-secondary: #93b2d6;
+    /* Medium blue border */
 
     /* ── Typography ── */
-    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    /* overridden by next/font variable */
+    --font-sans:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-family-sans: var(--font-sans);
 
     /* ── Spacing (4px base) ── */
@@ -75,20 +82,21 @@
     --space-24: 6rem;
 
     /* ── Shadows ── */
-    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px 0 rgb(0 0 0 / 0.06);
-    --shadow-button: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-green: 0 8px 24px -4px rgb(42 72 53 / 0.35);
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 8px 30px 0 rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 12px 40px 0 rgba(0, 0, 0, 0.08);
+    --shadow-card: 0 8px 30px 0 rgba(0, 0, 0, 0.08);
+    --shadow-button: 0 4px 14px 0 rgba(0, 0, 0, 0.08);
+    /* Brand blue glow — replaces old green glow */
+    --shadow-brand: 0 8px 24px -4px rgba(62, 94, 133, 0.4);
 
     /* ── Border Radius ── */
-    --radius-sm: 0.125rem;
-    --radius-md: 0.375rem;
-    --radius-lg: 0.5rem;
-    --radius-xl: 0.75rem;
-    --radius-2xl: 1rem;
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 6px;
+    --radius-xl: 8px;
+    --radius-2xl: 12px;
 
     /* ── Transitions ── */
     --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -115,9 +123,15 @@ html {
 }
 
 body {
-    background-color: var(--background-primary);
+    background-color: var(--background-secondary);
     color: var(--foreground-primary);
-    font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family:
+        var(--font-sans),
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
     font-weight: 400;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
@@ -129,7 +143,6 @@ body {
 
 /* ===== TYPOGRAPHY ===== */
 @layer base {
-
     h1,
     h2,
     h3,
@@ -250,7 +263,8 @@ input:focus,
 textarea:focus,
 select:focus {
     border-color: var(--color-primary-600);
-    box-shadow: 0 0 0 3px rgb(42 72 53 / 0.15);
+    /* Steel-blue focus ring */
+    box-shadow: 0 0 0 3px rgba(62, 94, 133, 0.18);
 }
 
 input::placeholder,
@@ -290,7 +304,8 @@ textarea::placeholder {
 
 /* ===== SELECTION ===== */
 ::selection {
-    background: rgb(42 72 53 / 0.18);
+    /* Steel-blue selection tint */
+    background: rgba(62, 94, 133, 0.18);
     color: var(--foreground-primary);
 }
 
@@ -333,10 +348,11 @@ textarea::placeholder {
     box-shadow: var(--shadow-md);
 }
 
+/* Steel-blue glass effect */
 .glass-effect {
-    background: rgb(240 242 238 / 0.85);
+    background: rgba(238, 244, 251, 0.85);
     backdrop-filter: blur(12px);
-    border: 1px solid rgb(212 227 210 / 0.4);
+    border: 1px solid rgba(174, 202, 233, 0.4);
 }
 
 /* ===== ANIMATIONS ===== */
@@ -375,7 +391,6 @@ textarea::placeholder {
 }
 
 @keyframes float {
-
     0%,
     100% {
         transform: translateY(0) rotate(0deg);
@@ -427,13 +442,17 @@ textarea::placeholder {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.5), transparent);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.5),
+        transparent
+    );
     animation: shimmer 2s ease-in-out infinite;
 }
 
 /* ===== ACCESSIBILITY ===== */
 @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
@@ -523,7 +542,8 @@ textarea::placeholder {
 
 .btn-primary:hover:not(:disabled) {
     background: var(--color-primary-700);
-    box-shadow: var(--shadow-green);
+    /* Steel-blue glow on hover */
+    box-shadow: var(--shadow-brand);
     transform: translateY(-1px);
 }
 
@@ -569,22 +589,24 @@ textarea::placeholder {
     border-radius: var(--radius-lg);
     background: var(--background-card);
     color: var(--foreground-primary);
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
 }
 
 .input-field:focus {
     border-color: var(--color-primary-600);
-    box-shadow: 0 0 0 3px rgb(42 72 53 / 0.15);
+    box-shadow: 0 0 0 3px rgba(62, 94, 133, 0.18);
 }
 
 .input-error {
     border-color: var(--color-danger-500);
-    background: rgb(239 68 68 / 0.05);
+    background: rgba(239, 68, 68, 0.05);
 }
 
 .input-error:focus {
     border-color: var(--color-danger-500);
-    box-shadow: 0 0 0 3px rgb(239 68 68 / 0.1);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
 .error-message {
@@ -605,7 +627,6 @@ textarea::placeholder {
 
 /* ===== PRINT ===== */
 @media print {
-
     *,
     *::before,
     *::after {
