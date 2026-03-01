@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ProductCard } from "@/components/products/ProductCard";
 import { CategoryFilterBar } from "@/components/products/CategoryFilterBar";
 import { supabase } from "@/lib/supabase";
-import { Search, SlidersHorizontal, Sparkles, Wrench } from "lucide-react";
+import { Search, Sparkles, Wrench, X } from "lucide-react";
 import type { Product } from "@/types";
 import type { CategoryChip } from "@/components/products/CategoryFilterBar";
 
@@ -108,190 +108,238 @@ export default async function ProductsPage(props: {
   const activeLabel = CATEGORY_LABELS[selectedCategory];
 
   return (
-    <div className="min-h-screen bg-background-secondary pb-28 md:pb-12">
+    <div
+      className="min-h-screen pb-28 md:pb-16"
+      style={{ background: "#F4F6F2" }}
+    >
       {/* ═══════════════════════════════════════════════════════════════════════
-          Sticky header — title + search + category chips all together
+          Hero Section - Clean & Minimal
       ════════════════════════════════════════════════════════════════════════ */}
       <section
-        className="sticky top-0 z-30 backdrop-blur-md shadow-sm border-b"
+        className="relative overflow-hidden"
         style={{
-          background: "rgba(232, 235, 227, 0.96)",
-          borderColor: "rgba(203, 220, 235, 0.5)",
+          background:
+            "linear-gradient(135deg, #1A2433 0%, #2B4D72 60%, #3E5E85 100%)",
+          paddingTop: "clamp(32px, 5vw, 56px)",
+          paddingBottom: "clamp(28px, 4vw, 48px)",
         }}
       >
-        <div className="max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 xl:px-12 pt-5 pb-4 md:pt-7 md:pb-5 mx-auto">
-          {/* ── Page title row ─────────────────────────────────────────────── */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5 md:mb-6 motion-safe:animate-fade-up">
-            <div>
-              <p
+        {/* Subtle pattern overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.04]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
+
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 mb-4">
+              <span
+                className="inline-flex items-center gap-1.5"
                 style={{
-                  fontSize: "0.68rem",
+                  fontSize: "0.65rem",
                   fontWeight: 700,
-                  color: "#557BAA",
+                  color: "#DCA963",
                   textTransform: "uppercase",
-                  letterSpacing: "0.12em",
-                  marginBottom: "5px",
+                  letterSpacing: "0.15em",
                 }}
               >
+                <Sparkles size={12} />
                 Our Inventory
-              </p>
-              <h1
-                className="font-bold tracking-tight leading-none"
-                style={{
-                  fontSize: "clamp(1.6rem, 3.5vw, 2.5rem)",
-                  color: "#1A2433",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                Product Catalogue
-              </h1>
-              <p
-                className="hidden sm:block"
-                style={{
-                  color: "#5C6B7B",
-                  fontSize: "0.85rem",
-                  marginTop: "6px",
-                  maxWidth: "32rem",
-                  lineHeight: 1.55,
-                }}
-              >
-                Precision scales, genuine spare parts, and professional service
-                — all in one place.
-              </p>
+              </span>
             </div>
 
-            <div
-              className="hidden sm:flex items-center gap-1.5 shrink-0"
+            {/* Title */}
+            <h1
+              className="font-bold text-white mb-3"
               style={{
-                fontSize: "0.68rem",
-                fontWeight: 700,
-                color: "#3E5E85",
-                background: "#EEF4FB",
-                padding: "5px 12px",
-                borderRadius: "4px",
-                border: "1px solid rgba(110, 148, 197, 0.25)",
+                fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+                letterSpacing: "-0.025em",
+                lineHeight: 1.1,
               }}
             >
-              <Sparkles size={12} style={{ color: "#DCA963" }} />
-              Verified products
-            </div>
-          </div>
+              Product Catalogue
+            </h1>
 
-          {/* ── Search bar ─────────────────────────────────────────────────── */}
-          <form
-            action="/products"
-            method="get"
-            className="relative w-full mx-auto motion-safe:animate-fade-up mb-4"
-          >
-            {selectedCategory !== "All" && (
-              <input type="hidden" name="category" value={selectedCategory} />
-            )}
+            {/* Subtitle */}
+            <p
+              className="mx-auto mb-6"
+              style={{
+                color: "#AECAE9",
+                fontSize: "clamp(0.85rem, 1.5vw, 0.95rem)",
+                maxWidth: "420px",
+                lineHeight: 1.6,
+              }}
+            >
+              Precision scales, genuine spare parts, and professional service —
+              all in one place.
+            </p>
 
-            <div className="relative flex items-center w-full bg-white border border-border-primary rounded-full shadow-sm overflow-hidden focus-within:ring-2 focus-within:ring-primary-600 focus-within:border-primary-600 transition-all">
-              <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                <Search size={17} className="text-foreground-tertiary" />
-              </div>
+            {/* Search Bar */}
+            <form
+              action="/products"
+              method="get"
+              className="relative max-w-xl mx-auto"
+            >
+              {selectedCategory !== "All" && (
+                <input type="hidden" name="category" value={selectedCategory} />
+              )}
 
-              <input
-                type="text"
-                name="q"
-                defaultValue={searchQuery}
-                placeholder="Search by model, category, or use case…"
-                className="w-full h-11 sm:h-12 pl-10 pr-28 bg-transparent text-sm text-foreground-primary placeholder:text-foreground-muted transition-all focus:outline-none"
-              />
-
-              <button
-                type="submit"
-                className="absolute inset-y-1.5 right-1.5 inline-flex items-center gap-1.5 px-4 sm:px-5 text-xs font-bold rounded-full bg-primary-600 text-white shadow-sm hover:bg-primary-700 hover:-translate-y-0.5 transition-all h-[calc(100%-12px)]"
+              <div
+                className="relative flex items-center w-full overflow-hidden transition-all"
+                style={{
+                  background: "rgba(255,255,255,0.12)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  borderRadius: "9999px",
+                  backdropFilter: "blur(8px)",
+                }}
               >
-                <SlidersHorizontal size={13} />
-                Search
-              </button>
-            </div>
-          </form>
+                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                  <Search
+                    size={18}
+                    style={{ color: "rgba(255,255,255,0.5)" }}
+                  />
+                </div>
 
-          {/* ── Category filter chips (draggable, client component) ─────── */}
-          <div className="motion-safe:animate-fade-up">
-            <div className="rounded-2xl border border-[#D4E1EE] bg-white/70 backdrop-blur-md px-2 sm:px-3 py-2 shadow-sm">
-              <CategoryFilterBar
-                chips={categoryChips}
-                selectedCategory={selectedCategory}
-              />
-            </div>
+                <input
+                  type="text"
+                  name="q"
+                  defaultValue={searchQuery}
+                  placeholder="Search products..."
+                  className="w-full h-12 pl-11 pr-24 bg-transparent text-white placeholder:text-white/40 text-sm focus:outline-none"
+                />
+
+                <button
+                  type="submit"
+                  className="absolute inset-y-1.5 right-1.5 inline-flex items-center justify-center px-5 text-xs font-bold rounded-full transition-all hover:brightness-110"
+                  style={{
+                    background: "#DCA963",
+                    color: "#1A2433",
+                  }}
+                >
+                  Search
+                </button>
+              </div>
+            </form>
           </div>
+        </div>
+
+        {/* Bottom curve */}
+        <div
+          className="absolute bottom-0 left-0 right-0 pointer-events-none"
+          style={{ lineHeight: 0 }}
+        >
+          <svg
+            viewBox="0 0 1440 40"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+            style={{ display: "block", width: "100%", height: "40px" }}
+          >
+            <path
+              d="M0,40 C480,0 960,0 1440,40 L1440,40 L0,40 Z"
+              fill="#F4F6F2"
+            />
+          </svg>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          Result count + clear filters
+          Category Filter Bar
       ════════════════════════════════════════════════════════════════════════ */}
-      <section className="max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 xl:px-12 mt-5 mx-auto motion-safe:animate-fade-up">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <p style={{ fontSize: "0.83rem", color: "#5C6B7B" }}>
-            Showing{" "}
-            <span style={{ fontWeight: 700, color: "#1A2433" }}>
-              {productList.length}
-            </span>{" "}
-            {productList.length === 1 ? "product" : "products"}
+      <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 -mt-3 relative z-20">
+        <div
+          className="rounded-2xl p-2 sm:p-2.5"
+          style={{
+            background: "#FFFFFF",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+            border: "1px solid rgba(203,220,235,0.5)",
+          }}
+        >
+          <CategoryFilterBar
+            chips={categoryChips}
+            selectedCategory={selectedCategory}
+          />
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          Results Info Bar
+      ════════════════════════════════════════════════════════════════════════ */}
+      <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
+            <p style={{ fontSize: "0.875rem", color: "#5C6B7B" }}>
+              Showing{" "}
+              <span style={{ fontWeight: 700, color: "#1A2433" }}>
+                {productList.length}
+              </span>{" "}
+              {productList.length === 1 ? "product" : "products"}
+            </p>
+
             {selectedCategory !== "All" && (
-              <>
-                {" "}
-                in{" "}
-                <span
-                  style={{
-                    fontWeight: 700,
-                    color: "#3E5E85",
-                    padding: "2px 10px",
-                    background: "#EEF4FB",
-                    borderRadius: "9999px",
-                    fontSize: "0.76rem",
-                  }}
-                >
-                  {activeLabel}
-                </span>
-              </>
+              <span
+                className="inline-flex items-center gap-1.5"
+                style={{
+                  padding: "4px 12px",
+                  borderRadius: "9999px",
+                  background: "#EEF4FB",
+                  border: "1px solid #CBDCEB",
+                  fontSize: "0.75rem",
+                  fontWeight: 600,
+                  color: "#3E5E85",
+                }}
+              >
+                {activeLabel}
+              </span>
             )}
+
             {searchQuery && (
-              <>
-                {" "}
+              <span
+                style={{
+                  fontSize: "0.875rem",
+                  color: "#5C6B7B",
+                }}
+              >
                 for{" "}
                 <span
                   style={{
-                    fontWeight: 700,
-                    color: "#1A2433",
+                    fontWeight: 600,
                     fontStyle: "italic",
+                    color: "#1A2433",
                   }}
                 >
                   &ldquo;{searchQuery}&rdquo;
                 </span>
-              </>
+              </span>
             )}
-          </p>
+          </div>
 
           {hasActiveFilters && (
             <Link
               href="/products"
+              className="inline-flex items-center gap-1.5 transition-all hover:gap-2"
               style={{
-                fontSize: "0.73rem",
-                fontWeight: 700,
-                color: "#DCA963",
-                textDecoration: "underline",
-                textUnderlineOffset: "3px",
+                fontSize: "0.75rem",
+                fontWeight: 600,
+                color: "#EF4444",
+                textDecoration: "none",
               }}
-              className="hover:text-[#C28D44] transition-colors"
             >
-              ✕ Clear filters
+              <X size={14} />
+              Clear filters
             </Link>
           )}
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          Product grid
+          Product Grid
       ════════════════════════════════════════════════════════════════════════ */}
-      <section className="max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 xl:px-12 mt-4 sm:mt-5 mx-auto motion-safe:animate-fade-up">
+      <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         {productList.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 sm:gap-4 md:gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5 lg:gap-6">
             {productList.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -299,83 +347,59 @@ export default async function ProductsPage(props: {
         ) : (
           /* ── Empty state ───────────────────────────────────────────────── */
           <div
-            className="text-center py-16 px-6 sm:px-12 mx-auto max-w-lg mt-4"
+            className="text-center py-16 px-6 sm:px-12 mx-auto max-w-md"
             style={{
               background: "#FFFFFF",
-              borderRadius: "6px",
-              border: "1.5px dashed #CBDCEB",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+              borderRadius: "16px",
+              border: "2px dashed #CBDCEB",
             }}
           >
             <div
               className="mx-auto mb-5 flex items-center justify-center"
               style={{
-                width: "56px",
-                height: "56px",
+                width: "64px",
+                height: "64px",
                 borderRadius: "50%",
                 background: "#EEF4FB",
               }}
             >
-              <Search size={24} style={{ color: "#6D94C5" }} />
+              <Search size={28} style={{ color: "#6D94C5" }} />
             </div>
 
             <p
               style={{
-                fontSize: "1.05rem",
+                fontSize: "1.125rem",
                 fontWeight: 700,
                 color: "#1A2433",
                 marginBottom: "8px",
               }}
             >
-              No matching products found
+              No products found
             </p>
             <p
               style={{
                 fontSize: "0.875rem",
                 color: "#5C6B7B",
-                lineHeight: 1.65,
-                marginBottom: "20px",
+                lineHeight: 1.6,
+                marginBottom: "24px",
               }}
             >
               {searchQuery
-                ? `We couldn't find any products matching "${searchQuery}". Try a different term or browse by category.`
-                : "We couldn't find anything in this category right now. Try a different filter or view all products."}
+                ? `We couldn't find anything matching "${searchQuery}". Try a different search term.`
+                : "No products in this category right now. Try browsing all products."}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/products"
-                className="inline-flex items-center justify-center transition-all hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-bold transition-all hover:-translate-y-0.5"
                 style={{
-                  padding: "10px 24px",
-                  borderRadius: "4px",
                   background: "#3E5E85",
-                  color: "#ffffff",
-                  fontSize: "0.82rem",
-                  fontWeight: 700,
-                  textDecoration: "none",
-                  boxShadow: "0 4px 14px rgba(62, 94, 133, 0.22)",
+                  color: "#FFFFFF",
+                  boxShadow: "0 4px 14px rgba(62,94,133,0.25)",
                 }}
               >
                 View all products
-              </Link>
-
-              <Link
-                href="/services"
-                className="inline-flex items-center justify-center gap-1.5 transition-all hover:-translate-y-0.5"
-                style={{
-                  padding: "10px 24px",
-                  borderRadius: "4px",
-                  background: "#FFFBF0",
-                  color: "#C28D44",
-                  border: "1.5px solid #F0D99A",
-                  fontSize: "0.82rem",
-                  fontWeight: 700,
-                  textDecoration: "none",
-                }}
-              >
-                <Wrench size={13} />
-                Browse services
               </Link>
             </div>
           </div>
@@ -383,64 +407,59 @@ export default async function ProductsPage(props: {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          Services CTA banner — shown at the bottom of the "All" view
+          Services CTA - Clean Banner
       ════════════════════════════════════════════════════════════════════════ */}
       {selectedCategory === "All" && !searchQuery && productList.length > 0 && (
-        <section className="max-w-[1600px] w-full px-4 sm:px-6 lg:px-8 xl:px-12 mt-8 mx-auto">
+        <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mt-10">
           <Link
             href="/services"
-            className="group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all hover:-translate-y-0.5"
+            className="group flex flex-col sm:flex-row items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl transition-all hover:-translate-y-0.5"
             style={{
-              background:
-                "linear-gradient(135deg, #1A2433 0%, #2B4D72 60%, #3E5E85 100%)",
-              borderRadius: "6px",
-              padding: "22px 28px",
+              background: "linear-gradient(135deg, #1A2433 0%, #2B4D72 100%)",
+              boxShadow: "0 8px 32px rgba(26,36,51,0.2)",
               textDecoration: "none",
-              boxShadow: "0 6px 24px rgba(26,36,51,0.18)",
             }}
           >
             <div className="flex items-center gap-4">
               <div
                 className="flex items-center justify-center shrink-0"
                 style={{
-                  width: "44px",
-                  height: "44px",
-                  borderRadius: "50%",
-                  background: "rgba(220,169,99,0.18)",
-                  border: "1.5px solid rgba(220,169,99,0.3)",
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "12px",
+                  background: "rgba(220,169,99,0.15)",
+                  border: "1px solid rgba(220,169,99,0.3)",
                 }}
               >
-                <Wrench size={20} style={{ color: "#DCA963" }} />
+                <Wrench size={22} style={{ color: "#DCA963" }} />
               </div>
-              <div>
+              <div className="text-center sm:text-left">
                 <p
                   style={{
                     color: "#FFFFFF",
                     fontWeight: 700,
-                    fontSize: "0.95rem",
-                    marginBottom: "3px",
+                    fontSize: "1rem",
+                    marginBottom: "2px",
                   }}
                 >
-                  Need repair, calibration, or setup?
+                  Need repair or calibration?
                 </p>
                 <p
                   style={{
-                    color: "rgba(174,202,233,0.85)",
+                    color: "rgba(174,202,233,0.8)",
                     fontSize: "0.8rem",
-                    lineHeight: 1.5,
                   }}
                 >
-                  We offer on-site maintenance, annual calibration, and expert
-                  support across Bharatpur &amp; Chitwan.
+                  On-site maintenance and expert support across Chitwan
                 </p>
               </div>
             </div>
 
             <div
-              className="shrink-0 inline-flex items-center gap-2 font-bold text-sm transition-all group-hover:gap-3"
+              className="inline-flex items-center gap-2 font-bold text-sm transition-all group-hover:gap-3"
               style={{
-                padding: "9px 20px",
-                borderRadius: "4px",
+                padding: "10px 20px",
+                borderRadius: "9999px",
                 background: "#DCA963",
                 color: "#1A2433",
               }}

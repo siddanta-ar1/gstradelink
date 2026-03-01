@@ -145,101 +145,295 @@ export default function ContactPage() {
           }}
         />
 
-        <div className="relative z-10 max-w-3xl mx-auto text-center motion-safe:animate-fade-up">
-          {/* Badge */}
-          <span
-            className="inline-flex items-center gap-2 mb-6 sm:mb-8"
-            style={{
-              padding: "6px 18px",
-              borderRadius: "9999px",
-              background: "rgba(255,255,255,0.08)",
-              border: "1px solid rgba(255,255,255,0.18)",
-              fontSize: "0.7rem",
-              fontWeight: 700,
-              color: "#AECAE9",
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-            }}
-          >
-            <CheckCircle size={11} style={{ color: "#DCA963" }} />
-            Contact GSTradeLink · Bharatpur
-          </span>
+        <div className="relative z-10 mx-auto max-w-[1200px]">
+          <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center">
+            <div className="text-center lg:text-left motion-safe:animate-fade-up">
+              {/* Badge */}
+              <span
+                className="inline-flex items-center gap-2 mb-6 sm:mb-8 mx-auto lg:mx-0"
+                style={{
+                  padding: "6px 18px",
+                  borderRadius: "9999px",
+                  background: "rgba(255,255,255,0.08)",
+                  border: "1px solid rgba(255,255,255,0.18)",
+                  fontSize: "0.7rem",
+                  fontWeight: 700,
+                  color: "#AECAE9",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                }}
+              >
+                <CheckCircle size={11} style={{ color: "#DCA963" }} />
+                Contact GSTradeLink · Bharatpur
+              </span>
 
-          <h1
-            className="font-bold text-white mb-5"
-            style={{
-              fontSize: "clamp(2rem, 5.5vw, 3.75rem)",
-              letterSpacing: "-0.03em",
-              lineHeight: 1.08,
-            }}
-          >
-            Get expert support{" "}
-            <span
-              style={{
-                color: "#DCA963",
-                fontStyle: "italic",
-              }}
-            >
-              quickly
-            </span>
-          </h1>
+              <h1
+                className="font-bold text-white mb-5"
+                style={{
+                  fontSize: "clamp(2rem, 5.5vw, 3.75rem)",
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.08,
+                }}
+              >
+                Get expert support{" "}
+                <span
+                  style={{
+                    color: "#DCA963",
+                    fontStyle: "italic",
+                  }}
+                >
+                  quickly
+                </span>
+              </h1>
 
-          <p
-            style={{
-              fontSize: "clamp(0.88rem, 2vw, 1.05rem)",
-              color: "#AECAE9",
-              maxWidth: "34rem",
-              margin: "0 auto 40px",
-              lineHeight: 1.75,
-            }}
-          >
-            Tell us your precision weighing requirement. Our team will suggest
-            the right product, calibration schedule, or repair plan — usually
-            within a few hours.
-          </p>
+              <p
+                className="mx-auto lg:mx-0"
+                style={{
+                  fontSize: "clamp(0.88rem, 2vw, 1.05rem)",
+                  color: "#AECAE9",
+                  maxWidth: "34rem",
+                  lineHeight: 1.75,
+                  marginBottom: "40px",
+                }}
+              >
+                Tell us your precision weighing requirement. Our team will
+                suggest the right product, calibration schedule, or repair plan
+                — usually within a few hours.
+              </p>
 
-          {/* CTA row */}
-          <div className="flex flex-wrap gap-3 justify-center items-center">
-            <a
-              href={`${WA_BASE}${encodeURIComponent("Hello GSTradeLink! I'd like some help with a weighing scale.")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:-translate-y-0.5 active:scale-[0.98] transition-all"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "9px",
-                padding: "13px 28px",
-                borderRadius: "4px",
-                background: "#25D366",
-                color: "#ffffff",
-                fontWeight: 700,
-                fontSize: "0.9rem",
-                textDecoration: "none",
-                boxShadow: "0 6px 24px rgba(37,211,102,0.32)",
-              }}
-            >
-              <MessageCircle size={17} fill="white" /> Chat on WhatsApp
-            </a>
-            <a
-              href="tel:+97756878965"
-              className="hover:-translate-y-0.5 transition-all"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "9px",
-                padding: "13px 28px",
-                borderRadius: "4px",
-                background: "rgba(255,255,255,0.10)",
-                border: "1.5px solid rgba(255,255,255,0.22)",
-                color: "#ffffff",
-                fontWeight: 700,
-                fontSize: "0.9rem",
-                textDecoration: "none",
-              }}
-            >
-              <Phone size={15} /> Call now
-            </a>
+              {/* CTA row */}
+              <div className="flex flex-wrap gap-3 justify-center lg:justify-start items-center">
+                <a
+                  href={`${WA_BASE}${encodeURIComponent("Hello GSTradeLink! I'd like some help with a weighing scale.")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:-translate-y-0.5 active:scale-[0.98] transition-all"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "9px",
+                    padding: "13px 28px",
+                    borderRadius: "4px",
+                    background: "#25D366",
+                    color: "#ffffff",
+                    fontWeight: 700,
+                    fontSize: "0.9rem",
+                    textDecoration: "none",
+                    boxShadow: "0 6px 24px rgba(37,211,102,0.32)",
+                  }}
+                >
+                  <MessageCircle size={17} fill="white" /> Chat on WhatsApp
+                </a>
+                <a
+                  href="tel:+97756878965"
+                  className="hover:-translate-y-0.5 transition-all"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "9px",
+                    padding: "13px 28px",
+                    borderRadius: "4px",
+                    background: "rgba(255,255,255,0.10)",
+                    border: "1.5px solid rgba(255,255,255,0.22)",
+                    color: "#ffffff",
+                    fontWeight: 700,
+                    fontSize: "0.9rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  <Phone size={15} /> Call now
+                </a>
+              </div>
+            </div>
+
+            {/* Right-side dynamic illustration */}
+            <div className="relative hidden lg:flex justify-center items-center">
+              <div
+                className="absolute"
+                style={{
+                  width: "360px",
+                  height: "360px",
+                  borderRadius: "50%",
+                  background:
+                    "radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%)",
+                  filter: "blur(2px)",
+                }}
+              />
+              <div
+                className="absolute"
+                style={{
+                  width: "300px",
+                  height: "300px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                }}
+              />
+              <div
+                role="img"
+                aria-label="Precision weighing scale illustration"
+                className="contact-hero-scale-float"
+                style={{
+                  width: "clamp(260px, 28vw, 360px)",
+                  height: "clamp(260px, 28vw, 360px)",
+                  position: "relative",
+                  filter: "drop-shadow(0 16px 32px rgba(0,0,0,0.25))",
+                }}
+              >
+                {/* Beam & pans */}
+                <div
+                  className="contact-hero-pan-swing"
+                  style={{
+                    position: "absolute",
+                    top: "48px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "260px",
+                    height: "86px",
+                    transformOrigin: "center 16px",
+                  }}
+                >
+                  <div
+                    style={{
+                      height: "6px",
+                      background: "linear-gradient(90deg, #DCA963, #F1D59B)",
+                      borderRadius: "999px",
+                      boxShadow: "0 4px 10px rgba(220,169,99,0.3)",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "6px",
+                      left: "26px",
+                      width: "2px",
+                      height: "38px",
+                      background: "rgba(255,255,255,0.7)",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "6px",
+                      right: "26px",
+                      width: "2px",
+                      height: "38px",
+                      background: "rgba(255,255,255,0.7)",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "44px",
+                      left: "-2px",
+                      width: "92px",
+                      height: "12px",
+                      borderRadius: "999px",
+                      background: "#EEF4FB",
+                      border: "1px solid #CBDCEB",
+                      boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "44px",
+                      right: "-2px",
+                      width: "92px",
+                      height: "12px",
+                      borderRadius: "999px",
+                      background: "#EEF4FB",
+                      border: "1px solid #CBDCEB",
+                      boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
+                    }}
+                  />
+                </div>
+
+                {/* Pillar */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "78px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "20px",
+                    height: "120px",
+                    background: "linear-gradient(180deg, #3E5E85, #1A2433)",
+                    borderRadius: "999px",
+                    boxShadow: "0 8px 20px rgba(26,36,51,0.35)",
+                  }}
+                />
+
+                {/* Display */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "188px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "120px",
+                    height: "34px",
+                    borderRadius: "6px",
+                    background: "rgba(255,255,255,0.12)",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#AECAE9",
+                    fontWeight: 700,
+                    letterSpacing: "0.12em",
+                    fontSize: "0.65rem",
+                    textTransform: "uppercase",
+                    boxShadow: "0 4px 14px rgba(0,0,0,0.2)",
+                  }}
+                >
+                  GST
+                </div>
+
+                {/* Base */}
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: "48px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "220px",
+                    height: "18px",
+                    borderRadius: "999px",
+                    background: "linear-gradient(90deg, #1A2433, #2B4D72)",
+                    boxShadow: "0 10px 20px rgba(0,0,0,0.35)",
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: "28px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "160px",
+                    height: "10px",
+                    borderRadius: "999px",
+                    background: "rgba(255,255,255,0.12)",
+                    border: "1px solid rgba(255,255,255,0.15)",
+                  }}
+                />
+
+                {/* Needle glow */}
+                <div
+                  className="contact-hero-needle-pulse"
+                  style={{
+                    position: "absolute",
+                    top: "116px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "46px",
+                    height: "46px",
+                    borderRadius: "50%",
+                    background: "rgba(220,169,99,0.2)",
+                    boxShadow: "0 0 22px rgba(220,169,99,0.35)",
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </div>
 

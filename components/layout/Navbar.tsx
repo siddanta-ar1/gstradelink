@@ -5,7 +5,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import {
+  Menu,
+  X,
+  Phone,
+  ChevronDown,
+  ChevronRight,
+  Home,
+  Package,
+  Wrench,
+  Mail,
+  MapPin,
+  Clock,
+  MessageCircle,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -49,7 +62,7 @@ export const Navbar = () => {
         },
       ],
     },
-    { label: "Services", href: "/contact" },
+    { label: "Services", href: "/services" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -292,215 +305,343 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Premium Design */}
         <AnimatePresence>
           {isOpen && (
             <>
+              {/* Backdrop */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-primary-900/50 backdrop-blur-sm z-40 lg:hidden"
+                className="fixed inset-0 bg-[#0F1825]/60 backdrop-blur-md z-40 lg:hidden"
                 onClick={() => setIsOpen(false)}
               />
 
+              {/* Sidebar Panel */}
               <motion.div
                 initial={{ opacity: 0, x: "100%" }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: "100%" }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="fixed top-0 right-0 h-full w-full max-w-sm z-50 lg:hidden shadow-2xl"
-                style={{ background: "#FFFFFF" }}
+                transition={{ type: "spring", stiffness: 350, damping: 35 }}
+                className="fixed top-0 right-0 h-full w-[85%] max-w-[320px] z-50 lg:hidden"
+                style={{
+                  background:
+                    "linear-gradient(180deg, #1A2433 0%, #0F1825 100%)",
+                  boxShadow: "-8px 0 40px rgba(0,0,0,0.4)",
+                }}
               >
                 <div className="flex flex-col h-full">
-                  {/* Mobile Header */}
-                  <div
-                    className="flex items-center justify-between p-6"
-                    style={{ background: "#1A2433" }}
-                  >
+                  {/* Header with Logo */}
+                  <div className="relative px-5 pt-5 pb-4">
+                    {/* Close button */}
+                    <button
+                      onClick={() => setIsOpen(false)}
+                      className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center transition-all hover:bg-white/10"
+                      style={{ color: "rgba(255,255,255,0.5)" }}
+                    >
+                      <X size={20} />
+                    </button>
+
+                    {/* Logo & Brand */}
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center p-1.5 shrink-0">
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center p-1.5 shrink-0"
+                        style={{
+                          background: "#FFFFFF",
+                          boxShadow: "0 4px 16px rgba(0,0,0,0.15)",
+                        }}
+                      >
                         <Image
                           src="/logo.png"
                           alt="GSTradeLink Logo"
-                          width={60}
-                          height={60}
+                          width={48}
+                          height={48}
                           className="w-full h-full object-contain"
                         />
                       </div>
                       <div>
-                        <div className="font-bold text-white text-lg leading-tight">
+                        <div
+                          className="font-bold text-lg leading-tight"
+                          style={{ color: "#FFFFFF" }}
+                        >
                           GSTradeLink
                         </div>
                         <div
-                          className="text-[10px] uppercase tracking-wider font-semibold"
-                          style={{ color: "#8798AD" }}
+                          className="text-[10px] uppercase tracking-[0.15em] font-medium mt-0.5"
+                          style={{ color: "#DCA963" }}
                         >
                           Bharatpur · Chitwan
                         </div>
                       </div>
                     </div>
-                    <button
-                      onClick={() => setIsOpen(false)}
-                      className="p-2 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors"
-                    >
-                      <X size={20} />
-                    </button>
                   </div>
 
-                  {/* Contact Info */}
+                  {/* Quick Info Bar */}
                   <div
-                    className="px-6 py-4 border-b border-border-primary"
-                    style={{ background: "#EEF4FB" }}
+                    className="mx-4 mb-4 px-4 py-3 rounded-xl"
+                    style={{
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                    }}
                   >
-                    <div className="space-y-2 text-sm">
-                      <div
-                        className="flex items-center gap-2"
-                        style={{ color: "#5C6B7B" }}
-                      >
-                        <Phone size={14} style={{ color: "#3E5E85" }} />
-                        <span>+977-56-878965</span>
+                    <div className="flex items-center justify-between text-xs">
+                      <div className="flex items-center gap-2">
+                        <div
+                          className="w-2 h-2 rounded-full"
+                          style={{
+                            background: "#25D366",
+                            boxShadow: "0 0 8px rgba(37,211,102,0.6)",
+                          }}
+                        />
+                        <span style={{ color: "rgba(255,255,255,0.7)" }}>
+                          Open Now
+                        </span>
                       </div>
                       <div
-                        className="flex items-center gap-2"
-                        style={{ color: "#5C6B7B" }}
+                        className="flex items-center gap-1.5"
+                        style={{ color: "rgba(255,255,255,0.5)" }}
                       >
-                        <svg
-                          className="w-3.5 h-3.5 shrink-0"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                          style={{ color: "#3E5E85" }}
-                        >
-                          <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
-                        </svg>
-                        <span>info@gstradelink.com.np</span>
+                        <Clock size={12} />
+                        <span>10 AM – 6 PM</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Mobile Navigation Items */}
-                  <div className="flex-1 overflow-y-auto py-6">
-                    <nav className="px-6 space-y-2">
-                      {navItems.map((item, index) => (
-                        <motion.div
-                          key={item.label}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.08 }}
-                        >
-                          {item.children ? (
-                            <div className="space-y-2">
-                              <button
-                                onClick={(e) => toggleDropdown(item.label, e)}
+                  {/* Navigation Items */}
+                  <div className="flex-1 overflow-y-auto px-4 pb-4">
+                    <nav className="space-y-1.5">
+                      {[
+                        { icon: Home, label: "Home", href: "/" },
+                        {
+                          icon: Package,
+                          label: "Products",
+                          href: "/products",
+                          hasChildren: true,
+                        },
+                        { icon: Wrench, label: "Services", href: "/services" },
+                        { icon: Mail, label: "Contact", href: "/contact" },
+                      ].map((item, index) => {
+                        const Icon = item.icon;
+                        const isActive = isActivePath(item.href);
+                        const navItem = navItems.find(
+                          (n) => n.label === item.label,
+                        );
+                        const hasChildren =
+                          item.hasChildren && navItem?.children;
+
+                        return (
+                          <motion.div
+                            key={item.label}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 + index * 0.05 }}
+                          >
+                            {hasChildren ? (
+                              <div>
+                                <button
+                                  onClick={(e) => toggleDropdown(item.label, e)}
+                                  className={cn(
+                                    "w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-200",
+                                    isActive
+                                      ? "bg-[#3E5E85]"
+                                      : "hover:bg-white/5",
+                                  )}
+                                >
+                                  <div
+                                    className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                                    style={{
+                                      background: isActive
+                                        ? "rgba(255,255,255,0.15)"
+                                        : "rgba(255,255,255,0.08)",
+                                    }}
+                                  >
+                                    <Icon
+                                      size={18}
+                                      style={{
+                                        color: isActive ? "#FFFFFF" : "#AECAE9",
+                                      }}
+                                    />
+                                  </div>
+                                  <span
+                                    className="flex-1 text-left font-medium text-[15px]"
+                                    style={{
+                                      color: isActive ? "#FFFFFF" : "#AECAE9",
+                                    }}
+                                  >
+                                    {item.label}
+                                  </span>
+                                  <ChevronDown
+                                    size={16}
+                                    className={cn(
+                                      "transition-transform duration-200",
+                                      activeDropdown === item.label &&
+                                        "rotate-180",
+                                    )}
+                                    style={{
+                                      color: isActive
+                                        ? "#FFFFFF"
+                                        : "rgba(174,202,233,0.5)",
+                                    }}
+                                  />
+                                </button>
+
+                                <AnimatePresence>
+                                  {activeDropdown === item.label &&
+                                    navItem?.children && (
+                                      <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: "auto", opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.2 }}
+                                        className="overflow-hidden"
+                                      >
+                                        <div
+                                          className="ml-6 mt-1.5 pl-4 py-2 space-y-1"
+                                          style={{
+                                            borderLeft:
+                                              "2px solid rgba(62,94,133,0.4)",
+                                          }}
+                                        >
+                                          {navItem.children.map((child) => (
+                                            <Link
+                                              key={child.href}
+                                              href={child.href}
+                                              className={cn(
+                                                "flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm transition-all",
+                                                isActivePath(child.href)
+                                                  ? "bg-[#3E5E85]/50 text-white"
+                                                  : "text-[#93B2D6] hover:text-white hover:bg-white/5",
+                                              )}
+                                              onClick={() => setIsOpen(false)}
+                                            >
+                                              <ChevronRight
+                                                size={14}
+                                                style={{ opacity: 0.5 }}
+                                              />
+                                              {child.label}
+                                            </Link>
+                                          ))}
+                                        </div>
+                                      </motion.div>
+                                    )}
+                                </AnimatePresence>
+                              </div>
+                            ) : (
+                              <Link
+                                href={item.href}
                                 className={cn(
-                                  "flex items-center justify-between w-full px-4 py-3 rounded-lg text-left transition-colors",
-                                  isActivePath(item.href)
-                                    ? "text-primary-600 bg-primary-50"
-                                    : "text-foreground-primary hover:bg-background-tertiary",
+                                  "flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-200",
+                                  isActive
+                                    ? "bg-[#3E5E85]"
+                                    : "hover:bg-white/5",
                                 )}
+                                onClick={() => setIsOpen(false)}
                               >
-                                <span className="font-medium">
+                                <div
+                                  className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                                  style={{
+                                    background: isActive
+                                      ? "rgba(255,255,255,0.15)"
+                                      : "rgba(255,255,255,0.08)",
+                                  }}
+                                >
+                                  <Icon
+                                    size={18}
+                                    style={{
+                                      color: isActive ? "#FFFFFF" : "#AECAE9",
+                                    }}
+                                  />
+                                </div>
+                                <span
+                                  className="font-medium text-[15px]"
+                                  style={{
+                                    color: isActive ? "#FFFFFF" : "#AECAE9",
+                                  }}
+                                >
                                   {item.label}
                                 </span>
-                                <ChevronDown
-                                  size={16}
-                                  className={cn(
-                                    "transition-transform duration-200",
-                                    activeDropdown === item.label &&
-                                      "rotate-180",
-                                  )}
-                                />
-                              </button>
-
-                              <AnimatePresence>
-                                {activeDropdown === item.label && (
-                                  <motion.div
-                                    initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: "auto", opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="ml-4 space-y-1 overflow-hidden"
-                                  >
-                                    {item.children.map((child) => (
-                                      <Link
-                                        key={child.href}
-                                        href={child.href}
-                                        className={cn(
-                                          "block px-4 py-2 rounded-lg text-sm transition-colors",
-                                          isActivePath(child.href)
-                                            ? "text-primary-600 bg-primary-50"
-                                            : "text-foreground-secondary hover:text-foreground-primary hover:bg-background-tertiary",
-                                        )}
-                                        onClick={() => setIsOpen(false)}
-                                      >
-                                        {child.label}
-                                      </Link>
-                                    ))}
-                                  </motion.div>
-                                )}
-                              </AnimatePresence>
-                            </div>
-                          ) : (
-                            <Link
-                              href={item.href}
-                              className={cn(
-                                "flex items-center px-4 py-3 rounded-lg font-medium transition-colors",
-                                isActivePath(item.href)
-                                  ? "text-primary-600 bg-primary-50"
-                                  : "text-foreground-primary hover:bg-background-tertiary",
-                              )}
-                              onClick={() => setIsOpen(false)}
-                            >
-                              {item.label}
-                            </Link>
-                          )}
-                        </motion.div>
-                      ))}
+                              </Link>
+                            )}
+                          </motion.div>
+                        );
+                      })}
                     </nav>
+
+                    {/* Contact Info Section */}
+                    <div className="mt-6 pt-5 border-t border-white/10">
+                      <p
+                        className="text-[10px] uppercase tracking-[0.15em] font-semibold mb-3 px-1"
+                        style={{ color: "rgba(255,255,255,0.35)" }}
+                      >
+                        Contact Info
+                      </p>
+                      <div className="space-y-2.5">
+                        <a
+                          href="tel:+97756878965"
+                          className="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all hover:bg-white/5"
+                          style={{ color: "#93B2D6" }}
+                        >
+                          <Phone size={15} style={{ color: "#DCA963" }} />
+                          <span className="text-sm">+977-56-878965</span>
+                        </a>
+                        <a
+                          href="mailto:info@gstradelink.com.np"
+                          className="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all hover:bg-white/5"
+                          style={{ color: "#93B2D6" }}
+                        >
+                          <Mail size={15} style={{ color: "#DCA963" }} />
+                          <span className="text-sm">
+                            info@gstradelink.com.np
+                          </span>
+                        </a>
+                        <div
+                          className="flex items-center gap-3 px-3 py-2.5"
+                          style={{ color: "#93B2D6" }}
+                        >
+                          <MapPin size={15} style={{ color: "#DCA963" }} />
+                          <span className="text-sm">Bharatpur-10, Chitwan</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Mobile CTA */}
-                  <div className="p-6 border-t border-border-primary space-y-2.5">
+                  {/* Bottom CTA Buttons */}
+                  <div
+                    className="p-4 space-y-2.5"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.2) 100%)",
+                    }}
+                  >
                     <a
                       href="https://wa.me/9779765662427"
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setIsOpen(false)}
-                      className="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold transition-colors hover:brightness-105"
+                      className="w-full flex items-center justify-center gap-2.5 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:brightness-110 active:scale-[0.98]"
                       style={{
-                        background: "#25D366",
-                        color: "#ffffff",
-                        borderRadius: "6px",
-                        textDecoration: "none",
+                        background:
+                          "linear-gradient(135deg, #25D366 0%, #128C7E 100%)",
+                        color: "#FFFFFF",
+                        boxShadow: "0 4px 20px rgba(37,211,102,0.35)",
                       }}
                     >
-                      <svg
-                        className="w-4 h-4"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                        <path
-                          d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.998-1.309A9.942 9.942 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                        />
-                      </svg>
+                      <MessageCircle size={18} fill="white" />
                       Chat on WhatsApp
                     </a>
                     <a
                       href="tel:+9779765662427"
                       onClick={() => setIsOpen(false)}
-                      className="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold transition-colors"
+                      className="w-full flex items-center justify-center gap-2.5 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/10 active:scale-[0.98]"
                       style={{
-                        border: "1.5px solid #CBDCEB",
-                        background: "#FFFFFF",
-                        color: "#1A2433",
-                        borderRadius: "6px",
-                        textDecoration: "none",
+                        background: "rgba(255,255,255,0.08)",
+                        border: "1px solid rgba(255,255,255,0.15)",
+                        color: "#FFFFFF",
                       }}
                     >
-                      <Phone size={16} style={{ color: "#3E5E85" }} /> Call Us
+                      <Phone size={16} />
+                      Call Us Now
                     </a>
                   </div>
                 </div>

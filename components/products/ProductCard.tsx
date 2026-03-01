@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
-import { ArrowUpRight, Package, Pencil, Trash2 } from "lucide-react";
+import { ArrowRight, Package, Pencil, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import type { Product } from "@/types";
@@ -18,12 +18,25 @@ interface ProductCardProps {
 }
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 12 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.35, ease: "easeOut" },
+    transition: { duration: 0.3, ease: "easeOut" },
   },
+};
+
+// Short category labels for cleaner display
+const getCategoryLabel = (category: string) => {
+  const labels: Record<string, string> = {
+    "Precision & Pocket Mini Scales": "Precision",
+    "Kitchen & Compact Tabletop Scales": "Kitchen",
+    "Portable & Luggage Scales": "Luggage",
+    "Heavy-Duty Hanging & Crane Scales": "Industrial",
+    "Personal Health & Bathroom Scales": "Health",
+    "Packaging & Miscellaneous Equipment": "Packaging",
+  };
+  return labels[category] || category.split(" ")[0];
 };
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -40,31 +53,25 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       animate="visible"
       className={cn(
         "group relative bg-white overflow-hidden flex flex-col transition-all duration-300",
-        "hover:-translate-y-1",
+        "hover:-translate-y-1.5 hover:shadow-xl",
         !product.is_active && "opacity-60",
         className,
       )}
       style={{
-        borderRadius: "4px",
-        border: "1px solid #CBDCEB",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-      }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow =
-          "0 8px 24px rgba(62,94,133,0.12)";
-        (e.currentTarget as HTMLDivElement).style.borderColor = "#93B2D6";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow =
-          "0 2px 8px rgba(0,0,0,0.05)";
-        (e.currentTarget as HTMLDivElement).style.borderColor = "#CBDCEB";
+        borderRadius: "12px",
+        border: "1px solid #E8EDF3",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
       }}
     >
-      {/* Image */}
+      {/* Image Container */}
       <Link
         href={`/products/${product.id}`}
         className="relative w-full overflow-hidden"
-        style={{ aspectRatio: "1/1", background: "#EEF4FB", display: "block" }}
+        style={{
+          aspectRatio: "4/3",
+          background: "linear-gradient(135deg, #F8FAFC 0%, #EEF4FB 100%)",
+          display: "block",
+        }}
       >
         {product.image_url ? (
           <Image
@@ -72,81 +79,92 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             alt={product.name}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-108"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
             priority={false}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <Package size={40} style={{ color: "#AECAE9", opacity: 0.5 }} />
+            <Package size={36} style={{ color: "#CBDCEB" }} />
           </div>
         )}
 
-        {/* Category chip */}
-        <div className="absolute top-2.5 left-2.5">
+        {/* Category Badge */}
+        <div className="absolute top-3 left-3">
           <span
-            className="text-white font-bold uppercase tracking-widest"
+            className="font-semibold uppercase tracking-wide"
             style={{
-              fontSize: "9px",
-              padding: "3px 8px",
-              borderRadius: "9999px",
-              background: "rgba(62,94,133,0.85)",
-              backdropFilter: "blur(4px)",
-              letterSpacing: "0.06em",
+              fontSize: "10px",
+              padding: "4px 10px",
+              borderRadius: "6px",
+              background: "rgba(255,255,255,0.95)",
+              color: "#3E5E85",
+              backdropFilter: "blur(8px)",
+              border: "1px solid rgba(62,94,133,0.1)",
+              letterSpacing: "0.05em",
             }}
           >
-            {product.category
-              .replace(" & Pocket Mini Scales", "")
-              .replace(" & Compact Tabletop Scales", "")
-              .replace(" & Luggage Scales", "")
-              .replace(" Hanging & Crane Scales", "")
-              .replace(" Health & Bathroom Scales", "")
-              .replace(" & Miscellaneous Equipment", "")}
+            {getCategoryLabel(product.category)}
           </span>
+        </div>
+
+        {/* Hover overlay with arrow */}
+        <div
+          className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            background: "rgba(26,36,51,0.4)",
+            backdropFilter: "blur(2px)",
+          }}
+        >
+          <div
+            className="flex items-center justify-center"
+            style={{
+              width: "44px",
+              height: "44px",
+              borderRadius: "50%",
+              background: "rgba(255,255,255,0.95)",
+              color: "#3E5E85",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.15)",
+            }}
+          >
+            <ArrowRight size={20} />
+          </div>
         </div>
       </Link>
 
       {/* Content */}
       <div
         className="flex flex-col flex-1 relative"
-        style={{ padding: "14px 14px 14px", background: "#FFFFFF" }}
+        style={{ padding: "16px" }}
       >
         <Link
           href={`/products/${product.id}`}
-          className="flex-1 z-10 w-full"
+          className="flex-1 z-10"
           style={{ textDecoration: "none" }}
         >
-          <div className="flex items-start justify-between gap-2 mb-1 w-full">
-            <h3
-              className="font-bold text-sm line-clamp-2 transition-colors leading-snug"
-              style={{
-                color: "#111111",
-                letterSpacing: "-0.01em",
-              }}
-            >
-              {product.name}
-            </h3>
-            <div
-              className="w-7 h-7 flex-shrink-0 flex items-center justify-center transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              style={{
-                background: "#EEF4FB",
-                color: "#3E5E85",
-                borderRadius: "9999px",
-                minWidth: "28px",
-              }}
-            >
-              <ArrowUpRight size={14} />
-            </div>
-          </div>
-          <p
-            className="line-clamp-1 transition-colors"
+          <h3
+            className="font-semibold line-clamp-2 transition-colors group-hover:text-[#3E5E85]"
             style={{
-              fontSize: "0.75rem",
-              color: "#8798AD",
-              lineHeight: 1.5,
-              marginTop: "3px",
+              fontSize: "0.9rem",
+              color: "#1A2433",
+              lineHeight: 1.4,
+              letterSpacing: "-0.01em",
+              marginBottom: "6px",
             }}
           >
-            View specifications &amp; pricing
+            {product.name}
+          </h3>
+
+          <p
+            className="flex items-center gap-1 text-xs"
+            style={{
+              color: "#8798AD",
+            }}
+          >
+            View details
+            <ArrowRight
+              size={12}
+              className="transition-transform duration-200 group-hover:translate-x-1"
+            />
           </p>
         </Link>
 
@@ -160,7 +178,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Admin actions */}
         {showActions && (onEdit || onDelete) && (
-          <div className="flex gap-2 mt-3 relative z-20">
+          <div className="flex gap-2 mt-4 relative z-20">
             {onEdit && (
               <Button
                 variant="outline"

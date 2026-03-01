@@ -141,6 +141,51 @@ body {
     font-synthesis: none;
 }
 
+/* ===== CONTACT HERO ANIMATIONS ===== */
+@keyframes scaleFloat {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes panSwing {
+    0%,
+    100% {
+        transform: translateX(-50%) rotate(-2deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(2deg);
+    }
+}
+
+@keyframes needlePulse {
+    0%,
+    100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateX(-50%) scale(1.15);
+        opacity: 0.9;
+    }
+}
+
+.contact-hero-scale-float {
+    animation: scaleFloat 6s ease-in-out infinite;
+}
+
+.contact-hero-pan-swing {
+    animation: panSwing 4.2s ease-in-out infinite;
+}
+
+.contact-hero-needle-pulse {
+    animation: needlePulse 3s ease-in-out infinite;
+}
+
 /* ===== TYPOGRAPHY ===== */
 @layer base {
     h1,

@@ -17,6 +17,7 @@ import {
   Zap,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { InteractiveMarquee } from "@/components/ui/InteractiveMarquee";
 
 export const revalidate = 60;
 
@@ -391,33 +392,14 @@ export default async function Home() {
             </div>
           </ScrollReveal>
 
-          <div className="relative overflow-hidden w-full group py-4">
-            <style>{`
-              @keyframes slideMarquee {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(calc(-50% - 10px)); }
-              }
-              .animate-marquee {
-                animation: slideMarquee 35s linear infinite;
-                width: max-content;
-              }
-              .group:hover .animate-marquee {
-                animation-play-state: paused;
-              }
-              .hide-scrollbar::-webkit-scrollbar { display: none; }
-              .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-            `}</style>
-            <div
-              className="animate-marquee flex gap-4 sm:gap-5 overflow-x-auto hide-scrollbar"
-              style={{ WebkitOverflowScrolling: "touch" }}
+          <div className="relative w-full py-4">
+            <InteractiveMarquee
+              speed={35}
+              gap={20}
+              pauseOnInteractionDuration={3000}
+              className="py-2"
             >
-              {/* Duplicate array four times for seamless infinite loop on wide screens */}
-              {[
-                ...featuredCategories,
-                ...featuredCategories,
-                ...featuredCategories,
-                ...featuredCategories,
-              ].map(({ category, product }, idx) => {
+              {featuredCategories.map(({ category, product }, idx) => {
                 const meta = CATEGORY_META[category];
                 return (
                   <Link
@@ -494,6 +476,22 @@ export default async function Home() {
                   </Link>
                 );
               })}
+            </InteractiveMarquee>
+
+            {/* Hint for users */}
+            <div
+              className="flex items-center justify-center gap-2 mt-4 text-xs"
+              style={{ color: "#8798AD" }}
+            >
+              <span
+                className="inline-block w-8 h-0.5 rounded-full"
+                style={{ background: "#CBDCEB" }}
+              />
+              <span>Drag to explore or wait for auto-scroll</span>
+              <span
+                className="inline-block w-8 h-0.5 rounded-full"
+                style={{ background: "#CBDCEB" }}
+              />
             </div>
           </div>
         </div>
