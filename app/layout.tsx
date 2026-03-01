@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { FooterWrapper } from "@/components/layout/FooterWrapper";
-import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
-import { BottomNav } from "@/components/layout/BottomNav";
+import { SiteShell } from "@/components/layout/SiteShell";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -41,13 +38,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} antialiased bg-background-secondary text-foreground-primary flex flex-col min-h-screen`}
       >
-        <Navbar />
-        <main className="grow pb-24 md:pb-0 relative">{children}</main>
-        <FooterWrapper />
-        <FloatingWhatsApp />
-        <div className="md:hidden">
-          <BottomNav />
-        </div>
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );

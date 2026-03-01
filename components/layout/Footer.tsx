@@ -4,9 +4,9 @@ import {
   MapPin,
   Phone,
   Mail,
-  MessageCircle,
   Clock,
   ArrowRight,
+  Lock,
 } from "lucide-react";
 
 export const Footer = ({ className }: { className?: string }) => {
@@ -345,9 +345,21 @@ export const Footer = ({ className }: { className?: string }) => {
           <p style={{ fontSize: "0.75rem", color: "#4A6070" }}>
             © {new Date().getFullYear()} GSTradeLink. All rights reserved.
           </p>
-          <p style={{ fontSize: "0.75rem", color: "#4A6070" }}>
-            Bharatpur, Chitwan, Nepal
-          </p>
+          <div className="flex items-center gap-3">
+            <p style={{ fontSize: "0.75rem", color: "#4A6070" }}>
+              Bharatpur, Chitwan, Nepal
+            </p>
+            {/* Discreet admin access — intentionally low-visibility */}
+            <Link
+              href="/admin/login"
+              title=""
+              aria-label="Admin"
+              className="transition-opacity hover:opacity-60"
+              style={{ color: "#2A3A4A", opacity: 0.35 }}
+            >
+              <Lock size={11} />
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

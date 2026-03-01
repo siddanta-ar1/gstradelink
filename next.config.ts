@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
 
+const supabaseHost = "qqpaoqfxnumeznkolobb.supabase.co";
+
+// Security headers applied to all public routes
 const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
   { key: "X-Content-Type-Options", value: "nosniff" },
@@ -14,6 +17,26 @@ const securityHeaders = [
     key: "Strict-Transport-Security",
     value: "max-age=63072000; includeSubDomains; preload",
   },
+  {
+    key: "Content-Security-Policy",
+    value: [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-eval' 'unsafe-inline'", // Next.js requires unsafe-eval in dev; tighten in prod if needed
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "font-src 'self' https://fonts.gstatic.com",
+      `img-src 'self' data: blob: https://${supabaseHost} https://images.unsplash.com`,
+      `connect-src 'self' https://${supabaseHost} wss://${supabaseHost}`,
+      "frame-ancestors 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+    ].join("; "),
+  },
+];
+
+// Extra headers applied only to /admin/* routes
+const adminHeaders = [
+  { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive, nosnippet" },
+  { key: "Cache-Control", value: "no-store, no-cache, max-age=0, must-revalidate" },
 ];
 
 const nextConfig: NextConfig = {
@@ -23,13 +46,17 @@ const nextConfig: NextConfig = {
         source: "/(.*)",
         headers: securityHeaders,
       },
+      {
+        source: "/admin/:path*",
+        headers: adminHeaders,
+      },
     ];
   },
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "qqpaoqfxnumeznkolobb.supabase.co",
+        hostname: supabaseHost,
         port: "",
         pathname: "/storage/v1/object/public/**",
       },
@@ -44,3 +71,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+

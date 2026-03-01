@@ -1,8 +1,26 @@
 import { createClient } from "@supabase/supabase-js";
+import { readFileSync } from "fs";
+import { resolve, dirname } from "path";
+import { fileURLToPath } from "url";
 
-const SUPABASE_URL = "https://qqpaoqfxnumeznkolobb.supabase.co";
-const SUPABASE_ANON_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFxcGFvcWZ4bnVtZXpua29sb2JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcwODEzMjYsImV4cCI6MjA4MjY1NzMyNn0.l9GsdTJ9dsLzDXsX1-_cZ9XiyE9OiQfkvxm3KQj9IYM";
+// Load .env.local manually (dotenv not required)
+const __dirname = dirname(fileURLToPath(import.meta.url));
+try {
+  const envPath = resolve(__dirname, ".env.local");
+  const envContent = readFileSync(envPath, "utf-8");
+  for (const line of envContent.split("\n")) {
+    const match = line.match(/^([^#=]+)=(.*)$/);
+    if (match) process.env[match[1].trim()] = match[2].trim().replace(/^"|"$/g, "");
+  }
+} catch { /* .env.local not found — rely on shell env */ }
+
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+  console.error("Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY in environment.");
+  process.exit(1);
+}
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
