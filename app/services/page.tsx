@@ -264,7 +264,7 @@ export default function ServicesPage() {
               Book on WhatsApp
             </a>
             <a
-              href="tel:+97756878965"
+              href="tel:+9779845541939"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold transition-all hover:-translate-y-1"
               style={{
                 background: "rgba(255,255,255,0.08)",
@@ -275,7 +275,7 @@ export default function ServicesPage() {
               }}
             >
               <Phone size={18} />
-              +977-56-878965
+              +977 9845541939
             </a>
           </div>
         </div>

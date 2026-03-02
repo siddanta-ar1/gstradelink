@@ -26,7 +26,7 @@ export function FieldInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
     return (
         <input
             {...props}
-            className={`w-full px-4 py-3 rounded-xl bg-primary-900 border border-white/10 text-white text-sm transition-all focus:outline-none focus:border-accent-500/50 focus:bg-primary-800 placeholder-primary-200/30 ${props.className ?? ""}`}
+            className={`w-full px-4 py-3 rounded-xl bg-primary-900 shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)] border border-white/5 text-white text-sm transition-all duration-300 focus:outline-none focus:border-accent-500/50 focus:ring-2 focus:ring-accent-500/20 focus:bg-primary-800 placeholder-primary-200/30 ${props.className ?? ""}`}
             style={props.style as React.CSSProperties}
         />
     );
@@ -38,7 +38,7 @@ export function FieldTextarea(
     return (
         <textarea
             {...props}
-            className={`w-full px-4 py-3 rounded-xl bg-primary-900 border border-white/10 text-white text-sm resize-none transition-all focus:outline-none focus:border-accent-500/50 focus:bg-primary-800 placeholder-primary-200/30 ${props.className ?? ""}`}
+            className={`w-full px-4 py-3 rounded-xl bg-primary-900 shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)] border border-white/5 text-white text-sm resize-none transition-all duration-300 focus:outline-none focus:border-accent-500/50 focus:ring-2 focus:ring-accent-500/20 focus:bg-primary-800 placeholder-primary-200/30 ${props.className ?? ""}`}
             style={props.style as React.CSSProperties}
         />
     );
@@ -54,7 +54,7 @@ export function FieldSelect({
         <div className="relative">
             <select
                 {...props}
-                className="w-full px-4 py-3 rounded-xl bg-primary-900 border border-white/10 text-white text-sm appearance-none cursor-pointer focus:outline-none focus:border-accent-500/50 focus:bg-primary-800"
+                className="w-full px-4 py-3 rounded-xl bg-primary-900 shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)] border border-white/5 text-white text-sm appearance-none cursor-pointer transition-all duration-300 focus:outline-none focus:border-accent-500/50 focus:ring-2 focus:ring-accent-500/20 focus:bg-primary-800"
             >
                 {children}
             </select>

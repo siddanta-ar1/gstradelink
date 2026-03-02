@@ -225,7 +225,7 @@ export default function ContactPage() {
                   <MessageCircle size={17} fill="white" /> Chat on WhatsApp
                 </a>
                 <a
-                  href="tel:+97756878965"
+                  href="tel:+9779845541939"
                   className="hover:-translate-y-0.5 transition-all"
                   style={{
                     display: "inline-flex",
@@ -474,16 +474,16 @@ export default function ContactPage() {
               {
                 icon: Phone,
                 label: "Phone / Landline",
-                value: "+977-56-878965",
-                href: "tel:+97756878965",
+                value: "+977 9845541939",
+                href: "tel:+9779845541939",
                 iconBg: "#DCA963",
                 accent: "#FFFBF0",
               },
               {
                 icon: Mail,
                 label: "Email Address",
-                value: "info@gstradelink.com.np",
-                href: "mailto:info@gstradelink.com.np",
+                value: "gstradelinkngt@gmail.com",
+                href: "mailto:gstradelinkngt@gmail.com",
                 iconBg: "#557BAA",
                 accent: "#EEF4FB",
               },
@@ -1069,9 +1069,9 @@ export default function ContactPage() {
               {
                 icon: Phone,
                 badge: "Call us",
-                title: "+977-56-878965",
+                title: "+977 9845541939",
                 sub: "Landline · Mon–Sat 10 AM–6 PM",
-                href: "tel:+97756878965",
+                href: "tel:+9779845541939",
                 iconBg: "#DCA963",
                 btnLabel: "Call now",
                 btnStyle: {
@@ -1082,9 +1082,9 @@ export default function ContactPage() {
               {
                 icon: Mail,
                 badge: "Email",
-                title: "info@gstradelink.com.np",
+                title: "gstradelinkngt@gmail.com",
                 sub: "We reply within 24 hours",
-                href: "mailto:info@gstradelink.com.np",
+                href: "mailto:gstradelinkngt@gmail.com",
                 iconBg: "#3E5E85",
                 btnLabel: "Send email",
                 btnStyle: {

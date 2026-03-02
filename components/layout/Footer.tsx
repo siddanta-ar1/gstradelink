@@ -272,10 +272,10 @@ export const Footer = ({ className }: { className?: string }) => {
               },
               {
                 icon: Phone,
-                text: "+977 9765662427",
-                href: "tel:+9779765662427",
+                text: "+977 9845541939",
+                href: "tel:+9779845541939",
               },
-              { icon: Mail, text: "info@gstradelink.com.np", href: undefined },
+              { icon: Mail, text: "gstradelinkngt@gmail.com", href: undefined },
             ].map(({ icon: Icon, text, href }) => (
               <li
                 key={text}

@@ -14,9 +14,9 @@ export const BUSINESS_INFO: BusinessInfo = {
     country: "Nepal",
   },
   contact: {
-    phone: "+977-56-878965",
-    email: "info@gstradelink.com.np",
-    whatsapp: "+977-9765662427",
+    phone: "+977 9845541939",
+    email: "gstradelinkngt@gmail.com",
+    whatsapp: "+977 9845541939",
   },
   socialMedia: {
     facebook: "https://facebook.com/gstradelinkchitwan",

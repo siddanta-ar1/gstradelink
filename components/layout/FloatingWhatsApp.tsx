@@ -23,7 +23,7 @@ export const FloatingWhatsApp = () => {
 
       {/* Call button */}
       <motion.a
-        href="tel:+9779765662427"
+        href="tel:+9779845541939"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.75, type: "spring", stiffness: 220, damping: 18 }}

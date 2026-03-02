@@ -72,7 +72,11 @@ export function AdminShell() {
 
     return (
         <ToastProvider>
-            <div className="min-h-screen flex bg-primary-950 text-slate-100">
+            <div className="min-h-screen flex bg-primary-950 text-slate-100 relative overflow-hidden">
+                {/* Ambient glows */}
+                <div className="fixed top-0 left-1/4 pointer-events-none z-0" style={{ width: 800, height: 800, background: "radial-gradient(circle, rgba(62,94,133,0.1) 0%, transparent 60%)", transform: "translate(-50%, -50%)" }} />
+                <div className="fixed bottom-0 right-0 pointer-events-none z-0" style={{ width: 600, height: 600, background: "radial-gradient(circle, rgba(220,169,99,0.06) 0%, transparent 60%)", transform: "translate(30%, 30%)" }} />
+
                 {/* Mobile backdrop */}
                 {sidebarOpen && (
                     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 md:hidden animate-fade-in" onClick={() => setSidebarOpen(false)} />
@@ -108,16 +112,16 @@ export function AdminShell() {
                                     key={id}
                                     onClick={() => { setActiveTab(id); setSidebarOpen(false); }}
                                     className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left transition-all duration-200 ${active
-                                            ? "bg-primary-600/20 text-white shadow-inner"
-                                            : "text-primary-200/70 hover:bg-white/5 hover:text-white"
+                                        ? "bg-primary-600/20 text-white shadow-inner"
+                                        : "text-primary-200/70 hover:bg-white/5 hover:text-white"
                                         }`}
                                 >
-                                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors ${active ? "bg-accent-500/15 text-accent-400" : "text-primary-400"
+                                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300 ${active ? "bg-accent-500/15 text-accent-400 shadow-[inset_0_1px_2px_rgba(255,255,255,0.1)]" : "text-primary-400"
                                         }`}>
                                         <Icon size={17} />
                                     </div>
                                     <span className="text-sm font-medium tracking-wide">{label}</span>
-                                    {active && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-accent-500 shadow-[0_0_8px_rgba(220,169,99,0.5)] shrink-0" />}
+                                    {active && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-accent-500 shadow-[0_0_8px_rgba(220,169,99,0.5)] shrink-0 animate-pulse-subtle" />}
                                 </button>
                             );
                         })}
@@ -135,10 +139,10 @@ export function AdminShell() {
                 </aside>
 
                 {/* ══ MAIN ═══════════════════════════════════════════════════════════ */}
-                <main className="flex-1 min-w-0 flex flex-col min-h-screen relative">
+                <main className="flex-1 min-w-0 flex flex-col min-h-screen relative z-10">
                     {/* Top bar */}
                     <header
-                        className="sticky top-0 z-30 px-5 sm:px-8 h-20 flex items-center justify-between gap-4 shrink-0 bg-primary-950/80 backdrop-blur-xl border-b border-white/5"
+                        className="sticky top-0 z-30 px-5 sm:px-8 h-20 flex items-center justify-between gap-4 shrink-0 bg-primary-950/70 backdrop-blur-xl border-b border-white/5"
                     >
                         <div className="flex items-center gap-4 min-w-0">
                             <button onClick={() => setSidebarOpen(true)} className="md:hidden w-10 h-10 rounded-xl flex items-center justify-center hover:bg-white/10 text-primary-200 transition-colors shrink-0">

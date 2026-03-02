@@ -103,7 +103,7 @@ export const Hero = () => {
                 <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <a
-                href="tel:+977-56-878965"
+                href="tel:+977 9845541939"
                 className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border-2 border-primary-600 text-primary-600 font-semibold text-sm hover:bg-primary-50 hover:-translate-y-0.5 transition-all duration-200"
               >
                 <Phone size={16} />

@@ -976,7 +976,7 @@ export default async function Home() {
                 <MessageCircle size={17} fill="white" /> Chat on WhatsApp
               </a>
               <a
-                href="tel:+9779765662427"
+                href="tel:+9779845541939"
                 className="hover:-translate-y-0.5 transition-all"
                 style={{
                   display: "inline-flex",

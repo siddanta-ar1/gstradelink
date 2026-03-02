@@ -162,7 +162,7 @@ export const Navbar = () => {
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
                 <Phone size={13} />
-                <span>+977-56-878965</span>
+                <span>+977 9845541939</span>
               </div>
               <span className="text-white/20">•</span>
               <span>Open all days except Monday · 10:00 AM – 6:00 PM</span>
@@ -652,21 +652,21 @@ export const Navbar = () => {
                       </p>
                       <div className="space-y-2.5">
                         <a
-                          href="tel:+97756878965"
+                          href="tel:+9779845541939"
                           className="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all hover:bg-white/5"
                           style={{ color: "#93B2D6" }}
                         >
                           <Phone size={15} style={{ color: "#DCA963" }} />
-                          <span className="text-sm">+977-56-878965</span>
+                          <span className="text-sm">+977 9845541939</span>
                         </a>
                         <a
-                          href="mailto:info@gstradelink.com.np"
+                          href="mailto:gstradelinkngt@gmail.com"
                           className="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all hover:bg-white/5"
                           style={{ color: "#93B2D6" }}
                         >
                           <Mail size={15} style={{ color: "#DCA963" }} />
                           <span className="text-sm">
-                            info@gstradelink.com.np
+                            gstradelinkngt@gmail.com
                           </span>
                         </a>
                         <div
@@ -705,7 +705,7 @@ export const Navbar = () => {
                       Chat on WhatsApp
                     </a>
                     <a
-                      href="tel:+9779765662427"
+                      href="tel:+9779845541939"
                       onClick={() => setIsOpen(false)}
                       className="w-full flex items-center justify-center gap-2.5 px-4 py-3.5 rounded-xl text-sm font-bold transition-all hover:bg-white/10 active:scale-[0.98]"
                       style={{

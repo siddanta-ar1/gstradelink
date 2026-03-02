@@ -78,12 +78,12 @@ export function AddProductTab() {
 
     return (
         <div className="space-y-6">
-            <div className="rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-lg">
+            <div className="rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-black/30 animate-slide-up" style={{ animationFillMode: 'both', animationDelay: '100ms' }}>
                 <form onSubmit={handleSubmit}>
-                    <div className="grid md:grid-cols-2">
+                    <div className="grid lg:grid-cols-[1fr_1.2fr]">
                         {/* Image column */}
-                        <div className="p-6 sm:p-8 border-b border-white/10 md:border-b-0 md:border-r">
-                            <div className="flex items-center gap-2 mb-5">
+                        <div className="p-6 sm:p-8 lg:p-10 border-b border-white/10 lg:border-b-0 lg:border-r">
+                            <div className="flex items-center gap-2 mb-6">
                                 <ImageIcon size={14} className="text-accent-500" />
                                 <span className="text-[11px] font-semibold uppercase tracking-widest text-primary-200/60">Product Image</span>
                             </div>
@@ -95,7 +95,7 @@ export function AddProductTab() {
                             />
                         </div>
                         {/* Fields column */}
-                        <div className="p-6 sm:p-8 space-y-5">
+                        <div className="p-6 sm:p-8 lg:p-10 space-y-6">
                             <div>
                                 <FieldLabel icon={FileText}>Product Name</FieldLabel>
                                 <FieldInput value={name} onChange={e => setName(e.target.value)} placeholder="e.g., Heavy Duty Platform Scale" required />
@@ -106,18 +106,20 @@ export function AddProductTab() {
                                         <Tag size={13} className="text-accent-500" />
                                         <span className="text-[11px] font-semibold uppercase tracking-widest text-primary-200/60">Category</span>
                                     </label>
-                                    <button type="button" onClick={() => setShowAddCategory(v => !v)} className="flex items-center gap-1 h-6 px-2 rounded-lg text-[11px] font-semibold transition-all hover:bg-white/10 text-accent-500 border border-accent-500/30">
-                                        <FolderPlus size={11} />New
+                                    <button type="button" onClick={() => setShowAddCategory(v => !v)} className="flex items-center gap-1 h-7 px-3 rounded-lg text-xs font-semibold transition-all hover:bg-white/10 text-accent-500 border border-accent-500/30 hover:border-accent-500/50">
+                                        <FolderPlus size={14} />New
                                     </button>
                                 </div>
                                 {showAddCategory && (
-                                    <div className="mb-3 p-4 rounded-2xl space-y-3 bg-accent-500/5 border border-accent-500/20">
+                                    <div className="mb-4 p-5 rounded-2xl space-y-4 bg-accent-500/5 border border-accent-500/20">
                                         <p className="text-[11px] font-semibold uppercase tracking-wider text-accent-500">New Category</p>
-                                        <FieldInput value={newLabel} onChange={e => setNewLabel(e.target.value)} placeholder="Display name (e.g., Lab Scales)" />
-                                        <FieldInput value={newValue} onChange={e => setNewValue(e.target.value)} placeholder="Database value (e.g., Lab & Scientific Scales)" />
-                                        <div className="grid grid-cols-2 gap-2 pt-1">
-                                            <button type="button" onClick={handleAddCategory} className="py-2 rounded-xl text-xs font-semibold bg-accent-500/20 text-accent-400 hover:bg-accent-500/30 transition-colors">Add</button>
-                                            <button type="button" onClick={() => { setShowAddCategory(false); setNewLabel(""); setNewValue(""); }} className="py-2 rounded-xl text-xs font-semibold hover:bg-white/10 text-primary-200/60 border border-white/10 transition-colors">Cancel</button>
+                                        <div className="space-y-4">
+                                            <FieldInput value={newLabel} onChange={e => setNewLabel(e.target.value)} placeholder="Display name (e.g., Lab Scales)" />
+                                            <FieldInput value={newValue} onChange={e => setNewValue(e.target.value)} placeholder="Database value (e.g., Lab & Scientific Scales)" />
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-3 pt-2">
+                                            <button type="button" onClick={handleAddCategory} className="py-2.5 rounded-xl text-xs font-semibold bg-accent-500/20 text-accent-400 hover:bg-accent-500/30 transition-colors">Add Category</button>
+                                            <button type="button" onClick={() => { setShowAddCategory(false); setNewLabel(""); setNewValue(""); }} className="py-2.5 rounded-xl text-xs font-semibold hover:bg-white/10 text-primary-200/60 border border-white/10 transition-colors">Cancel</button>
                                         </div>
                                     </div>
                                 )}
@@ -127,20 +129,20 @@ export function AddProductTab() {
                             </div>
                             <div>
                                 <FieldLabel icon={FileText}>Short Description</FieldLabel>
-                                <FieldTextarea value={desc} onChange={e => setDesc(e.target.value)} placeholder="Key specs — capacity, accuracy, material…" style={{ minHeight: "100px" }} />
+                                <FieldTextarea value={desc} onChange={e => setDesc(e.target.value)} placeholder="Key specs — capacity, accuracy, material…" style={{ minHeight: "120px" }} />
                             </div>
                             <button
                                 type="submit" disabled={uploading}
-                                className="w-full h-12 rounded-2xl font-semibold text-sm text-white flex items-center justify-center gap-2 transition-all duration-200 hover:opacity-90 active:scale-[0.99] disabled:opacity-50 disabled:pointer-events-none mt-2 bg-gradient-to-br from-accent-500 to-accent-600 shadow-[0_4px_20px_rgba(220,169,99,0.3)] hover:shadow-[0_6px_24px_rgba(220,169,99,0.4)]"
+                                className="w-full h-14 rounded-2xl font-semibold text-sm text-white flex items-center justify-center gap-2 transition-all duration-200 hover:opacity-90 active:scale-[0.99] disabled:opacity-50 disabled:pointer-events-none mt-4 bg-gradient-to-br from-accent-500 to-accent-600 shadow-[0_4px_20px_rgba(220,169,99,0.3)] hover:shadow-[0_6px_24px_rgba(220,169,99,0.4)]"
                             >
-                                {uploading ? <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Uploading…</> : <><Plus size={16} />Publish Product</>}
+                                {uploading ? <><div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />Uploading…</> : <><Plus size={18} />Publish Product</>}
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
             {/* Tips */}
-            <div className="flex gap-3 p-5 rounded-2xl bg-primary-600/10 border border-primary-600/20">
+            <div className="flex gap-3 p-5 rounded-2xl bg-primary-600/10 border border-primary-600/20 animate-slide-up" style={{ animationFillMode: 'both', animationDelay: '200ms' }}>
                 <CheckCircle2 size={16} className="shrink-0 mt-0.5 text-primary-400" />
                 <div>
                     <p className="text-xs font-semibold mb-2 text-primary-200/70">Tips for better listings</p>

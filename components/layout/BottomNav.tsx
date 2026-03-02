@@ -13,7 +13,7 @@ export const BottomNav = () => {
   const navItems = [
     { icon: Home, href: "/", label: "Home", external: false },
     { icon: Package, href: "/products", label: "Catalogue", external: false },
-    { icon: Phone, href: "tel:+9779765662427", label: "Call", external: true },
+    { icon: Phone, href: "tel:+9779845541939", label: "Call", external: true },
   ];
 
   return (

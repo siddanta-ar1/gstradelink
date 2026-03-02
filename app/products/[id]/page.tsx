@@ -260,7 +260,7 @@ export default async function ProductDetailPage(props: {
                 <MessageCircle size={18} fill="white" /> Chat on WhatsApp
               </a>
               <a
-                href="tel:+9779765662427"
+                href="tel:+9779845541939"
                 className="inline-flex flex-1 items-center justify-center gap-2 font-bold transition-all hover:-translate-y-0.5"
                 style={{
                   height: "48px",
