@@ -365,18 +365,41 @@ export const Navbar = () => {
             <div className="flex items-center gap-3 lg:hidden">
               {/* Auth: Avatar / Login for Mobile */}
               {user ? (
-                <button
-                  onClick={(e) => { e.stopPropagation(); setShowUserMenu(v => !v); }}
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all hover:ring-2 hover:ring-primary-200"
-                  style={{ background: "#3E5E85", color: "#fff" }}
-                  title={user.email ?? "Account"}
-                >
-                  {user.user_metadata?.avatar_url ? (
-                    <Image src={user.user_metadata.avatar_url} alt="Avatar" width={32} height={32} className="w-full h-full rounded-full object-cover" />
-                  ) : (
-                    user.email?.[0]?.toUpperCase() ?? <User size={14} />
-                  )}
-                </button>
+                <div className="relative">
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setShowUserMenu(v => !v); }}
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all hover:ring-2 hover:ring-primary-200"
+                    style={{ background: "#3E5E85", color: "#fff" }}
+                    title={user.email ?? "Account"}
+                  >
+                    {user.user_metadata?.avatar_url ? (
+                      <Image src={user.user_metadata.avatar_url} alt="Avatar" width={32} height={32} className="w-full h-full rounded-full object-cover" />
+                    ) : (
+                      user.email?.[0]?.toUpperCase() ?? <User size={14} />
+                    )}
+                  </button>
+                  <AnimatePresence>
+                    {showUserMenu && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute top-full right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-border-primary p-2 z-50"
+                      >
+                        <div className="px-3 py-2 mb-1 border-b border-border-primary">
+                          <p className="text-xs font-semibold text-foreground-primary truncate">{user.email}</p>
+                        </div>
+                        <Link href="/admin" className="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium text-foreground-secondary hover:text-primary-600 hover:bg-primary-50 transition-colors" onClick={() => setShowUserMenu(false)}>
+                          <Shield size={14} /> Admin Panel
+                        </Link>
+                        <button onClick={handleSignOut} className="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium text-red-500 hover:bg-red-50 transition-colors">
+                          <LogOut size={14} /> Sign Out
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               ) : (
                 <Link
                   href="/admin/login"
